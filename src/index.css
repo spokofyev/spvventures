@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: #000;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
