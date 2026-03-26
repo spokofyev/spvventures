@@ -1,8 +1,8 @@
 const stats = [
-  { value: '$500M+', label: 'Total deal value advised' },
-  { value: '6–12 wks', label: 'Average time to first pilot' },
-  { value: '50+', label: 'Mandates completed' },
-  { value: '3 verticals', label: 'Deep tech focus areas' },
+  { value: 'UK · US', label: 'Buy-side focus' },
+  { value: '50+', label: 'Founders & operators in network' },
+  { value: '4', label: 'Deep tech verticals' },
+  { value: '2', label: 'Senior partners. No junior hand-offs.' },
 ]
 
 export default function StatsBar() {

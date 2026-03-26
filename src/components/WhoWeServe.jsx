@@ -54,14 +54,14 @@ export default function WhoWeServe() {
         <h2 className="text-3xl sm:text-4xl font-normal tracking-tight text-black mb-16">Who we serve</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left column */}
+          {/* Left column — corporates first */}
           <div>
             <div className="flex items-center gap-2 mb-8">
-              <Rocket size={18} className="text-black/40" />
-              <span className="text-sm font-medium text-black/50 uppercase tracking-wider">R&D Teams — Pre-seed to Series A</span>
+              <Building2 size={18} className="text-black/40" />
+              <span className="text-sm font-medium text-black/50 uppercase tracking-wider">Corporations — M&A &amp; Innovation</span>
             </div>
             <div className="space-y-8">
-              {rdItems.map((item) => (
+              {corpItems.map((item) => (
                 <SubsectionItem key={item.title} {...item} />
               ))}
             </div>
@@ -70,11 +70,11 @@ export default function WhoWeServe() {
           {/* Right column */}
           <div>
             <div className="flex items-center gap-2 mb-8">
-              <Building2 size={18} className="text-black/40" />
-              <span className="text-sm font-medium text-black/50 uppercase tracking-wider">Corporations — M&A &amp; Innovation</span>
+              <Rocket size={18} className="text-black/40" />
+              <span className="text-sm font-medium text-black/50 uppercase tracking-wider">R&D Teams — Pre-seed to Series A</span>
             </div>
             <div className="space-y-8">
-              {corpItems.map((item) => (
+              {rdItems.map((item) => (
                 <SubsectionItem key={item.title} {...item} />
               ))}
             </div>

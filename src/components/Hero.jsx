@@ -22,7 +22,7 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="text-xs uppercase tracking-widest text-black/40 mb-6"
         >
-          AI Vertical Service Company
+          Deep Tech Advisory · London
         </motion.p>
 
         <motion.h1
@@ -32,7 +32,7 @@ export default function Hero() {
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.02] text-black mb-6"
           style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
         >
-          The AI-native partner for deep tech teams
+          We connect corporates to deep tech they can't build alone.
         </motion.h1>
 
         <motion.p
@@ -41,7 +41,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg sm:text-xl text-black/50 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          We handle the entire business side—pilots, corporate entry, and M&A—so your R&D team can focus entirely on building.
+          SPV Ventures is a boutique advisory firm run by two operators — one who builds, one who structures deals. We source, vet, and close. Quietly.
         </motion.p>
 
         <motion.div
