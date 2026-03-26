@@ -125,9 +125,9 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="px-8 py-3 text-xs font-medium uppercase tracking-widest text-white bg-black rounded-full hover:bg-black/80 disabled:opacity-50 transition-colors"
+        className="text-sm uppercase tracking-widest text-black hover:text-black/40 disabled:opacity-50 transition-colors"
       >
-        {submitting ? 'Sending…' : 'Submit enquiry'}
+        {submitting ? 'Sending…' : 'Submit enquiry →'}
       </button>
     </form>
   )

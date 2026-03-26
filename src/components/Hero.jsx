@@ -1,69 +1,26 @@
-import { motion } from 'framer-motion'
-
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white px-6">
-      {/* Decorative blobs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-black/[0.03] blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-black/[0.03] blur-3xl pointer-events-none" />
-      {/* Grid pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)',
-          backgroundSize: '64px 64px',
-        }}
-      />
+    <section className="min-h-screen flex flex-col justify-center px-8 md:px-16 lg:px-24 py-32">
+      <p className="text-xs uppercase tracking-widest text-black/30 mb-16">
+        SPV Ventures ————————————————————
+      </p>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-xs uppercase tracking-widest text-black/40 mb-6"
-        >
-          Deep Tech Advisory · London
-        </motion.p>
+      <h1
+        className="text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight leading-[1.05] text-black mb-8 max-w-3xl"
+      >
+        We connect corporates to deep tech they can't build alone.
+      </h1>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.02] text-black mb-6"
-          style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
-        >
-          We connect corporates to deep tech they can't build alone.
-        </motion.h1>
+      <p className="text-base text-black/50 max-w-lg mb-16 leading-relaxed">
+        Boutique advisory firm. We source, vet, and close deep tech deals for corporations across Robotics, Physical AI, and Applied AI. UK-headquartered, operating across the US and Europe.
+      </p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg sm:text-xl text-black/50 max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          A boutique firm run by two operators — one who builds, one who structures deals. We co-invest, advise, and close. Quietly.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3"
-        >
-          <a
-            href="#contact"
-            className="px-7 py-3 text-sm font-medium text-white bg-black rounded-full hover:bg-black/80 transition-colors"
-          >
-            Partner with us
-          </a>
-          <a
-            href="#how-it-works"
-            className="px-7 py-3 text-sm font-medium text-black border border-black/20 rounded-full hover:border-black/40 transition-colors"
-          >
-            How it works ↓
-          </a>
-        </motion.div>
-      </div>
+      <a
+        href="#contact"
+        className="text-sm uppercase tracking-widest text-black hover:text-black/40 transition-colors"
+      >
+        Get in touch →
+      </a>
     </section>
   )
 }
