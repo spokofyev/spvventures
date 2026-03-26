@@ -16,10 +16,12 @@ export default function Hero() {
       </p>
 
       <a
-        href="#contact"
+        href="https://linkedin.com/in/sprokofyev"
+        target="_blank"
+        rel="noopener noreferrer"
         className="text-sm uppercase tracking-widest text-black hover:text-black/40 transition-colors"
       >
-        Get in touch →
+        LinkedIn ↗
       </a>
     </section>
   )
