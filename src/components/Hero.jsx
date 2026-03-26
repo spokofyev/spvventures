@@ -41,7 +41,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg sm:text-xl text-black/50 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          SPV Ventures is a boutique advisory firm run by two operators — one who builds, one who structures deals. We source, vet, and close. Quietly.
+          A boutique firm run by two operators — one who builds, one who structures deals. We co-invest, advise, and close. Quietly.
         </motion.p>
 
         <motion.div
