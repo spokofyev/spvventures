@@ -6,13 +6,14 @@ const STORAGE_KEYS = {
   PASSCODE: 'budget_passcode',
 }
 
-// Telegram CloudStorage or localStorage fallback
+// Use Telegram CloudStorage only when actually running inside Telegram
 const tg = window.Telegram?.WebApp
+const inTelegram = !!(tg?.initData)
 
 function storageGet(key) {
   return new Promise((resolve) => {
-    if (tg?.CloudStorage) {
-      tg.CloudStorage.getItem(key, (err, val) => resolve(val || null))
+    if (inTelegram && tg.CloudStorage) {
+      tg.CloudStorage.getItem(key, (_err, val) => resolve(val || null))
     } else {
       resolve(localStorage.getItem(key))
     }
@@ -21,7 +22,7 @@ function storageGet(key) {
 
 function storageSet(key, value) {
   return new Promise((resolve) => {
-    if (tg?.CloudStorage) {
+    if (inTelegram && tg.CloudStorage) {
       tg.CloudStorage.setItem(key, value, () => resolve())
     } else {
       localStorage.setItem(key, value)
