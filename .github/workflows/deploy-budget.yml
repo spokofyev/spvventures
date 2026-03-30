@@ -3,7 +3,6 @@ name: Deploy Budget App to GitHub Pages
 on:
   push:
     branches: [claude/ios-budgeting-app-lTsxa]
-    paths: [budget-app/**]
   workflow_dispatch:
 
 permissions:
