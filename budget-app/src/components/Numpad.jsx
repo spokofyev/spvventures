@@ -19,7 +19,7 @@ function Key({ label, onPress, className = '' }) {
       onPointerDown={(e) => { e.preventDefault(); onPress(label) }}
       className={`
         flex items-center justify-center
-        text-2xl font-light text-white
+        text-3xl font-light text-white
         select-none outline-none
         ${className}
       `}
@@ -36,10 +36,10 @@ function Key({ label, onPress, className = '' }) {
 }
 
 export default function Numpad({ onKey }) {
-  const cellH = 'h-[72px]'
+  const cellH = 'h-[88px]'
 
   return (
-    <div className="grid grid-cols-4 no-select" style={{ gridTemplateRows: 'repeat(4, 72px)' }}>
+    <div className="grid grid-cols-4 no-select" style={{ gridTemplateRows: 'repeat(4, 88px)' }}>
       {/* Row 1 */}
       {ROW1.map(k => (
         <Key key={k} label={k} onPress={onKey} className={cellH} />

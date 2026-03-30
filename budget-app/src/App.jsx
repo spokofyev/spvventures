@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useBudget } from './hooks/useBudget.js'
+import { useAuth } from './hooks/useAuth.js'
 import PasscodeScreen from './components/PasscodeScreen.jsx'
 import MainScreen from './components/MainScreen.jsx'
 import HistoryScreen from './components/HistoryScreen.jsx'
 import SettingsScreen from './components/SettingsScreen.jsx'
+import SurplusModal from './components/SurplusModal.jsx'
+import AuthScreen from './components/AuthScreen.jsx'
 
 // Initialize Telegram WebApp
 const tg = window.Telegram?.WebApp
@@ -35,21 +38,37 @@ const slideUp = {
 const transition = { type: 'tween', duration: 0.25, ease: 'easeInOut' }
 
 export default function App() {
-  const budget = useBudget()
-  // screen: 'loading' | 'passcode_verify' | 'passcode_create' | 'settings_setup' | 'main' | 'history' | 'settings'
+  const auth = useAuth()
+  // screen: 'loading' | 'auth' | 'passcode_verify' | 'passcode_create' | 'settings_setup' | 'main' | 'history' | 'settings'
   const [screen, setScreen] = useState('loading')
   const [wrongPin, setWrongPin] = useState(false)
 
+  // Pass auth user into budget hook so it can sync with Firestore
+  const budget = useBudget(auth.user)
+
   useEffect(() => {
+    // Wait for both auth and budget to finish loading
+    if (auth.user === undefined) return
     if (!budget.loaded) return
-    if (budget.passcode) {
-      setScreen('passcode_verify')
-    } else if (!budget.settings) {
-      setScreen('settings_setup')
-    } else {
-      setScreen('main')
+
+    // Show auth screen once, before passcode, if Firebase is configured and not logged in
+    // and we're not in Telegram (Telegram has its own identity)
+    const tgActive = !!(window.Telegram?.WebApp?.initData)
+    if (auth.hasConfig && !auth.user && !tgActive && screen === 'loading') {
+      setScreen('auth')
+      return
     }
-  }, [budget.loaded, budget.passcode, budget.settings])
+
+    if (screen === 'loading' || screen === 'auth') {
+      if (budget.passcode) {
+        setScreen('passcode_verify')
+      } else if (!budget.settings) {
+        setScreen('settings_setup')
+      } else {
+        setScreen('main')
+      }
+    }
+  }, [auth.user, auth.hasConfig, budget.loaded, budget.passcode, budget.settings])
 
   function handleVerify(pin) {
     if (pin === budget.passcode) {
@@ -80,7 +99,35 @@ export default function App() {
 
   return (
     <div className="h-full bg-black overflow-hidden relative">
+      {screen === 'main' && (
+        <SurplusModal
+          surplus={budget.pendingSurplus}
+          onExtend={budget.extendRunway}
+          onSpendMore={budget.dismissSurplus}
+        />
+      )}
       <AnimatePresence mode="wait">
+        {screen === 'auth' && (
+          <motion.div key="auth" className="absolute inset-0" {...slideLeft} transition={transition}>
+            <AuthScreen
+              onAuth={() => {
+                if (budget.passcode) setScreen('passcode_verify')
+                else if (!budget.settings) setScreen('settings_setup')
+                else setScreen('main')
+              }}
+              onSkip={() => {
+                if (budget.passcode) setScreen('passcode_verify')
+                else if (!budget.settings) setScreen('settings_setup')
+                else setScreen('main')
+              }}
+              error={auth.error}
+              sendSmsCode={auth.sendSmsCode}
+              confirmSmsCode={auth.confirmSmsCode}
+              signInWithGoogle={auth.signInWithGoogle}
+            />
+          </motion.div>
+        )}
+
         {screen === 'passcode_verify' && (
           <motion.div key="passcode_verify" className="absolute inset-0" {...slideLeft} transition={transition}>
             <PasscodeScreen

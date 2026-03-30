@@ -83,11 +83,11 @@ export default function PasscodeScreen({ mode, onSuccess, onCreated }) {
             onClick={() => handleKey(key)}
             disabled={key === ''}
             className={`
-              h-16 rounded-full text-2xl font-light
+              h-20 rounded-2xl text-3xl font-light
               flex items-center justify-center
               transition-colors active:bg-white/20
               ${key === '' ? 'invisible' : ''}
-              ${key === '⌫' ? 'text-white/70 text-xl' : 'text-white bg-white/10'}
+              ${key === '⌫' ? 'text-white/70 text-2xl' : 'text-white bg-white/10'}
             `}
           >
             {key}
