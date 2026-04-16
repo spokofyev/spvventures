@@ -1,27 +1,142 @@
-@import "tailwindcss";
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-}
+html, body, #root { height: 100%; }
 
 body {
-  margin: 0;
-  color: #000;
-  background-color: #fff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #111;
+  background: #fff;
   -webkit-font-smoothing: antialiased;
-  font-family: Inter, system-ui, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
-  width: 100%;
-  overflow-x: hidden;
+/* ── Layout ──────────────────────────────── */
+
+.page {
+  height: 100vh;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+/* ── Nav ──────────────────────────────────── */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 0;
+  border-bottom: 1px solid #e8e8e8;
+  flex-shrink: 0;
 }
 
-.animate-marquee {
-  animation: marquee 30s linear infinite;
+.wordmark {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover { color: #111; }
+
+/* ── Main ─────────────────────────────────── */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 36px;
+  padding: 40px 0;
+}
+
+.headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(26px, 3.6vw, 40px);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  color: #0d0d0d;
+}
+
+.tagline {
+  font-size: 13px;
+  font-weight: 400;
+  color: #999;
+  line-height: 1.6;
+  max-width: 480px;
+  margin-top: -16px;
+}
+
+/* ── Services ─────────────────────────────── */
+
+.services {
+  border-top: 1px solid #e8e8e8;
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 116px 1fr;
+  gap: 28px;
+  padding: 13px 0;
+  border-bottom: 1px solid #e8e8e8;
+  align-items: baseline;
+}
+
+.service-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #aaa;
+  padding-top: 1px;
+  white-space: nowrap;
+}
+
+.service-body {
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* ── Footer ───────────────────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-top: 1px solid #e8e8e8;
+  flex-shrink: 0;
+}
+
+.footer-geo {
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: #bbb;
+}
+
+.footer-copy {
+  font-size: 11.5px;
+  color: #bbb;
 }
