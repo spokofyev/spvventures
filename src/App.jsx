@@ -14,6 +14,27 @@ const services = [
   },
 ]
 
+const deals = [
+  {
+    name: '████████',
+    sector: 'Space',
+    stage: 'Series A · Late Stage',
+    rationale: 'Revenue traction and defensible orbit position made this a compelling strategic fit for a US corporate buyer.',
+  },
+  {
+    name: '████████',
+    sector: 'Fintech',
+    stage: 'Seed',
+    rationale: 'Exceptional founding team, proprietary IP, and a roadmap that would have taken the acquirer 3+ years to build in-house.',
+  },
+  {
+    name: '████████',
+    sector: 'Space',
+    stage: 'Series A',
+    rationale: 'Early-stage propulsion IP with no public footprint. Sourced through network before the founders were ready to raise.',
+  },
+]
+
 export default function App() {
   return (
     <div className="page">
@@ -26,7 +47,7 @@ export default function App() {
 
       <main className="main">
         <h1 className="headline">
-          We connect corporates to deep tech<br />they can't build alone.
+          We connect corporates to deep tech they can't build alone.
         </h1>
 
         <p className="tagline">
@@ -41,6 +62,27 @@ export default function App() {
             </div>
           ))}
         </div>
+
+        {false && <div className="deals">
+          <p className="section-label">Recent Deals</p>
+          <div className="deals-table">
+            <div className="deals-header">
+              <span>Company</span>
+              <span>Sector</span>
+              <span>Stage</span>
+              <span>Strategic rationale</span>
+            </div>
+            {deals.map((d, i) => (
+              <div key={i} className="deals-row">
+                <span className="deal-name">{d.name}</span>
+                <span className="deal-meta">{d.sector}</span>
+                <span className="deal-meta">{d.stage}</span>
+                <p className="deal-rationale">{d.rationale}</p>
+              </div>
+            ))}
+          </div>
+        </div>}
+
       </main>
 
       <footer className="footer">

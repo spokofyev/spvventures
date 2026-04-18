@@ -4,7 +4,7 @@ html, body, #root { height: 100%; }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  color: #111;
+  color: #0a0a0a;
   background: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,10 +13,10 @@ body {
 /* ── Layout ──────────────────────────────── */
 
 .page {
-  height: 100vh;
-  max-width: 720px;
+  min-height: 100vh;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 48px;
   display: flex;
   flex-direction: column;
 }
@@ -27,35 +27,34 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22px 0;
-  border-bottom: 1px solid #e8e8e8;
+  padding: 28px 0;
+  border-bottom: 1px solid #ebebeb;
   flex-shrink: 0;
 }
 
 .wordmark {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #111;
+  color: #0a0a0a;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
 }
 
 .nav-links a {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
-  letter-spacing: 0.04em;
-  color: #888;
+  color: #999;
   text-decoration: none;
   transition: color 0.15s;
 }
 
-.nav-links a:hover { color: #111; }
+.nav-links a:hover { color: #0a0a0a; }
 
 /* ── Main ─────────────────────────────────── */
 
@@ -64,58 +63,122 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 36px;
-  padding: 40px 0;
+  gap: 48px;
+  padding: 72px 0 56px;
 }
 
 .headline {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(26px, 3.6vw, 40px);
-  font-weight: 400;
-  line-height: 1.22;
-  letter-spacing: -0.01em;
-  color: #0d0d0d;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #0a0a0a;
+  max-width: 900px;
+  text-wrap: balance;
 }
 
 .tagline {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
-  color: #999;
-  line-height: 1.6;
-  max-width: 480px;
+  color: #888;
+  line-height: 1.65;
+  max-width: 600px;
   margin-top: -16px;
 }
 
 /* ── Services ─────────────────────────────── */
 
 .services {
-  border-top: 1px solid #e8e8e8;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 56px;
 }
 
 .service-row {
-  display: grid;
-  grid-template-columns: 116px 1fr;
-  gap: 28px;
-  padding: 13px 0;
-  border-bottom: 1px solid #e8e8e8;
-  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 32px 0;
+  border-top: 1px solid #ebebeb;
 }
 
 .service-label {
   font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #aaa;
-  padding-top: 1px;
-  white-space: nowrap;
+  color: #bbb;
 }
 
 .service-body {
-  font-size: 13.5px;
+  font-size: 15.5px;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #444;
+}
+
+/* ── Deals ────────────────────────────────── */
+
+.deals {
+  max-width: 760px;
+}
+
+.section-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 16px;
+}
+
+.deals-table {
+  border-top: 1px solid #ebebeb;
+}
+
+.deals-header {
+  display: grid;
+  grid-template-columns: 120px 90px 160px 1fr;
+  gap: 24px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.deals-header span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ccc;
+  white-space: nowrap;
+}
+
+.deals-row {
+  display: grid;
+  grid-template-columns: 120px 90px 160px 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f5f5f5;
+  align-items: baseline;
+}
+
+.deal-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+  font-family: monospace;
+}
+
+.deal-meta {
+  font-size: 12.5px;
+  color: #999;
+}
+
+.deal-rationale {
+  font-size: 12.5px;
+  color: #aaa;
+  line-height: 1.55;
 }
 
 /* ── Footer ───────────────────────────────── */
@@ -124,19 +187,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 0;
-  border-top: 1px solid #e8e8e8;
+  padding: 20px 0;
+  border-top: 1px solid #ebebeb;
   flex-shrink: 0;
+  margin-top: auto;
 }
 
 .footer-geo {
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 400;
-  letter-spacing: 0.03em;
-  color: #bbb;
+  letter-spacing: 0.02em;
+  color: #ccc;
 }
 
 .footer-copy {
-  font-size: 11.5px;
-  color: #bbb;
+  font-size: 12px;
+  color: #ccc;
 }
