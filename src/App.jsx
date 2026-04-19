@@ -2,97 +2,42 @@
 const services = [
   {
     label: 'M&A Advisory',
-    body: 'Buy-side advisory for corporates acquiring in deep tech. We source off-market targets, run the full process, and sit at the table until it closes.',
+    body: 'Full-process advisory for corporates acquiring in deep tech. We originate proprietary targets, run the process, and close.',
   },
   {
     label: 'Integration',
-    body: 'Post-close execution support. We stay in as hands-on partners — not a handoff to a consultant — until your team has absorbed the acquisition and extracted the value.',
+    body: 'Post-close execution support. We stay in as hands-on partners to help your team absorb the acquisition and extract the value you paid for.',
   },
   {
     label: 'SPV Capital',
-    body: 'When co-investment makes more sense than acquisition, we structure and bring capital via SPV alongside your team. We take equity. We have skin in the deal.',
+    body: 'Where the opportunity calls for co-investment rather than acquisition, we structure and bring capital via SPV alongside your team.',
   },
 ]
 
-const phases = [
+const deals = [
   {
-    label: 'Mandate & Search',
-    items: [
-      'Acquisition mandate definition & refinement',
-      'Target universe mapping & scoring',
-      'Market & competitive landscape analysis',
-      'AI-powered company screening',
-      'Off-market outreach & NDA management',
-      'Engagement audit trail',
-    ],
+    name: '████████',
+    sector: 'Space',
+    stage: 'Series A · Late Stage',
+    rationale: 'Revenue traction and defensible orbit position made this a compelling strategic fit for a US corporate buyer.',
   },
   {
-    label: 'Assess & Prepare',
-    items: [
-      'Strategic fit scoring & prioritisation',
-      'Preliminary due diligence research',
-      'Acquisition brief & investment case',
-      'Valuation benchmarking',
-      'Data room analysis & gap identification',
-      'IC & board presentation materials',
-    ],
+    name: '████████',
+    sector: 'Fintech',
+    stage: 'Seed',
+    rationale: 'Exceptional founding team, proprietary IP, and a roadmap that would have taken the acquirer 3+ years to build in-house.',
   },
   {
-    label: 'Execute & Close',
-    items: [
-      'Founder & leadership engagement',
-      'Deal structure & term sheet',
-      'Negotiation support',
-      'Full process management',
-      'Closing coordination',
-      'Post-close integration planning',
-    ],
-  },
-]
-
-const stack = [
-  {
-    label: 'AI Infrastructure',
-    desc: 'The operational backbone — automated from day one.',
-    items: [
-      'Investment materials & IM generation',
-      'Market & competitive analysis',
-      'Mandate assessment & screening',
-      'Target identification & matching',
-      'Due diligence research & data room',
-      'NDA workflows, audit trails & process tracking',
-    ],
-  },
-  {
-    label: 'Proprietary Access',
-    desc: 'What no platform can source for you.',
-    items: [
-      'Off-market deep tech deal flow',
-      'Founder & leadership relationships',
-      'Pre-process target identification',
-      'Corporate buyer network — UK · US · Europe',
-      'Space · Fintech · Robotics · Physical AI',
-      'Equity co-investment capability',
-    ],
-  },
-  {
-    label: 'Senior Judgment',
-    desc: 'Two partners. No analysts. No handoffs.',
-    items: [
-      'Strategic fit & mandate alignment',
-      'Deal structure & negotiation',
-      'Equity participation decisions',
-      'Founder trust & closing',
-      'Board & IC-level communication',
-      'Post-close integration oversight',
-    ],
+    name: '████████',
+    sector: 'Space',
+    stage: 'Series A',
+    rationale: 'Early-stage propulsion IP with no public footprint. Sourced through network before the founders were ready to raise.',
   },
 ]
 
 export default function App() {
   return (
-    <>
-      {/* Nav */}
+    <div className="page">
       <nav className="nav">
         <span className="wordmark">SPV Ventures</span>
         <div className="nav-links">
@@ -100,14 +45,15 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Hero */}
-      <div className="hero">
+      <main className="main">
         <h1 className="headline">
           We connect corporates to deep tech they can't build alone.
         </h1>
+
         <p className="tagline">
-          AI infrastructure. Proprietary deal access. Senior judgment. The full stack — as a service.
+          Founders ourselves, on a mission to build a firm that's AI-native at its core — so we can stay focused on what actually matters: judgment, relationships, and delivering real value on every deal.
         </p>
+
         <div className="services">
           {services.map((s) => (
             <div key={s.label} className="service-row">
@@ -116,56 +62,33 @@ export default function App() {
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Scope of engagement */}
-      <section className="scope">
-        <div className="scope-inner">
-          <div className="section-eyebrow">
-            <span className="eyebrow-label">Scope of Engagement</span>
-            <span className="eyebrow-line" />
-            <span className="eyebrow-desc">Every mandate covers the full process — from defining what you're looking for to closing and integration.</span>
-          </div>
-          <div className="scope-grid">
-            {phases.map((phase) => (
-              <div key={phase.label} className="scope-col">
-                <p className="scope-label">{phase.label}</p>
-                <ul className="scope-list">
-                  {phase.items.map(item => <li key={item}>{item}</li>)}
-                </ul>
+        {false && <div className="deals">
+          <p className="section-label">Recent Deals</p>
+          <div className="deals-table">
+            <div className="deals-header">
+              <span>Company</span>
+              <span>Sector</span>
+              <span>Stage</span>
+              <span>Strategic rationale</span>
+            </div>
+            {deals.map((d, i) => (
+              <div key={i} className="deals-row">
+                <span className="deal-name">{d.name}</span>
+                <span className="deal-meta">{d.sector}</span>
+                <span className="deal-meta">{d.stage}</span>
+                <p className="deal-rationale">{d.rationale}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </div>}
 
-      {/* AI-native band */}
-      <section className="ai-band">
-        <div className="ai-band-inner">
-          <div>
-            <span className="ai-band-kicker">How We're Built</span>
-            <h2 className="ai-band-headline">Built on the full stack of modern M&A.</h2>
-            <p className="ai-band-sub">AI platforms automate documents. Auction networks source buyers. We run on the same infrastructure — and add what no platform can replicate: a decade of off-market relationships in deep tech and two senior partners who know which deal is worth doing.</p>
-          </div>
-          <div className="ai-stack">
-            {stack.map((col) => (
-              <div key={col.label} className="ai-stack-col">
-                <p className="ai-col-label">{col.label}</p>
-                <p className="ai-col-desc">{col.desc}</p>
-                <ul className="ai-list">
-                  {col.items.map(t => <li key={t}>{t}</li>)}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </main>
 
-      {/* Footer */}
       <footer className="footer">
         <span className="footer-geo">Robotics · Physical AI · Applied AI &nbsp;·&nbsp; UK · US · Europe</span>
         <span className="footer-copy">© {new Date().getFullYear()} SPV Ventures</span>
       </footer>
-    </>
+    </div>
   )
 }
