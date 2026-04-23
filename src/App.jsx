@@ -1,19 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
 }
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 }
 
 function Reveal({ children, className, delay = 0 }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
     <motion.div
       ref={ref}
@@ -21,7 +21,7 @@ function Reveal({ children, className, delay = 0 }) {
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
       variants={fadeUp}
-      style={{ transitionDelay: `${delay}s` }}
+      transition={{ delay }}
     >
       {children}
     </motion.div>
@@ -30,7 +30,7 @@ function Reveal({ children, className, delay = 0 }) {
 
 function RevealGroup({ children, className }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
     <motion.div
       ref={ref}
@@ -44,7 +44,7 @@ function RevealGroup({ children, className }) {
   )
 }
 
-const model = [
+const steps = [
   {
     num: '01',
     title: 'Identify the Gap',
@@ -66,7 +66,7 @@ const sectors = ['Healthcare', 'Finance', 'Space', 'Industrial Production']
 
 export default function App() {
   return (
-    <div className="site">
+    <div style={{ background: '#06100a' }}>
 
       {/* ── Nav ── */}
       <header className="nav">
@@ -82,89 +82,91 @@ export default function App() {
       <section className="hero">
         <div className="hero-inner">
           <motion.p
-            className="label"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            className="hero-label"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             Corporate Innovation Partners
           </motion.p>
           <motion.h1
             className="hero-title"
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            We help corporates<br /> build the tech<br /> they can't afford to miss
+            We help corporates<br />
+            build the <em>technology</em><br />
+            they can't afford to miss
           </motion.h1>
-          <motion.p
-            className="hero-sub"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Partnering with established companies to acquire R&D talent, build internal capabilities, and turn technology gaps into competitive advantages.
-          </motion.p>
-          <motion.a
-            href="#contact"
-            className="hero-cta"
+          <motion.div
+            className="hero-bottom"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
           >
-            Get in Touch →
-          </motion.a>
+            <p className="hero-sub">
+              Partnering with established companies to acquire R&D talent, build internal capabilities, and turn technology gaps into competitive advantages.
+            </p>
+            <div className="hero-right">
+              <a href="#contact" className="hero-cta">Get in Touch →</a>
+              <div className="scroll-indicator">
+                <span className="scroll-line" />
+                Scroll
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── About ── */}
       <section className="section" id="about">
-        <div className="section-inner about-grid">
-          <div className="about-left">
-            <Reveal>
-              <p className="label">About</p>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="section-title">
-                Founders and<br /> operators,<br /> not consultants
-              </h2>
-            </Reveal>
-          </div>
-          <RevealGroup className="about-right">
-            <motion.p className="body-text" variants={fadeUp}>
-              We are a team of founders and operators with deep networks across engineering labs, research teams, and frontier builders — in healthcare, finance, space, and industrial production.
-            </motion.p>
-            <motion.p className="body-text" variants={fadeUp}>
-              We partner with established corporations to identify technology gaps, acquire the right R&D teams, and build the capabilities that close them. Then we help move those assets forward — through M&A or structured SPV capital.
-            </motion.p>
-            <motion.p className="body-text accent-text" variants={fadeUp}>
-              We don't advise from the sidelines. We get in, build alongside you, and stay until it works.
-            </motion.p>
+        <div className="section-inner">
+          <Reveal>
+            <p className="section-label">About</p>
+          </Reveal>
+          <RevealGroup className="about-grid">
+            <motion.h2 className="about-heading" variants={fadeUp}>
+              Founders and<br /> operators,<br /> not consultants
+            </motion.h2>
+            <motion.div className="about-body" variants={stagger}>
+              <motion.p className="body-text" variants={fadeUp}>
+                We are a team of founders and operators with deep networks across engineering labs, research teams, and frontier builders — in healthcare, finance, space, and industrial production.
+              </motion.p>
+              <motion.p className="body-text" variants={fadeUp}>
+                We partner with established corporations to identify technology gaps, acquire the right R&D teams, and build the capabilities that close them. Then we help move those assets forward — through M&A or structured SPV capital.
+              </motion.p>
+              <motion.p className="pull-quote" variants={fadeUp}>
+                We don't advise from the sidelines. We get in, build alongside you, and stay until it works.
+              </motion.p>
+            </motion.div>
           </RevealGroup>
         </div>
       </section>
 
       {/* ── Model ── */}
-      <section className="section section-dark" id="model">
+      <section className="model-section" id="model">
         <div className="section-inner">
           <Reveal>
-            <p className="label label-light">How We Work</p>
+            <p className="section-label">How We Work</p>
           </Reveal>
-          <RevealGroup className="model-grid">
-            {model.map((card) => (
-              <motion.div className="model-card" key={card.num} variants={fadeUp}>
-                <span className="model-num">{card.num}</span>
-                <h3 className="model-card-title">{card.title}</h3>
-                <p className="model-card-body">{card.body}</p>
+          <RevealGroup className="model-steps">
+            {steps.map((s) => (
+              <motion.div className="model-step" key={s.num} variants={fadeUp}>
+                <span className="step-num">{s.num}</span>
+                <h3 className="step-title">{s.title}</h3>
+                <p className="step-body">{s.body}</p>
               </motion.div>
             ))}
           </RevealGroup>
 
-          <Reveal delay={0.1}>
-            <div className="sectors">
+          <Reveal>
+            <div className="sectors-row">
+              <span className="sectors-label">Focus</span>
               {sectors.map((s, i) => (
-                <span key={s} className="sector-tag">
-                  {s}{i < sectors.length - 1 && <span className="sector-dot">·</span>}
+                <span key={s} style={{ display: 'contents' }}>
+                  <span className="sector-item">{s}</span>
+                  {i < sectors.length - 1 && <span className="sector-sep" />}
                 </span>
               ))}
             </div>
@@ -174,36 +176,34 @@ export default function App() {
 
       {/* ── Contact ── */}
       <section className="section" id="contact">
-        <div className="section-inner contact-grid">
-          <div className="contact-left">
-            <Reveal>
-              <p className="label">Let's Talk</p>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="section-title">
+        <div className="section-inner">
+          <Reveal>
+            <p className="section-label">Let's Talk</p>
+          </Reveal>
+          <Reveal>
+            <div className="contact-wrap">
+              <h2 className="contact-heading">
                 Working with<br /> corporates who<br /> want to move faster
               </h2>
-            </Reveal>
-          </div>
-          <Reveal className="contact-right">
-            <p className="body-text">
-              If you're a corporate looking to acquire technology capability, or a founder interested in strategic backing — we'd like to hear from you.
-            </p>
-            <a
-              href="mailto:hello@spvventures.com"
-              className="cta-link"
-            >
-              Get in Touch →
-            </a>
+              <div className="contact-right">
+                <p className="body-text">
+                  If you're a corporate looking to acquire technology capability, or a founder interested in strategic backing — we'd like to hear from you.
+                </p>
+                <a href="mailto:hello@spvventures.com" className="contact-cta">
+                  Get in Touch →
+                </a>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
 
       {/* ── Footer ── */}
       <footer className="footer">
-        <span className="footer-left">© 2025 SPV Ventures. All rights reserved.</span>
-        <span className="footer-right">Lisbon, Portugal</span>
+        <span className="footer-text">© 2025 SPV Ventures. All rights reserved.</span>
+        <span className="footer-text">Lisbon, Portugal</span>
       </footer>
+
     </div>
   )
 }
