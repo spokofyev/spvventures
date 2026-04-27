@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space: A Market Map - Саммари</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 10px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0052cc;
+            border-bottom: 3px solid #0052cc;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .summary-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .category {
+            background: #f8f9fa;
+            border-left: 4px solid #0052cc;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        .category-name {
+            font-weight: 700;
+            color: #0052cc;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .category-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .company-badge {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #0052cc;
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Заголовок -->
+        <div class="header">
+            <h1>🚀 Space: A Market Map</h1>
+            <p>Краткое описание компаний космической индустрии</p>
+        </div>
+
+        <!-- Основное содержимое -->
+        <div class="content">
+
+            <!-- Саммари страницы -->
+            <div class="section">
+                <div class="section-title">📊 Саммари страницы</div>
+                <div class="summary-text">
+                    <strong>"Space: A Market Map"</strong> от Andreessen Horowitz (a16z) — это карта космической индустрии, демонстрирующая стремление человечества расширить присутствие в космосе. В статье рассказывается о развитии коммерческого космического сектора, где появилось множество компаний, занимающихся различными аспектами экономики космоса.
+                </div>
+                <div class="summary-text">
+                    Статья разделена на четыре основные категории: <strong>Launch</strong> (запуски), <strong>Satellites</strong> (спутники), <strong>Manufacturing and Software</strong> (производство и программное обеспечение) и <strong>In-space Services</strong> (услуги в космосе). Каждая категория содержит подробное описание компаний, работающих в этой области, от SpaceX до множества инновационных стартапов.
+                </div>
+            </div>
+
+            <!-- Категория Launch -->
+            <div class="section">
+                <div class="section-title">🛸 Запуски (Launch)</div>
+                <div class="category">
+                    <div class="category-name">Описание</div>
+                    <div class="category-desc">
+                        Компании, обеспечивающие выведение грузов на орбиту. Разделены на две группы: крупные компании с тяжёлыми ракетами и компании малого/среднего класса с ракетами меньшего размера.
+                    </div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Blue Origin</div>
+                    <div class="company-badge">Relativity Space</div>
+                    <div class="company-badge">SpaceX</div>
+                    <div class="company-badge">ABL Space Systems</div>
+                    <div class="company-badge">Astra</div>
+                    <div class="company-badge">Darwynium</div>
+                    <div class="company-badge">Dawn Aerospace</div>
+                    <div class="company-badge">Firefly Aerospace</div>
+                    <div class="company-badge">iRocket</div>
+                    <div class="company-badge">Isar Aerospace</div>
+                    <div class="company-badge">Orbit Technologies</div>
+                    <div class="company-badge">Phantom Space</div>
+                    <div class="company-badge">Radian Aerospace</div>
+                    <div class="company-badge">Rocket Lab</div>
+                    <div class="company-badge">Skyrora</div>
+                    <div class="company-badge">Spin Launch</div>
+                    <div class="company-badge">Stoke Space</div>
+                    <div class="company-badge">Stratolaunch</div>
+                </div>
+            </div>
+
+            <!-- Категория Satellites -->
+            <div class="section">
+                <div class="section-title">🛰️ Спутники (Satellites)</div>
+
+                <div class="highlight">
+                    <strong>Основная идея:</strong> Спутники — самый зрелый сегмент космической экономики, предоставляющий услуги связи, сбора данных и мониторинга.
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Связь и Инфраструктура (Data Services &amp; Infrastructure)</div>
+                    <div class="category-desc">Компании, предоставляющие спутниковую связь и сетевую инфраструктуру для подключения спутников</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Astranis</div>
+                    <div class="company-badge">Xona Space</div>
+                    <div class="company-badge">Myriota</div>
+                    <div class="company-badge">Skylo</div>
+                    <div class="company-badge">UTVATE</div>
+                    <div class="company-badge">Amazon Project Kuiper</div>
+                    <div class="company-badge">Kymeta</div>
+                    <div class="company-badge">OneWeb</div>
+                    <div class="company-badge">Totum</div>
+                    <div class="company-badge">Omnispace</div>
+                    <div class="company-badge">Starlink</div>
+                    <div class="company-badge">Hubble</div>
+                    <div class="company-badge">Genesis</div>
+                    <div class="company-badge">Aalyria</div>
+                    <div class="company-badge">Akasa Systems</div>
+                    <div class="company-badge">All.Space</div>
+                    <div class="company-badge">Aquarian Space</div>
+                    <div class="company-badge">Callabs</div>
+                    <div class="company-badge">Hedron</div>
+                    <div class="company-badge">Skyloom</div>
+                    <div class="company-badge">Infostellar</div>
+                    <div class="company-badge">Leaf Space</div>
+                    <div class="company-badge">Mynaric</div>
+                    <div class="company-badge">Nebula Compute</div>
+                    <div class="company-badge">NSR</div>
+                    <div class="company-badge">Kepler</div>
+                    <div class="company-badge">AWS</div>
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Дистанционное зондирование (Remote Sensing)</div>
+                    <div class="category-desc">Компании, собирающие данные с спутников для мониторинга Земли, разделены на подкатегории по типам сенсоров</div>
+                </div>
+
+                <div class="section-title" style="font-size: 14px; color: #666; border: none; padding: 10px 0 5px 0;">Синтетическая апертура (SAR)</div>
+                <div class="companies-grid">
+                    <div class="company-badge">Capella Space</div>
+                    <div class="company-badge">ICEYE</div>
+                    <div class="company-badge">Spacealpha</div>
+                    <div class="company-badge">Synspective</div>
+                </div>
+
+                <div class="section-title" style="font-size: 14px; color: #666; border: none; padding: 10px 0 5px 0;">Гиперспектральные</div>
+                <div class="companies-grid">
+                    <div class="company-badge">Pixel</div>
+                    <div class="company-badge">OSK</div>
+                    <div class="company-badge">Wyvern</div>
+                </div>
+
+                <div class="section-title" style="font-size: 14px; color: #666; border: none; padding: 10px 0 5px 0;">Оптические</div>
+                <div class="companies-grid">
+                    <div class="company-badge">Albedo</div>
+                    <div class="company-badge">Axelspace</div>
+                    <div class="company-badge">BlackSky</div>
+                    <div class="company-badge">EOI</div>
+                    <div class="company-badge">Hydrosat</div>
+                    <div class="company-badge">Planet</div>
+                    <div class="company-badge">Satellogic</div>
+                </div>
+
+                <div class="section-title" style="font-size: 14px; color: #666; border: none; padding: 10px 0 5px 0;">Платформы и аналитика</div>
+                <div class="companies-grid">
+                    <div class="company-badge">Arturo</div>
+                    <div class="company-badge">AtlasAI</div>
+                    <div class="company-badge">Blackshark.ai</div>
+                    <div class="company-badge">CAPE</div>
+                    <div class="company-badge">Danti</div>
+                    <div class="company-badge">Descartes Labs</div>
+                    <div class="company-badge">Picterra</div>
+                    <div class="company-badge">Skywatch</div>
+                    <div class="company-badge">SkyFi</div>
+                    <div class="company-badge">Skylab</div>
+                    <div class="company-badge">URSA</div>
+                </div>
+
+                <div class="section-title" style="font-size: 14px; color: #666; border: none; padding: 10px 0 5px 0;">Радиочастотное зондирование</div>
+                <div class="companies-grid">
+                    <div class="company-badge">Array</div>
+                    <div class="company-badge">Aurora Insight</div>
+                    <div class="company-badge">HawkEye 360</div>
+                    <div class="company-badge">KLEOS</div>
+                    <div class="company-badge">Unseenlabs</div>
+                </div>
+
+                <div class="section-title" style="font-size: 14px; color: #666; border: none; padding: 10px 0 5px 0;">Прочие системы</div>
+                <div class="companies-grid">
+                    <div class="company-badge">Array</div>
+                    <div class="company-badge">Koolock</div>
+                    <div class="company-badge">Muon Space</div>
+                    <div class="company-badge">Nuview</div>
+                    <div class="company-badge">Spire</div>
+                </div>
+            </div>
+
+            <!-- Категория Manufacturing -->
+            <div class="section">
+                <div class="section-title">🔧 Производство и ПО (Manufacturing &amp; Software)</div>
+
+                <div class="category">
+                    <div class="category-name">Производство спутников</div>
+                    <div class="category-desc">Платформы для сборки и производства спутников</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Aboorbital</div>
+                    <div class="company-badge">Apex</div>
+                    <div class="company-badge">Astro Digital</div>
+                    <div class="company-badge">Blue Canyon Technologies</div>
+                    <div class="company-badge">KE Space</div>
+                    <div class="company-badge">Terran Orbital</div>
+                    <div class="company-badge">York Space Systems</div>
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Двигательные системы (Propulsion)</div>
+                    <div class="category-desc">Компании, разрабатывающие и производящие двигатели и системы тяги</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Accion Systems</div>
+                    <div class="company-badge">Adranos</div>
+                    <div class="company-badge">Agile Space Industries</div>
+                    <div class="company-badge">Enpulsion</div>
+                    <div class="company-badge">Firehawk</div>
+                    <div class="company-badge">Magorive</div>
+                    <div class="company-badge">Morpheus</div>
+                    <div class="company-badge">Orbion</div>
+                    <div class="company-badge">Phase Four</div>
+                    <div class="company-badge">Bevy</div>
+                    <div class="company-badge">Viridian</div>
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Компоненты</div>
+                    <div class="category-desc">Поставщики компонентов и модулей для космических аппаратов</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Azur Space</div>
+                    <div class="company-badge">Cosmic Shielding Corporation</div>
+                    <div class="company-badge">Gravitics</div>
+                    <div class="company-badge">Hadrian</div>
+                    <div class="company-badge">Machina Labs</div>
+                    <div class="company-badge">Orbital Composites</div>
+                    <div class="company-badge">Oxford Space Systems</div>
+                    <div class="company-badge">Psionic</div>
+                    <div class="company-badge">Solestial</div>
+                    <div class="company-badge">The Spaceport Company</div>
+                    <div class="company-badge">Think Orbital</div>
+                    <div class="company-badge">Vaquero</div>
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Программное обеспечение - Производство</div>
+                    <div class="category-desc">ПО для производства и проектирования космических систем</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Antaris</div>
+                    <div class="company-badge">First Resonance</div>
+                    <div class="company-badge">Datum</div>
+                    <div class="company-badge">Epsilon 3</div>
+                    <div class="company-badge">Stell</div>
+                    <div class="company-badge">Nominal</div>
+                    <div class="company-badge">Rollup</div>
+                    <div class="company-badge">Violetlabs</div>
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Программное обеспечение - Операции</div>
+                    <div class="category-desc">ПО для управления и операциональной поддержки спутников</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Charter</div>
+                    <div class="company-badge">Cognitive Space</div>
+                    <div class="company-badge">Integrate</div>
+                    <div class="company-badge">Kayhan Space</div>
+                    <div class="company-badge">Azimuth</div>
+                    <div class="company-badge">Slingshot Aerospace</div>
+                    <div class="company-badge">Quindar</div>
+                </div>
+            </div>
+
+            <!-- Категория In-space Services -->
+            <div class="section">
+                <div class="section-title">⚙️ Услуги в космосе (In-space Services)</div>
+
+                <div class="highlight">
+                    <strong>Ключевая идея:</strong> Услуги для поддержки и расширения возможностей спутников в орбите, включая логистику, удаление мусора и инфраструктуру.
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Логистика и обслуживание</div>
+                    <div class="category-desc">Компании для доставки грузов, расширения миссий и облуживания спутников</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Axiom Space</div>
+                    <div class="company-badge">Exotrail</div>
+                    <div class="company-badge">Impulse Space</div>
+                    <div class="company-badge">Infinite Orbits</div>
+                    <div class="company-badge">Momentus</div>
+                    <div class="company-badge">Orbit Fab</div>
+                    <div class="company-badge">Plasmos</div>
+                    <div class="company-badge">Proteus Space</div>
+                    <div class="company-badge">Spaceflight</div>
+                    <div class="company-badge">Starfish Space</div>
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Удаление космического мусора и мониторинг</div>
+                    <div class="category-desc">Компании для удаления мусора, видимости орбиты и доменной осведомленности</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Lumi</div>
+                    <div class="company-badge">Odin Space</div>
+                    <div class="company-badge">Privateer</div>
+                    <div class="company-badge">Scout</div>
+                    <div class="company-badge">True Anomaly</div>
+                    <div class="company-badge">Turion Space</div>
+                    <div class="company-badge">Quantum Space</div>
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Коммерческие космические станции</div>
+                    <div class="category-desc">Платформы для обитания и производства в орбите</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">Crew Immersive</div>
+                    <div class="company-badge">Interlune</div>
+                    <div class="company-badge">OffWorld</div>
+                    <div class="company-badge">Transastra</div>
+                    <div class="company-badge">Ispace</div>
+                    <div class="company-badge">Lunar Outpost</div>
+                    <div class="company-badge">Moon Express</div>
+                    <div class="company-badge">Astrolab</div>
+                </div>
+
+                <div class="category">
+                    <div class="category-name">Космическое производство и переселение</div>
+                    <div class="category-desc">Компании для производства материалов и перестройки в космосе</div>
+                </div>
+                <div class="companies-grid">
+                    <div class="company-badge">In Orbit</div>
+                    <div class="company-badge">Inversion</div>
+                    <div class="company-badge">Outpost</div>
+                    <div class="company-badge">Redwire</div>
+                    <div class="company-badge">Space Forge</div>
+                    <div class="company-badge">Space Pharma</div>
+                    <div class="company-badge">Space Tango</div>
+                    <div class="company-badge">Titan</div>
+                    <div class="company-badge">Varda</div>
+                </div>
+            </div>
+
+            <!-- Заключение -->
+            <div class="section">
+                <div class="section-title">✨ Заключение</div>
+                <div class="summary-text">
+                    Статья демонстрирует, что космическая индустрия быстро развивается и охватывает множество секторов — от запуска спутников до услуг в орбите. Экосистема включает как крупные компании (SpaceX, Amazon, AWS), так и инновационные стартапы. Каждая категория необходима для создания полноценной экономики космоса, которая будет расширяться от Луны до Марса и астероидов.
+                </div>
+            </div>
+        </div>
+
+        <!-- Подвал -->
+        <div class="footer">
+            <p>📄 Источник: a16z.com | Дата опубликования: 17 марта 2023 | Автор: Ryan McEntush</p>
+        </div>
+    </div>
+</body>
+</html>
