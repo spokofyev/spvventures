@@ -603,6 +603,81 @@ body {
 
 .calc-rate-current strong { color: var(--ink); }
 
+.calc-payments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.calc-payment-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 40px;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.calc-payment-row input {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-mid);
+  color: var(--ink);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  color-scheme: dark;
+}
+
+.calc-payment-row input:focus { border-color: var(--green-dim); }
+
+.calc-payment-del {
+  background: transparent;
+  border: 1px solid var(--border-mid);
+  color: var(--ink-mid);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  font-family: inherit;
+}
+
+.calc-payment-del:hover {
+  color: #ff8585;
+  border-color: rgba(255,133,133,0.4);
+}
+
+.calc-add-btn {
+  background: transparent;
+  border: 1px dashed var(--border-mid);
+  color: var(--ink-mid);
+  padding: 10px 16px;
+  font-size: 12px;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  align-self: flex-start;
+}
+
+.calc-add-btn:hover {
+  border-color: var(--green-dim);
+  color: var(--green);
+}
+
+.calc-row-payment td {
+  background: rgba(77,187,120,0.06);
+  color: var(--ink-mid);
+  font-size: 13px;
+}
+
+.calc-row-payment strong { color: var(--ink); }
+
+.calc-hint-inline {
+  color: var(--ink-muted);
+  font-size: 11px;
+  font-weight: 300;
+}
+
 .calc-summary {
   border: 1px solid var(--border-mid);
   background: var(--bg-mid);

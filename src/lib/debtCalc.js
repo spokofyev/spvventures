@@ -19,30 +19,41 @@ function isLeapYear(year) {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
 }
 
-// Сегментирует [from, to] (включительно) на куски, где постоянна ключевая ставка.
-// Также режет по границе календарного года — чтобы корректно использовать 365/366 дней.
-function buildRatePeriods(from, to) {
+/**
+ * Сегментирует [from, to] (включительно) на куски, где постоянны:
+ *   - ключевая ставка ЦБ,
+ *   - календарный год (для 365/366),
+ *   - тело долга (платёж сдвигает баланс со следующего дня).
+ *
+ * @param {Date} from
+ * @param {Date} to
+ * @param {Array<Date>} extraBreaks — дополнительные дни-разделители (включая 1-й день
+ *                                    нового интервала). Используются для платежей: payment.date + 1.
+ */
+function buildSegments(from, to, extraBreaks = []) {
   const segments = []
   const rates = CBR_KEY_RATES.map((r) => ({ ...r, dateObj: toUTCDate(r.date) }))
 
   let cursor = new Date(from.getTime())
   while (cursor.getTime() <= to.getTime()) {
-    // Найти применимую ставку на cursor: последняя rate.date <= cursor
     let applicable = rates[0]
     for (const r of rates) {
       if (r.dateObj.getTime() <= cursor.getTime()) applicable = r
       else break
     }
 
-    // Следующая граница: либо следующая дата изменения ставки, либо 1 января след. года, либо to+1
     const nextRateChange = rates.find((r) => r.dateObj.getTime() > cursor.getTime())
-    const yearEnd = new Date(Date.UTC(cursor.getUTCFullYear() + 1, 0, 1)) // 1 января след. года
+    const yearEnd = new Date(Date.UTC(cursor.getUTCFullYear() + 1, 0, 1))
     const endExclusive = new Date(to.getTime() + MS_DAY)
 
     const candidates = [endExclusive, yearEnd]
     if (nextRateChange) candidates.push(nextRateChange.dateObj)
+    for (const b of extraBreaks) {
+      if (b.getTime() > cursor.getTime()) candidates.push(b)
+    }
+
     const next = new Date(Math.min(...candidates.map((d) => d.getTime())))
-    const segEnd = new Date(next.getTime() - MS_DAY) // включительно
+    const segEnd = new Date(next.getTime() - MS_DAY)
 
     segments.push({
       from: new Date(cursor.getTime()),
@@ -58,45 +69,141 @@ function buildRatePeriods(from, to) {
 }
 
 /**
- * Рассчитывает проценты на долг.
+ * Рассчитывает проценты на долг с поддержкой досрочных частичных выплат.
+ *
+ * Платёж уменьшает тело долга начиная со СЛЕДУЮЩЕГО дня после даты платежа
+ * (ст. 191 ГК РФ — срок начинает течь со следующего дня). День платежа
+ * проценты ещё начисляются на старый баланс.
+ *
  * @param {Object} p
- * @param {number} p.amount   — сумма долга
- * @param {string} p.from     — дата начала (ISO YYYY-MM-DD), включительно
- * @param {string} p.to       — дата окончания (ISO YYYY-MM-DD), включительно
- * @param {number} p.margin   — надбавка к ключевой в процентных пунктах (например 2 = ключевая + 2пп)
- * @param {'floating'|'fixed'} p.mode — режим ставки
- * @param {number} [p.fixedRate] — если mode === 'fixed', годовая ставка в % (без привязки к ключевой)
+ * @param {number} p.amount
+ * @param {string} p.from
+ * @param {string} p.to
+ * @param {number} [p.margin]
+ * @param {'floating'|'fixed'} [p.mode]
+ * @param {number} [p.fixedRate]
+ * @param {Array<{date: string, amount: number}>} [p.payments]
  */
-export function calculateDebt({ amount, from, to, margin = 0, mode = 'floating', fixedRate = 0 }) {
+export function calculateDebt({
+  amount,
+  from,
+  to,
+  margin = 0,
+  mode = 'floating',
+  fixedRate = 0,
+  payments = [],
+}) {
   const fromD = toUTCDate(from)
   const toD = toUTCDate(to)
   if (toD.getTime() < fromD.getTime()) {
-    return { rows: [], totalInterest: 0, totalDays: 0, total: amount, error: 'Конечная дата раньше начальной' }
+    return {
+      rows: [],
+      totalInterest: 0,
+      totalDays: 0,
+      totalPaid: 0,
+      remainingPrincipal: amount,
+      total: amount,
+      error: 'Конечная дата раньше начальной',
+    }
   }
 
-  const segments = buildRatePeriods(fromD, toD)
-  const rows = segments.map((s) => {
+  const validPayments = (payments || [])
+    .filter((p) => p && p.date && p.amount > 0)
+    .map((p) => ({ ...p, dateObj: toUTCDate(p.date) }))
+    .filter((p) => p.dateObj.getTime() >= fromD.getTime() && p.dateObj.getTime() <= toD.getTime())
+    .sort((a, b) => a.dateObj.getTime() - b.dateObj.getTime())
+
+  // Платёж сдвигает баланс со следующего дня => разделитель сегментов = date + 1
+  const extraBreaks = validPayments.map((p) => new Date(p.dateObj.getTime() + MS_DAY))
+
+  const segments = buildSegments(fromD, toD, extraBreaks)
+
+  const rows = []
+  let principal = amount
+  let totalInterest = 0
+  let totalPaid = 0
+  let paymentIdx = 0
+
+  for (const s of segments) {
+    // Применить все платежи, дата которых строго меньше начала сегмента (т.е. вступившие в силу)
+    while (
+      paymentIdx < validPayments.length &&
+      validPayments[paymentIdx].dateObj.getTime() < s.from.getTime()
+    ) {
+      const p = validPayments[paymentIdx]
+      const applied = Math.min(p.amount, principal)
+      principal -= applied
+      totalPaid += applied
+      rows.push({
+        type: 'payment',
+        date: fmtISO(p.dateObj),
+        paymentAmount: p.amount,
+        applied,
+        principalAfter: principal,
+      })
+      paymentIdx += 1
+    }
+
+    if (principal <= 0) {
+      rows.push({
+        type: 'period',
+        from: fmtISO(s.from),
+        to: fmtISO(s.to),
+        days: s.days,
+        daysInYear: s.daysInYear,
+        keyRate: s.keyRate,
+        effectiveRate: mode === 'floating' ? s.keyRate + margin : fixedRate,
+        principal: 0,
+        interest: 0,
+        formula: 'долг погашен',
+      })
+      continue
+    }
+
     const effectiveRate = mode === 'floating' ? s.keyRate + margin : fixedRate
-    const interest = (amount * effectiveRate * s.days) / (s.daysInYear * 100)
-    return {
+    const interest = (principal * effectiveRate * s.days) / (s.daysInYear * 100)
+    totalInterest += interest
+
+    rows.push({
+      type: 'period',
       from: fmtISO(s.from),
       to: fmtISO(s.to),
       days: s.days,
       daysInYear: s.daysInYear,
       keyRate: s.keyRate,
       effectiveRate,
-      formula: `${amount.toFixed(2)} × ${effectiveRate.toFixed(2)}% × ${s.days} / ${s.daysInYear}`,
+      principal,
       interest,
-    }
-  })
+      formula: `${principal.toFixed(2)} × ${effectiveRate.toFixed(2)}% × ${s.days} / ${s.daysInYear}`,
+    })
+  }
 
-  const totalInterest = rows.reduce((s, r) => s + r.interest, 0)
-  const totalDays = rows.reduce((s, r) => s + r.days, 0)
+  // Хвост: платежи на самый последний день периода или после всех сегментов
+  while (paymentIdx < validPayments.length) {
+    const p = validPayments[paymentIdx]
+    const applied = Math.min(p.amount, principal)
+    principal -= applied
+    totalPaid += applied
+    rows.push({
+      type: 'payment',
+      date: fmtISO(p.dateObj),
+      paymentAmount: p.amount,
+      applied,
+      principalAfter: principal,
+    })
+    paymentIdx += 1
+  }
+
+  const periodRows = rows.filter((r) => r.type === 'period')
+  const totalDays = periodRows.reduce((s, r) => s + r.days, 0)
+
   return {
     rows,
     totalInterest,
     totalDays,
-    total: amount + totalInterest,
+    totalPaid,
+    remainingPrincipal: principal,
+    total: principal + totalInterest,
   }
 }
 

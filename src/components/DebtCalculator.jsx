@@ -6,23 +6,36 @@ const fmtMoney = (v) =>
   new Intl.NumberFormat('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v)
 
 const todayISO = () => new Date().toISOString().slice(0, 10)
+const parseNum = (s) => parseFloat(String(s).replace(',', '.')) || 0
 
 export default function DebtCalculator() {
   const [amount, setAmount] = useState('1000000')
   const [from, setFrom] = useState('2024-01-01')
   const [to, setTo] = useState(todayISO())
-  const [mode, setMode] = useState('floating') // floating | fixed
+  const [mode, setMode] = useState('floating')
   const [margin, setMargin] = useState('0')
   const [fixedRate, setFixedRate] = useState('20')
+  const [payments, setPayments] = useState([]) // [{id, date, amount}]
 
   const result = useMemo(() => {
-    const amt = parseFloat(amount.replace(',', '.')) || 0
-    const m = parseFloat(margin.replace(',', '.')) || 0
-    const fr = parseFloat(fixedRate.replace(',', '.')) || 0
-    return calculateDebt({ amount: amt, from, to, margin: m, mode, fixedRate: fr })
-  }, [amount, from, to, mode, margin, fixedRate])
+    return calculateDebt({
+      amount: parseNum(amount),
+      from,
+      to,
+      margin: parseNum(margin),
+      mode,
+      fixedRate: parseNum(fixedRate),
+      payments: payments.map((p) => ({ date: p.date, amount: parseNum(p.amount) })),
+    })
+  }, [amount, from, to, mode, margin, fixedRate, payments])
 
   const cur = currentKeyRate()
+
+  const addPayment = () =>
+    setPayments((ps) => [...ps, { id: Date.now() + Math.random(), date: to, amount: '' }])
+  const updatePayment = (id, field, value) =>
+    setPayments((ps) => ps.map((p) => (p.id === id ? { ...p, [field]: value } : p)))
+  const removePayment = (id) => setPayments((ps) => ps.filter((p) => p.id !== id))
 
   return (
     <div className="calc-page">
@@ -38,7 +51,8 @@ export default function DebtCalculator() {
             Проценты <em>за пользование</em><br />чужими денежными средствами
           </h1>
           <p className="calc-sub">
-            Расчёт по дням с учётом изменений ключевой ставки ЦБ РФ.
+            Расчёт по дням с учётом изменений ключевой ставки ЦБ РФ,
+            <strong> досрочных частичных выплат</strong> и високосного года.
             Поддержка <strong>плавающей</strong> ставки с надбавкой
             (например, <em>ключевая + 2 пп</em>) или фиксированной.
           </p>
@@ -104,10 +118,10 @@ export default function DebtCalculator() {
                 />
                 <div className="calc-rate-current">
                   Текущая ключевая ЦБ: <strong>{cur.rate.toFixed(2)}%</strong> (с {cur.date})
-                  {parseFloat(margin) ? (
+                  {parseNum(margin) ? (
                     <>
                       {' '}· эффективная сейчас:{' '}
-                      <strong>{(cur.rate + (parseFloat(margin.replace(',', '.')) || 0)).toFixed(2)}%</strong>
+                      <strong>{(cur.rate + parseNum(margin)).toFixed(2)}%</strong>
                     </>
                   ) : null}
                 </div>
@@ -123,13 +137,69 @@ export default function DebtCalculator() {
                 />
               </div>
             )}
+
+            {/* ─── Payments ─── */}
+            <div className="calc-field">
+              <label>
+                Досрочные выплаты
+                <span className="calc-hint">
+                  Частичное погашение долга. Уменьшает баланс со следующего дня после даты платежа
+                  (ст. 191 ГК РФ).
+                </span>
+              </label>
+
+              {payments.length > 0 && (
+                <div className="calc-payments">
+                  {payments.map((p) => (
+                    <div className="calc-payment-row" key={p.id}>
+                      <input
+                        type="date"
+                        value={p.date}
+                        min={from}
+                        max={to}
+                        onChange={(e) => updatePayment(p.id, 'date', e.target.value)}
+                      />
+                      <input
+                        type="text"
+                        inputMode="decimal"
+                        placeholder="Сумма, ₽"
+                        value={p.amount}
+                        onChange={(e) => updatePayment(p.id, 'amount', e.target.value)}
+                      />
+                      <button
+                        type="button"
+                        className="calc-payment-del"
+                        onClick={() => removePayment(p.id)}
+                        title="Удалить"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <button type="button" className="calc-add-btn" onClick={addPayment}>
+                + Добавить платёж
+              </button>
+            </div>
           </div>
 
           {/* ─── Summary ─── */}
           <aside className="calc-summary">
             <div className="calc-summary-row">
               <span>Сумма долга</span>
-              <strong>{fmtMoney(parseFloat(amount.replace(',', '.')) || 0)} ₽</strong>
+              <strong>{fmtMoney(parseNum(amount))} ₽</strong>
+            </div>
+            {result.totalPaid > 0 && (
+              <div className="calc-summary-row">
+                <span>Уплачено в счёт долга</span>
+                <strong>−{fmtMoney(result.totalPaid)} ₽</strong>
+              </div>
+            )}
+            <div className="calc-summary-row">
+              <span>Остаток основного долга</span>
+              <strong>{fmtMoney(result.remainingPrincipal)} ₽</strong>
             </div>
             <div className="calc-summary-row">
               <span>Период</span>
@@ -158,6 +228,7 @@ export default function DebtCalculator() {
                     <th>Период с</th>
                     <th>по</th>
                     <th>Дней</th>
+                    <th>Остаток долга, ₽</th>
                     <th>Ключевая ЦБ, %</th>
                     <th>Эффективная, %</th>
                     <th>Дней в году</th>
@@ -166,24 +237,45 @@ export default function DebtCalculator() {
                   </tr>
                 </thead>
                 <tbody>
-                  {result.rows.map((r, i) => (
-                    <tr key={i}>
-                      <td>{r.from}</td>
-                      <td>{r.to}</td>
-                      <td>{r.days}</td>
-                      <td>{r.keyRate.toFixed(2)}</td>
-                      <td><strong>{r.effectiveRate.toFixed(2)}</strong></td>
-                      <td>{r.daysInYear}</td>
-                      <td className="mono">{r.formula}</td>
-                      <td className="num"><strong>{fmtMoney(r.interest)}</strong></td>
-                    </tr>
-                  ))}
+                  {result.rows.map((r, i) =>
+                    r.type === 'payment' ? (
+                      <tr key={i} className="calc-row-payment">
+                        <td colSpan={3}>
+                          <strong>{r.date}</strong> — досрочная выплата
+                        </td>
+                        <td className="num">
+                          <strong>−{fmtMoney(r.applied)}</strong>
+                          {r.paymentAmount > r.applied && (
+                            <span className="calc-hint-inline">
+                              {' '}(из {fmtMoney(r.paymentAmount)} ₽, избыток не применён)
+                            </span>
+                          )}
+                        </td>
+                        <td colSpan={4}>
+                          → новый остаток: <strong>{fmtMoney(r.principalAfter)} ₽</strong>
+                        </td>
+                        <td></td>
+                      </tr>
+                    ) : (
+                      <tr key={i}>
+                        <td>{r.from}</td>
+                        <td>{r.to}</td>
+                        <td>{r.days}</td>
+                        <td className="num">{fmtMoney(r.principal)}</td>
+                        <td>{r.keyRate.toFixed(2)}</td>
+                        <td><strong>{r.effectiveRate.toFixed(2)}</strong></td>
+                        <td>{r.daysInYear}</td>
+                        <td className="mono">{r.formula}</td>
+                        <td className="num"><strong>{fmtMoney(r.interest)}</strong></td>
+                      </tr>
+                    ),
+                  )}
                 </tbody>
                 <tfoot>
                   <tr>
                     <td colSpan={2}>Итого</td>
                     <td>{result.totalDays}</td>
-                    <td colSpan={4}></td>
+                    <td colSpan={5}></td>
                     <td className="num"><strong>{fmtMoney(result.totalInterest)}</strong></td>
                   </tr>
                 </tfoot>
@@ -196,21 +288,25 @@ export default function DebtCalculator() {
           <h3>Методика</h3>
           <ul>
             <li>
-              Расчёт по формуле: <span className="mono">долг × ставка × дней / (365 или 366) / 100</span>.
+              Расчёт по формуле: <span className="mono">остаток × ставка × дней / (365 или 366) / 100</span>.
               Високосный год учитывается автоматически.
             </li>
             <li>
-              Период автоматически режется на отрезки по датам изменения ключевой ставки ЦБ РФ
-              и по границе календарного года.
+              Период автоматически режется на отрезки по датам изменения ключевой ставки ЦБ РФ,
+              по границе календарного года и по датам частичных выплат.
             </li>
             <li>
               <strong>Плавающая</strong> ставка = ключевая ЦБ на каждую дату + надбавка
-              (надбавка задаётся в процентных пунктах, ноль = чистая ст. 395 ГК РФ).
+              (надбавка в процентных пунктах, ноль = чистая ст. 395 ГК РФ).
+            </li>
+            <li>
+              <strong>Досрочная выплата</strong> уменьшает тело долга со следующего дня после даты
+              платежа (ст. 191 ГК РФ). Сначала погашается основной долг; если сумма платежа
+              превышает остаток — избыток в расчёт процентов не идёт.
             </li>
             <li>
               История ключевой ставки в базе: {CBR_KEY_RATES.length} значений, с{' '}
-              {CBR_KEY_RATES[0].date} по {cur.date}. При выходе расчёта за пределы — используется
-              последнее известное значение.
+              {CBR_KEY_RATES[0].date} по {cur.date}.
             </li>
           </ul>
         </section>
