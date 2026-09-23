@@ -1,100 +1,95 @@
-# kulonspace.com — email forwarding to Gmail
+# kulonspace.com — email
 
-Route all mail at `kulonspace.com` — including `sergey@kulonspace.com` — into
-`prokofiev.sv@gmail.com`. Free, no account, no monthly cost.
+**Plan changed 2026-09-23: Google Workspace, not Forward Email forwarding.**
 
-## Status
+Google Workspace gives a real mailbox at `sergey@kulonspace.com` that both
+sends and receives. That supersedes the free forwarding plan below, which was
+receive-only.
 
-| Piece | State |
-|---|---|
-| Domain registered (Vercel Registrar) | ✅ done |
-| Vercel nameservers authoritative | ✅ verified (`ns1`/`ns2.vercel-dns.com`) |
-| Forward Email MX hosts reachable | ✅ verified 2026-09-22 |
-| Record values validated | ✅ syntax + hosts confirmed |
-| **Records applied to the zone** | ❌ **must be pasted by hand — see below** |
-| Receiving mail at the domain | ⛔ blocked until records applied |
-| Sending *as* the domain | ⛔ not possible on the free tier — see Limits |
+## ⚠️ Do NOT apply the old forwarding records
 
-## Provider
+An earlier version of this file listed Forward Email MX records plus
+`v=spf1 -all`. **Applying those alongside Google Workspace will break mail:**
 
-[Forward Email](https://forwardemail.net) — open source, free tier, and the
-only major forwarder whose free plan is configured **entirely through DNS**.
-No signup, no dashboard, no password to store.
+- A domain can have only one mail provider's MX records. Forward Email's and
+  Google's cannot coexist.
+- `v=spf1 -all` declares that *nobody* may send as `@kulonspace.com`. With
+  Workspace active, every message sent from `sergey@kulonspace.com` would be
+  rejected or spam-filed.
+- `p=reject` DMARC on top of a contradictory SPF compounds the failure.
 
-## Applying the records
+Those records were correct for a receive-only forwarding setup. They are
+actively wrong for Workspace.
 
-`kulonspace.com` uses Vercel's nameservers, so Vercel is the authoritative DNS
-host: <https://vercel.com/spokofyevs-projects/~/domains/kulonspace.com>
-→ **DNS** tab → *Add Record*. Leave the Name field blank on the first four.
+## Step 1 — verify domain ownership
+
+Google offers two options; **either one alone is sufficient.** TXT is the
+simpler path.
+
+| Type | Name | Value |
+|------|------|-------|
+| TXT | *(blank / `@`)* | `google-site-verification=…` — copy from the Workspace console |
+| *or* CNAME | `kgvym7lbufjn` | `gv-7k55ngncarnqhy.dv.googlehosted.com` |
+
+**Copy the verification token from Google's own UI using its copy button.**
+Do not retype it or transcribe it from a screenshot — it is a random string,
+and one wrong character fails verification with no useful error.
+
+## Step 2 — mail routing (after verification succeeds)
+
+Google's current setup uses a single MX record:
 
 | Type | Name | Value | Priority |
 |------|------|-------|----------|
-| MX   | *(blank)* | `mx1.forwardemail.net` | `10` |
-| MX   | *(blank)* | `mx2.forwardemail.net` | `20` |
-| TXT  | *(blank)* | `forward-email=prokofiev.sv@gmail.com` | — |
-| TXT  | *(blank)* | `v=spf1 -all` | — |
-| TXT  | `_dmarc`  | `v=DMARC1; p=reject; adkim=s; aspf=s` | — |
+| MX | *(blank / `@`)* | `smtp.google.com` | `1` |
 
-Both MX records must exist, spelled exactly as above, with **no other MX
-records** on the domain.
+The legacy five-record set (`aspmx.l.google.com`, `alt1…` … `alt4…`) still
+works but is no longer what Google recommends. Use whichever the console
+shows you — both hostnames verified live 2026-09-23.
 
-### What each one does
+There must be **no other MX records** on the domain.
 
-Records 1–3 make mail arrive. The third is a **catch-all**: every address at
-the domain — `sergey@`, `hello@`, `invoices@`, anything invented on the spot —
-forwards to Gmail with no further DNS work, ever.
+## Step 3 — authentication
 
-Records 4–5 are anti-spoofing. They declare that *nobody* is authorised to
-send mail as `@kulonspace.com` and that receivers should reject anything
-claiming to be. On a domain that sends no outbound mail this is the correct
-strictest setting, and it stops the domain being used for phishing before it
-builds any reputation. They govern outbound only; inbound forwarding is
-unaffected.
+| Type | Name | Value |
+|------|------|-------|
+| TXT | *(blank / `@`)* | `v=spf1 include:_spf.google.com ~all` |
+| TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:sergey@kulonspace.com` |
 
-### Locking to one address instead
+`include:_spf.google.com` authorises Google's sending infrastructure —
+verified live and currently resolving.
 
-To forward only `sergey@` and bounce everything else, replace record 3 with:
+DMARC starts at `p=none` deliberately: it monitors and reports without
+rejecting anything while mail flow settles. Tighten to `p=quarantine` and
+then `p=reject` after a couple of weeks of clean reports. Jumping straight
+to `p=reject` on a new domain risks silently destroying legitimate mail.
 
-```
-forward-email=sergey:prokofiev.sv@gmail.com
-```
+**DKIM** is generated inside the Workspace admin console (Apps → Google
+Workspace → Gmail → Authenticate email) and produces a long TXT record at
+`google._domainkey`. Turn it on — SPF alone is not enough for good
+deliverability.
 
-Capitalisation is irrelevant to delivery — Forward Email matches the local
-part case-insensitively, as does every mainstream provider. `Sergey@kulonspace.com`
-on a business card resolves to the same mailbox.
+## Where these go
 
-## Verifying
+<https://vercel.com/spokofyevs-projects/~/domains/kulonspace.com> → **DNS** tab.
 
-TTL is 3600s, so propagation takes a minute to an hour.
+## Open question: two inboxes
 
-```bash
-dig MX kulonspace.com +short
-dig TXT kulonspace.com +short
-dig TXT _dmarc.kulonspace.com +short
-```
+Workspace creates a **separate mailbox** at `sergey@kulonspace.com`. It does
+not redirect into `prokofiev.sv@gmail.com`, which was the original goal. Left
+as-is that means two inboxes to monitor.
 
-## Limits worth understanding
+Options:
+- Use the Workspace inbox as primary and let the personal Gmail be personal.
+- Set Workspace to forward to the personal Gmail, and add
+  `sergey@kulonspace.com` as a *Send mail as* identity there — one inbox,
+  correct reply address. Usually the right answer when the domain address is
+  mainly outward-facing.
 
-**This is receive-only, and that has a visible consequence.** Mail sent *to*
-`sergey@kulonspace.com` lands in Gmail. But replies go out as
-`prokofiev.sv@gmail.com` — the domain address cannot send. Handing the address
-out and then replying from a Gmail address undercuts much of the point of
-having the domain.
+## Cost
 
-Fixing that requires outbound SMTP, which the free tier does not include:
-
-- **Forward Email paid (~$3/mo)** — adds SMTP, so Gmail's *Send mail as* works
-  and replies come from `sergey@kulonspace.com`. Also encrypts the forwarding
-  mapping. This is the cheapest real fix. Requires relaxing record 4 (`v=spf1
-  -all`) to authorise the relay.
-- **Google Workspace (~$7/user/mo)** — a full mailbox rather than forwarding.
-
-**The destination address is public.** On the free tier the forwarding target
-lives in a public TXT record, so anyone querying DNS for `kulonspace.com` can
-read `prokofiev.sv@gmail.com`. This is inherent — on this plan the config *is*
-the DNS. Cloudflare Email Routing is free and keeps destinations private, but
-the nameservers would have to move off Vercel.
-
-**Catch-all attracts spam eventually.** Dictionary attacks on catch-all
-domains are routine once a domain has age. Gmail's filtering absorbs most of
-it; switch to the locked-down form above if it gets noisy.
+Workspace Business Starter is roughly $7–8.40/user/month. For comparison the
+abandoned alternatives were $0 (receive-only forwarding) and ~$3/month
+(Forward Email paid, forwarding plus outbound SMTP). Workspace costs more and
+delivers considerably more: a real mailbox, plus Drive, Calendar and Meet on
+the domain.
