@@ -1,6 +1,8 @@
 @import "tailwindcss";
 :root{
-  --ink:#000;--paper:#fff;--muted:#555;--line:#d6d6d6;--pad:clamp(1.25rem,5vw,4rem);
+  --ink:#000;--paper:#fff;--muted:#555;--line:#d6d6d6;
+  /* One accent: graphic details only. --accent-text is the darker shade for small text on white. */
+  --accent:#ff4f00;--accent-text:#c63d00;--pad:clamp(1.25rem,5vw,4rem);
   /* Type scale: one step set used everywhere */
   --t-label:.8125rem;
   --t-small:.9375rem;
@@ -90,6 +92,16 @@ footer{padding:1.5rem 0;display:flex;justify-content:space-between;align-items:b
 .ask-links a{color:var(--ink);display:inline-flex;align-items:center;gap:.4rem}
 .ask-note{color:var(--muted)}
 section[id]{scroll-margin-top:2rem}
+
+
+/* Accent */
+.arrow{color:var(--accent)}
+.section-head>span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--accent);margin-right:.6em;vertical-align:.1em}
+.track>span{color:var(--accent-text)}
+.locations span{color:var(--accent)}
+.menu-dialog nav a:hover{color:var(--accent-text)}
+.menu-dialog nav a span{color:var(--accent-text)}
+a:focus-visible,button:focus-visible{outline-color:var(--accent)}
 
 @media(max-width:1100px){.section{--label:140px}}
 @media(max-width:900px){.audiences{grid-template-columns:1fr;gap:2.5rem}.track{grid-template-columns:1fr;gap:.5rem}}
