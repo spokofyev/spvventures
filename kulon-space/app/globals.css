@@ -2,7 +2,7 @@
 :root{
   --ink:#000;--paper:#fff;--muted:#555;--line:#d6d6d6;
   /* One accent: graphic details only. --accent-text is the darker shade for small text on white. */
-  --accent:#ff4f00;--accent-text:#c63d00;--pad:clamp(1.25rem,5vw,4rem);
+  --accent:#2b59ff;--accent-text:#1f45e0;--pad:clamp(1.25rem,5vw,4rem);
   /* Type scale: one step set used everywhere */
   --t-label:.8125rem;
   --t-small:.9375rem;
