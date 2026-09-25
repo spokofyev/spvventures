@@ -31,10 +31,10 @@ export default function Home() {
       <div className="hero-image"><Image src="/orbital-horizon.webp" alt="Sunrise over Earth's curved horizon and vast cloud-covered oceans" width={1536} height={1024} sizes="(max-width: 1600px) 92vw, 1472px" priority /></div>
     </section>
 
-    <section className="section" id="why-now">
-      <SectionHead label="01 / Why now">Why now.</SectionHead>
+    <section className="section" id="thesis">
+      <SectionHead label="01 / Thesis">Reaching orbit is becoming routine. What we build there comes next.</SectionHead>
       <div className="section-body">
-        <p className="lead">Satellite constellations have become industrial-scale systems. AI is creating unprecedented demand for energy and compute. The bottleneck is shifting from access to orbit to what we can do once we&apos;re there.</p>
+        <p className="lead">Satellite constellations have become industrial-scale systems, and AI is creating unprecedented demand for energy and compute. Together they move the bottleneck from getting to orbit to operating in it: computing, moving and building at scale. The companies that solve this will define the economy beyond Earth.</p>
       </div>
     </section>
 
