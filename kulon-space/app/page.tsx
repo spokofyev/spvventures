@@ -50,7 +50,7 @@ export default function Home() {
 
     <section className="section" id="ask-ai">
       <SectionHead label="04 / Ask AI">Ask an AI about Kulon.</SectionHead>
-      <div className="section-body ask"><p>Open your assistant with a ready prompt: why these space technology tracks matter, the opportunity behind them and why this team can build them.</p><AskAi /></div>
+      <div className="section-body ask"><AskAi /></div>
     </section>
 
     <section className="section closing" id="contact">
