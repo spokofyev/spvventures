@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://kulonspace.com"),
   alternates: { canonical: "/" },
   title: "Kulon Space — Frontier Space Technology Lab",
-  description: "Kulon Space works with industry leaders on strategic bets in orbital AI infrastructure and next-generation space transportation.",
+  description: "Kulon Space is a frontier space technology lab building the systems required to compute, move and build in orbit.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 
