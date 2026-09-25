@@ -4,11 +4,10 @@ import { useRef, useState } from "react";
 import Arrow from "./arrow";
 
 const links = [
-  ["Context", "#context"],
+  ["Thesis", "#thesis"],
   ["Projects", "#projects"],
-  ["Approach", "#approach"],
   ["Team", "#team"],
-  ["Join", "#join"],
+  ["Ask AI", "#ask-ai"],
   ["Contact", "#contact"],
 ];
 
