@@ -10,9 +10,9 @@ const projects = [
 ];
 
 const audiences = [
-  { name: "Industry partners", question: "Working on AI infrastructure, spacecraft, launch or orbital systems?", subject: "Industry partnership" },
-  { name: "Researchers & engineers", question: "Building propulsion, robotics, power, thermal or orbital compute systems?", subject: "Joining Kulon" },
-  { name: "Investors", question: "Interested in the infrastructure layer of the next space economy?", subject: "Investor enquiry" },
+  { name: "Industry partners", question: "Working on AI infrastructure, spacecraft, launch or orbital systems?" },
+  { name: "Researchers & engineers", question: "Building propulsion, robotics, power, thermal or orbital compute systems?" },
+  { name: "Investors", question: "Interested in the infrastructure layer of the next space economy?" },
 ];
 
 const SectionHead = ({ label, children }: { label: string; children: React.ReactNode }) =>
@@ -56,7 +56,10 @@ export default function Home() {
 
     <section className="section closing" id="contact">
       <SectionHead label="04 / Work with us">Work with us.</SectionHead>
-      <div className="section-body audiences">{audiences.map(item => <article key={item.name}><h3>{item.name}</h3><p>{item.question}</p><a className="button" href={`mailto:founders@kulon.space?subject=${encodeURIComponent(item.subject)}`}>Get in touch <Arrow /></a></article>)}</div>
+      <div className="section-body">
+        <div className="audiences">{audiences.map(item => <article key={item.name}><h3>{item.name}</h3><p>{item.question}</p></article>)}</div>
+        <a className="button audiences-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
+      </div>
     </section>
 
     <footer>

@@ -84,8 +84,8 @@ h3{font-size:var(--t-h3);line-height:1.3;letter-spacing:-.025em;font-weight:500;
 .closing{border-bottom:1px solid var(--ink)}
 .audiences{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .audiences article{border-top:1px solid var(--ink);padding-top:1.5rem;display:flex;flex-direction:column;align-items:flex-start}
-.audiences p{margin:.75rem 0 1.5rem;color:var(--muted);font-size:var(--t-small);max-width:40ch}
-.audiences .button{margin-top:auto}
+.audiences p{margin:.75rem 0 0;color:var(--muted);font-size:var(--t-small);max-width:40ch}
+.audiences-cta{margin-top:2.5rem}
 .section-body>.lead+.tracks{margin-top:2.5rem}
 footer{padding:1.5rem 0;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem 2rem;font-size:var(--t-label);color:var(--muted)}
 .footer-ai{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 1.25rem}
