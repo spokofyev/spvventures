@@ -25,7 +25,7 @@ export default function Navigation() {
     </button>
     <dialog ref={dialog} id="site-menu" className="menu-dialog" aria-label="Site navigation" onCancel={() => setOpen(false)} onClose={() => { setOpen(false); trigger.current?.focus(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
       <div className="menu-panel">
-        <div className="menu-top"><span>Kulon Space</span><button type="button" className="menu-close" aria-label="Close menu" onClick={close}>×</button></div>
+        <div className="menu-top"><span>Kulon</span><button type="button" className="menu-close" aria-label="Close menu" onClick={close}>×</button></div>
         <nav aria-label="Primary navigation">
           {links.map(([label, href], index) => <a href={href} key={href} onClick={close}><span>0{index + 1}</span>{label}</a>)}
         </nav>
