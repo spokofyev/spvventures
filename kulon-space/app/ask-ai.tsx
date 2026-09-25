@@ -15,6 +15,6 @@ export default function AskAi() {
       <a className="button" href={`https://claude.ai/new?q=${q}`} target="_blank" rel="noopener noreferrer">Claude <Arrow /></a>
       <a className="button" href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer" onClick={() => { navigator.clipboard?.writeText(prompt).then(() => setCopied(true), () => {}); }}>Gemini <Arrow /></a>
     </div>
-    <p className="ask-note" aria-live="polite">{copied ? "Prompt copied. Paste it into Gemini." : "Gemini opens without the prompt; it is copied to your clipboard."}</p>
+    <p className="ask-note" aria-live="polite">{copied ? "Prompt copied. Paste it into Gemini." : ""}</p>
   </div>;
 }
