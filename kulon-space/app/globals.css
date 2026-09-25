@@ -96,7 +96,6 @@ section[id]{scroll-margin-top:2rem}
 
 
 /* Accent */
-.arrow{color:var(--accent)}
 .section-head>span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--accent);margin-right:.6em;vertical-align:.1em}
 .track>span{color:var(--accent-text)}
 .locations span{color:var(--accent)}
