@@ -28,7 +28,7 @@ export default function Home() {
 
     <section className="hero" aria-labelledby="hero-heading">
       <h1 id="hero-heading">Kulon is a space tech lab focused on next generation orbital infrastructure</h1>
-      <div className="hero-bottom"><p>We work with industry leaders to turn ambitious space visions into technologies, products and solutions the market needs.</p><p className="locations">Berlin <span aria-hidden="true">/</span> London</p></div>
+      <div className="hero-bottom"><p>We build the technology ourselves and partner with industry leaders to take it from ambitious vision to products and solutions the market needs.</p><p className="locations">Berlin <span aria-hidden="true">/</span> London</p></div>
       <div className="hero-image"><Image src="/orbital-horizon.webp" alt="Sunrise over Earth's curved horizon and vast cloud-covered oceans" width={1536} height={1024} sizes="(max-width: 1600px) 92vw, 1472px" priority /></div>
     </section>
 
