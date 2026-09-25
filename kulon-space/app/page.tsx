@@ -9,11 +9,7 @@ const projects = [
   { capability: "Construction", name: "Orbital robotics", copy: "Robotic systems for servicing, assembly and maintenance in orbit—extending the life of space assets and making it possible to build structures too large to launch in one piece." },
 ];
 
-const audiences = [
-  { name: "Industry partners", question: "Working on AI infrastructure, spacecraft, launch or orbital systems?" },
-  { name: "Researchers & engineers", question: "Building propulsion, robotics, power, thermal or orbital compute systems?" },
-  { name: "Investors", question: "Interested in the infrastructure layer of the next space economy?" },
-];
+const audiences = ["Industry partners", "Researchers & engineers", "Investors"];
 
 const SectionHead = ({ label, children }: { label: string; children: React.ReactNode }) =>
   <div className="section-head"><span>{label}</span><h2>{children}</h2></div>;
@@ -55,9 +51,9 @@ export default function Home() {
     </section>
 
     <section className="section closing" id="contact">
-      <SectionHead label="04 / Work with us">Work with us.</SectionHead>
+      <SectionHead label="04 / Work with us">Build the economy beyond Earth with us.</SectionHead>
       <div className="section-body">
-        <div className="audiences">{audiences.map(item => <article key={item.name}><h3>{item.name}</h3><p>{item.question}</p></article>)}</div>
+        <p className="audiences">{audiences.map((item, index) => <span key={item}>{index > 0 && <i aria-hidden="true">/</i>}{item}</span>)}</p>
         <a className="button audiences-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
       </div>
     </section>
