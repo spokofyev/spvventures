@@ -51,7 +51,7 @@ export default function Home() {
     </section>
 
     <section className="section closing" id="contact">
-      <SectionHead label="04 / Work with us">Build the economy beyond Earth with us.</SectionHead>
+      <SectionHead label="04 / Work with us">Build with us.</SectionHead>
       <div className="section-body">
         <p className="audiences">{audiences.map((item, index) => <span key={item}>{index > 0 && <i aria-hidden="true">/</i>}{item}</span>)}</p>
         <a className="button audiences-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
