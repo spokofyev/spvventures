@@ -30,7 +30,7 @@ export default function Home() {
     <section className="section" id="thesis">
       <SectionHead label="01 / Thesis">Reaching orbit is becoming routine. What we build there comes next.</SectionHead>
       <div className="section-body">
-        <p className="lead">Satellite constellations have become industrial-scale systems, and AI is creating unprecedented demand for energy and compute. Together they move the bottleneck from getting to orbit to operating in it: computing, moving and building at scale. The companies that solve this will define the economy beyond Earth.</p>
+        <p className="lead">Satellite constellations have become industrial-scale systems, and AI is creating unprecedented demand for energy and compute. Together they shift the bottleneck from getting to orbit to operating there. That means computing, moving and building at scale in space, and the companies that solve it will define the economy beyond Earth.</p>
       </div>
     </section>
 
