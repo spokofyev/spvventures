@@ -30,7 +30,7 @@ export default function Home() {
     <section className="section" id="thesis">
       <SectionHead label="01 / Thesis">Reaching orbit is becoming routine. What we build there comes next.</SectionHead>
       <div className="section-body">
-        <p className="lead">Satellite constellations have become industrial-scale systems, and AI is creating unprecedented demand for energy and compute. Together they shift the bottleneck from getting to orbit to operating there. That means computing, moving and building at scale in space, and the companies that solve it will define the economy beyond Earth.</p>
+        <p className="lead">Satellite constellations have become industrial-scale systems, and AI is creating unprecedented demand for energy and compute. Getting to orbit is no longer the constraint. What limits the next phase is what we can do once we&apos;re there: most spacecraft still have little power for computing, little fuel to change orbit, and no way to be repaired or upgraded. The companies that remove these limits will define the economy beyond Earth.</p>
       </div>
     </section>
 
