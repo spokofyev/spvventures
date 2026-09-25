@@ -28,9 +28,9 @@ export default function Navigation() {
       <div className="menu-panel">
         <div className="menu-top"><a className="brand" href="#top" onClick={close}>Kulon</a><button type="button" className="menu-close" aria-label="Close menu" onClick={close}><span /><span /></button></div>
         <nav aria-label="Primary navigation">
-          {links.map(([label, href], index) => <a href={href} key={href} onClick={close}><span>0{index + 1}</span>{label}</a>)}
+          {links.map(([label, href]) => <a href={href} key={href} onClick={close}>{label}</a>)}
         </nav>
-        <div className="menu-foot"><span>Berlin / London</span><a className="button" href="mailto:founders@kulon.space" onClick={close}>Start a conversation <Arrow /></a></div>
+        <div className="menu-foot"><a className="button" href="mailto:founders@kulon.space" onClick={close}>Start a conversation <Arrow /></a></div>
       </div>
     </dialog>
   </>;

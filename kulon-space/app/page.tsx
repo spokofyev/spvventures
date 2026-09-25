@@ -4,9 +4,9 @@ import AskAi from "./ask-ai";
 import Navigation from "./navigation";
 
 const projects = [
-  { capability: "Compute", name: "Orbital data centres", copy: "Compute is becoming the defining resource of the AI economy, and on Earth it is increasingly constrained by power, land and permitting. Orbit offers near-continuous solar energy and room to scale. We work with AI infrastructure leaders to define how compute moves beyond Earth." },
-  { capability: "Mobility", name: "Next-generation propulsion", copy: "In-space mobility is limited by the energy and propellant a spacecraft can carry. We are developing a new engine architecture built to do more with less mass. The result: spacecraft that reach more orbits, operate longer and deliver more value per launch." },
-  { capability: "Construction", name: "Orbital robotics", copy: "Robotic systems for servicing, assembly and maintenance in orbit—extending the life of space assets and making it possible to build structures too large to launch in one piece." },
+  { name: "Orbital data centres", copy: "Compute is becoming the defining resource of the AI economy, and on Earth it is increasingly constrained by power, land and permitting. Orbit offers near-continuous solar energy and room to scale. We work with AI infrastructure leaders to define how compute moves beyond Earth." },
+  { name: "Next-generation propulsion", copy: "In-space mobility is limited by the energy and propellant a spacecraft can carry. We are developing a new engine architecture built to do more with less mass. The result: spacecraft that reach more orbits, operate longer and deliver more value per launch." },
+  { name: "Orbital robotics", copy: "Robotic systems for servicing, assembly and maintenance in orbit—extending the life of space assets and making it possible to build structures too large to launch in one piece." },
 ];
 
 const audiences = ["Industry partners", "Researchers & engineers", "Investors"];
@@ -38,15 +38,15 @@ export default function Home() {
       <SectionHead label="02 / Projects">The space economy is moving from access to infrastructure.</SectionHead>
       <div className="section-body">
         <p className="lead">Compute, mobility and construction are three fundamental capabilities it will require. We are building them.</p>
-        <div className="tracks">{projects.map(program => <article className="track" key={program.name}><span>{program.capability}</span><h3>{program.name}</h3><p>{program.copy}</p></article>)}</div>
+        <div className="tracks">{projects.map(program => <article className="track" key={program.name}><h3>{program.name}</h3><p>{program.copy}</p></article>)}</div>
       </div>
     </section>
 
     <section className="section" id="team">
       <SectionHead label="03 / Team">Built by people who have taken space systems and technology companies from zero to scale.</SectionHead>
       <div className="section-body founder-grid">
-        <article><Image className="portrait" src="/team/dmitry-sternharz.webp" alt="Dmitry Sternharz" width={720} height={720} sizes="280px" /><div><span>Founder / Space systems</span><h3>Dmitry Sternharz</h3></div><p>Founder of Exolaunch, which he led from a university spin-off to a global leader in launch mission management, satellite integration and deployment: 844 satellites across 49 missions. He now focuses on the next layer of orbital infrastructure, the systems that let the space economy scale beyond launch.</p><a className="button" href="https://de.linkedin.com/in/dmitriy-sternharz-b6605836" target="_blank" rel="noopener noreferrer">Connect with founder <Arrow /></a></article>
-        <article><Image className="portrait" src="/team/sergey-prokofyev.webp" alt="Sergey Prokofyev" width={720} height={720} sizes="280px" /><div><span>Founder / Strategy &amp; ventures</span><h3>Sergey Prokofyev</h3></div><p>Serial entrepreneur and strategist building companies at the intersection of deep technology, healthcare and AI. Takes frontier technologies from concept to product, market entry and institutional investment.</p><a className="button" href="https://www.linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">Connect with founder <Arrow /></a></article>
+        <article><div><span>Founder / Space systems</span><h3>Dmitry Sternharz</h3></div><p>Founder of Exolaunch, which he led from a university spin-off to a global leader in launch mission management, satellite integration and deployment: 844 satellites across 49 missions. He now focuses on the next layer of orbital infrastructure, the systems that let the space economy scale beyond launch.</p><a className="button" href="https://de.linkedin.com/in/dmitriy-sternharz-b6605836" target="_blank" rel="noopener noreferrer">Connect with founder <Arrow /></a></article>
+        <article><div><span>Founder / Strategy &amp; ventures</span><h3>Sergey Prokofyev</h3></div><p>Serial entrepreneur and strategist building companies at the intersection of deep technology, healthcare and AI. Takes frontier technologies from concept to product, market entry and institutional investment.</p><a className="button" href="https://www.linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">Connect with founder <Arrow /></a></article>
       </div>
     </section>
 
