@@ -1,23 +1,40 @@
 # Kulon Space
 
-Minimal black-and-white website built with Next.js.
+The Kulon Space website is a standalone Next.js app in this folder. The SPV Ventures app at the repository root is separate.
 
-## Local development
+## Production
+
+- Domain: https://kulonspace.com
+- Git: https://github.com/spokofyev/spvventures/tree/main/kulon-space
+- Vercel project: `kulon-space`
+- Production branch: `main`
+- Vercel Root Directory: `kulon-space`
+- Runtime: Node.js 24
+
+Push changes to `main` to trigger the existing Vercel Git integration. No manual build uploads or second copy of the site are needed. Verify the deployment for the pushed commit before declaring an update live. Domain setup is managed in the same Vercel project.
+
+## Development
 
 ```sh
+cd kulon-space
 npm ci
 npm run dev
 ```
 
-## Production build
+## Validation
 
 ```sh
 npm run build
-npm start
+npm run typecheck
 ```
 
-## Vercel
+## Files
 
-Import `spokofyev/spvventures` as a separate Vercel project, select `main`, and set Root Directory to `kulon-space`. The included `vercel.json` configures the Next.js build. Add `kulonspace.com` in the project Domains settings and apply the DNS records Vercel provides. Domain connection is not yet completed.
+- `app/page.tsx`: page content and section structure
+- `app/globals.css`: shared typography and layout
+- `app/layout.tsx`: title, description, canonical domain and fonts
+- `public/favicon.svg`: brand icon
+- `vercel.json`: deployment configuration
+- `AGENTS.md`: instructions for future automated updates
 
-The SPV Ventures application at the repository root is separate.
+Use the committed package lockfile. Keep local generated files and credentials out of Git. The former ChatGPT Sites copy is not the production editing target.

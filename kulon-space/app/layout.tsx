@@ -6,6 +6,8 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kulonspace.com"),
+  alternates: { canonical: "/" },
   title: "Kulon Space — Frontier Space Technology Lab",
   description: "Kulon Space works with industry leaders on strategic bets in orbital AI infrastructure and next-generation space transportation.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },

@@ -1,16 +1,12 @@
-# React + Vite
+# SPV Ventures websites
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains two independent applications.
 
-Currently, two official plugins are available:
+| Application | Source | Hosting |
+| --- | --- | --- |
+| SPV Ventures | Repository root (`src/`, `public/`) | Existing SPV Ventures Vercel project |
+| Kulon Space | [`kulon-space/`](kulon-space/) | Vercel project `kulon-space`, https://kulonspace.com |
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+For Kulon Space updates, follow [`kulon-space/AGENTS.md`](kulon-space/AGENTS.md) and its [development guide](kulon-space/README.md). Its Vercel Root Directory must be `kulon-space`; edits are committed and pushed to `main` for automatic publication.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The root application uses its own package.json, lockfile and Vercel configuration. Keep the applications independent when changing build settings or dependencies.
