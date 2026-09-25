@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Navigation from "./navigation";
+
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
 const projects = [
@@ -11,12 +14,13 @@ export default function Home() {
   return <main id="top">
     <header className="nav">
       <a className="brand" href="#top" aria-label="Kulon Space home">Kulon Space</a>
-      <nav aria-label="Primary navigation"><a href="#projects">Projects</a><a href="#approach">Approach</a><a href="#team">Team</a><a className="status" href="#contact">Contact</a></nav>
+      <Navigation />
     </header>
 
-    <section className="hero">
-      <div className="hero-copy"><div><p className="eyebrow">Frontier space technology lab</p><h1>Strategic bets, built for <em>orbit.</em></h1></div><div className="hero-bottom"><p>We work with industry leaders to turn ambitious space visions into technologies, products and solutions the market needs.</p></div></div>
-
+    <section className="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">Kulon is a space tech lab focused on next generation orbital infrastructure</h1>
+      <div className="hero-bottom"><p>We work with industry leaders to turn ambitious space visions into technologies, products and solutions the market needs.</p></div>
+      <div className="hero-image"><Image src="/orbital-horizon.webp" alt="Sunrise over Earth's curved horizon and vast cloud-covered oceans" width={1536} height={1024} sizes="(max-width: 1600px) 92vw, 1472px" priority /></div>
     </section>
 
     <section className="section" id="projects"><div className="section-head"><span>01 / Projects</span><h2>Where the next infrastructure layer begins.</h2></div><div className="tracks">{projects.map(program => <article className="track" key={program.number}><span>{program.number}</span><h3>{program.name}</h3><p>{program.copy}</p></article>)}</div></section>
