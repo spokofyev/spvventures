@@ -6,7 +6,7 @@ import Navigation from "./navigation";
 const projects = [
   { capability: "Compute", name: "Orbital data centres", copy: "Compute is becoming the defining resource of the AI economy, and on Earth it is increasingly constrained by power, land and permitting. Orbit offers near-continuous solar energy and room to scale. We work with AI infrastructure leaders to define how compute moves beyond Earth." },
   { capability: "Mobility", name: "Next-generation propulsion", copy: "In-space mobility is limited by the energy and propellant a spacecraft can carry. We are developing a new engine architecture built to do more with less mass. The result: spacecraft that reach more orbits, operate longer and deliver more value per launch." },
-  { capability: "Manipulation", name: "Orbital robotics", copy: "Robotic systems for servicing, assembly and maintenance in orbit—extending the life of space assets and making it possible to build structures too large to launch in one piece." },
+  { capability: "Construction", name: "Orbital robotics", copy: "Robotic systems for servicing, assembly and maintenance in orbit—extending the life of space assets and making it possible to build structures too large to launch in one piece." },
 ];
 
 const audiences = [
@@ -41,7 +41,7 @@ export default function Home() {
     <section className="section" id="projects">
       <SectionHead label="02 / Projects">The space economy is moving from access to infrastructure.</SectionHead>
       <div className="section-body">
-        <p className="lead">Compute, mobility and manipulation are three fundamental capabilities it will require. We are building them.</p>
+        <p className="lead">Compute, mobility and construction are three fundamental capabilities it will require. We are building them.</p>
         <div className="tracks">{projects.map(program => <article className="track" key={program.name}><span>{program.capability}</span><h3>{program.name}</h3><p>{program.copy}</p></article>)}</div>
       </div>
     </section>
