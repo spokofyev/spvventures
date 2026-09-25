@@ -21,10 +21,10 @@ export default function Navigation() {
   }
 
   return <>
-    <button ref={trigger} className="menu-toggle" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-expanded={open} aria-controls="site-menu" onClick={() => { dialog.current?.showModal(); setOpen(true); }}>
+    <button ref={trigger} className="menu-toggle" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-expanded={open} aria-controls="site-menu" onClick={() => { dialog.current?.showModal(); dialog.current?.focus(); setOpen(true); }}>
       <span /><span /><span />
     </button>
-    <dialog ref={dialog} id="site-menu" className="menu-dialog" aria-label="Site navigation" onCancel={() => setOpen(false)} onClose={() => { setOpen(false); trigger.current?.focus(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
+    <dialog ref={dialog} id="site-menu" className="menu-dialog" tabIndex={-1} aria-label="Site navigation" onCancel={() => setOpen(false)} onClose={() => { setOpen(false); trigger.current?.focus(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
       <div className="menu-panel">
         <div className="menu-top"><a className="brand" href="#top" onClick={close}>Kulon</a><button type="button" className="menu-close" aria-label="Close menu" onClick={close}><span /><span /></button></div>
         <nav aria-label="Primary navigation">
