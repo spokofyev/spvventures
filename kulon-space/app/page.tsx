@@ -1,7 +1,6 @@
 import Image from "next/image";
+import Arrow from "./arrow";
 import Navigation from "./navigation";
-
-const Arrow = () => <span aria-hidden="true">↗</span>;
 
 const challenges = [
   { name: "Service", copy: "Keeping assets in orbit working longer: inspection, repair, refuelling and removal." },

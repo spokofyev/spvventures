@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Arrow from "./arrow";
 
 const links = [
   ["Context", "#context"],
@@ -30,7 +31,7 @@ export default function Navigation() {
         <nav aria-label="Primary navigation">
           {links.map(([label, href], index) => <a href={href} key={href} onClick={close}><span>0{index + 1}</span>{label}</a>)}
         </nav>
-        <div className="menu-foot"><span>Berlin / London</span><a className="button" href="mailto:founders@kulon.space" onClick={close}>Start a conversation <span aria-hidden="true">↗</span></a></div>
+        <div className="menu-foot"><span>Berlin / London</span><a className="button" href="mailto:founders@kulon.space" onClick={close}>Start a conversation <Arrow /></a></div>
       </div>
     </dialog>
   </>;
