@@ -20,7 +20,7 @@ npm run typecheck
 ## Files
 
 - `app/page.tsx`: page content and sections
-- `app/hexfield.tsx`: hero visual (isometric cube of coloured marks whose patches slowly change; respects reduced motion)
+- `app/terrain.tsx`: hero visual (isometric dot terrain that keeps shifting, with one agent trail running across it; respects reduced motion)
 - `app/globals.css`: design tokens, typography and layout
 - `app/layout.tsx`: metadata, domain, fonts
 - `public/favicon.svg`: brand mark

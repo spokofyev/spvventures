@@ -1,4 +1,4 @@
-import Hexfield from "./hexfield";
+import Terrain from "./terrain";
 
 // TODO: confirm the real addresses and the Browse destination before launch.
 const CONTACT = "mailto:hello@longrun.ai";
@@ -17,7 +17,7 @@ export default function Page() {
       </header>
 
       <div className="visual">
-        <Hexfield />
+        <Terrain />
       </div>
 
       <section className="intro">
