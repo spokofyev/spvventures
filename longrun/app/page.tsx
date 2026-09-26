@@ -22,13 +22,11 @@ export default function Page() {
 
       <section className="intro">
         <p className="tags">
-          Long-Horizon Agents<span aria-hidden>·</span>Dynamic Environments<span aria-hidden>·</span>Verified Rewards
+          Frontier Data Research<span aria-hidden>·</span>Evaluations<span aria-hidden>·</span>Dynamic Environments
         </p>
-        <h1>Train agents for the long run</h1>
+        <h1>Frontier data for frontier models</h1>
         <p className="sub">
-          Reinforcement learning environments
-          <br />
-          that keep changing while your agent works
+          Evaluations and dynamic environments that leading AI labs use to measure, train, and improve their models
         </p>
         <nav className="actions" aria-label="Primary">
           <a href={CONTACT} className="btn">

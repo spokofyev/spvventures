@@ -10,9 +10,9 @@ const SITE_URL = "https://longrun.ai";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
-  title: "Longrun — Environments for long-horizon agents",
+  title: "Longrun — Frontier data research lab",
   description:
-    "Longrun builds living reinforcement learning environments where the world keeps changing while the agent works, so models learn to hold a task together for hours, not turns.",
+    "Longrun is a frontier data research lab building evaluations and dynamic environments that leading AI labs use to measure, train, and improve frontier models.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 

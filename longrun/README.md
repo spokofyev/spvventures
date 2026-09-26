@@ -1,6 +1,6 @@
 # Longrun
 
-Single-screen landing page for Longrun, a company building dynamic reinforcement learning environments for long-horizon agents. Standalone Next.js app: its own package, lockfile and Vercel config. It shares nothing with the SPV Ventures root app or `kulon-space/`, so it can be moved into its own repository by copying this folder.
+Single-screen landing page for Longrun, a frontier data research lab building evaluations and dynamic environments that leading AI labs use to measure, train, and improve frontier models. Standalone Next.js app: its own package, lockfile and Vercel config. It shares nothing with the SPV Ventures root app or `kulon-space/`, so it can be moved into its own repository by copying this folder.
 
 ## Development
 
