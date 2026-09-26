@@ -29,10 +29,10 @@ export default function Page() {
           Evaluations and dynamic environments that leading AI labs use to measure, train, and improve their models
         </p>
         <nav className="actions" aria-label="Primary">
-          <a href={CONTACT} className="btn">
-            Contact
+          <a href={CONTACT} className="btn btn-primary">
+            Contact <span className="arrow" aria-hidden>→</span>
           </a>
-          <a href={BROWSE} className="btn btn-active">
+          <a href={BROWSE} className="btn">
             Browse
           </a>
           <a href={CAREERS} className="btn">
