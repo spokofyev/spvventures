@@ -20,12 +20,9 @@ npm run typecheck
 ## Files
 
 - `app/site.ts`: company name, domain, contact email, title and description (single source)
-- `app/page.tsx`: section order
-- `app/components/hero.tsx`, `sections.tsx`: page copy
-- `app/components/episode.tsx`: static benchmark vs. illustrative long-horizon episode diagram
-- `app/components/reveal.tsx`: one-time staggered reveal for diagrams (off for reduced motion; content visible without JS)
+- `app/page.tsx`: the single screen (wordmark, tags, headline, subline, two buttons)
+- `app/glow.tsx` + `app/globals.css`: full-bleed grainy blue glow background (pure CSS, stops for reduced motion)
 - `app/opengraph-image.tsx`, `robots.ts`, `sitemap.ts`: SEO and share image
-- `app/globals.css`: Tailwind theme tokens
 
 ## Before launch
 

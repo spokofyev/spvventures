@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { site } from "./site";
 import "./globals.css";
 
-const sans = Inter({ variable: "--font-inter", subsets: ["latin"] });
-const mono = JetBrains_Mono({ variable: "--font-jbm", subsets: ["latin"] });
+const sans = Inter({ variable: "--font-sans", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -26,11 +25,11 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: "#f6f5f1" };
+export const viewport: Viewport = { themeColor: "#05070d" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={sans.variable}>
       <body>{children}</body>
     </html>
   );
