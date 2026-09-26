@@ -25,6 +25,7 @@ export default function Page() {
               Careers
             </a>
           </nav>
+          <p className="credit">Built by AI researchers from Meta</p>
         </section>
       </main>
     </>

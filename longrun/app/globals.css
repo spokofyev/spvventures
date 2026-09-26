@@ -139,6 +139,7 @@ h1 {
 .btn .arrow { color: #1f5bff; transition: transform 0.2s; }
 .btn:hover .arrow { transform: translateX(3px); }
 .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.credit { margin: clamp(1.25rem, 3vh, 1.75rem) 0 0; font-size: 0.875rem; letter-spacing: 0.01em; color: var(--faint); }
 
 @media (max-width: 640px) {
   .g { filter: blur(36px); }
