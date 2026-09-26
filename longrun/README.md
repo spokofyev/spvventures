@@ -20,7 +20,7 @@ npm run typecheck
 ## Files
 
 - `app/page.tsx`: page content and sections
-- `app/terrain.tsx`: hero visual (isometric dot terrain that keeps shifting, with one agent trail running across it; respects reduced motion)
+- `app/glow.tsx`: full-bleed background (dark field, grainy blue light rising from the bottom; pure CSS, stops animating for reduced motion)
 - `app/globals.css`: design tokens, typography and layout
 - `app/layout.tsx`: metadata, domain, fonts
 - `public/favicon.svg`: brand mark

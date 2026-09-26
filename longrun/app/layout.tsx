@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 
-export const viewport: Viewport = { themeColor: "#f3f3f1" };
+export const viewport: Viewport = { themeColor: "#05070d" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
