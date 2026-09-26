@@ -4,9 +4,9 @@ import { useRef, useState } from "react";
 import Arrow from "./arrow";
 
 const links = [
-  ["Thesis", "#thesis"],
-  ["Projects", "#projects"],
-  ["Team", "#team"],
+  ["Thesis", "/#thesis"],
+  ["Projects", "/#projects"],
+  ["Company", "/company"],
   ["Work with us", "#contact"],
 ];
 
@@ -26,7 +26,7 @@ export default function Navigation() {
     </button>
     <dialog ref={dialog} id="site-menu" className="menu-dialog" tabIndex={-1} aria-label="Site navigation" onCancel={() => setOpen(false)} onClose={() => { setOpen(false); trigger.current?.focus(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
       <div className="menu-panel">
-        <div className="menu-top"><a className="brand" href="#top" onClick={close}>Kulon</a><button type="button" className="menu-close" aria-label="Close menu" onClick={close}><span /><span /></button></div>
+        <div className="menu-top"><a className="brand" href="/" onClick={close}>Kulon</a><button type="button" className="menu-close" aria-label="Close menu" onClick={close}><span /><span /></button></div>
         <nav aria-label="Primary navigation">
           {links.map(([label, href]) => <a href={href} key={href} onClick={close}>{label}</a>)}
         </nav>

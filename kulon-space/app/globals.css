@@ -94,6 +94,10 @@ section[id]{scroll-margin-top:2rem}
 /* Accent */
 .section-head>span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--accent);margin-right:.6em;vertical-align:.1em}
 .menu-dialog nav a:hover{color:var(--accent-text)}
+.page-hero{padding-bottom:clamp(3rem,6vw,5rem);border-bottom:1px solid var(--line)}
+.footer-links{display:flex;gap:1.25rem}
+.footer-links a{color:var(--ink)}
+
 /* Focus: no frames; keyboard focus mirrors hover */
 :focus-visible{outline:none}
 a:focus-visible{text-decoration:underline;text-underline-offset:5px}
