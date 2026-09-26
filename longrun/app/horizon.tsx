@@ -180,7 +180,7 @@ export default function Horizon() {
         path.push(prevY + (agentLane - prevY) * 0.35);
         current = (current + 1) % TOTAL_STEPS;
         setStep(current);
-        if (event) setLog((l) => [event, ...l].slice(0, 6));
+        if (event) setLog([event]);
       }
       draw();
       raf = requestAnimationFrame(tick);
@@ -208,26 +208,16 @@ export default function Horizon() {
   }, []);
 
   return (
-    <figure className="horizon" aria-label="Illustration: environment state changing while an agent works through a long run">
-      <div className="horizon-bar">
-        <span>
-          <i className="dot" aria-hidden /> live environment
-        </span>
+    <div className="horizon" aria-hidden>
+      <div className="horizon-stage">
+        <canvas ref={canvasRef} className="horizon-canvas" />
+      </div>
+      <div className="horizon-meta">
+        <span className="event">{log[0] ? `${log[0].lane} · ${log[0].text}` : ""}</span>
         <span className="tabular">
           step {String(step).padStart(5, "0")} / {TOTAL_STEPS.toLocaleString("en-US")}
         </span>
       </div>
-      <canvas ref={canvasRef} className="horizon-canvas" aria-hidden />
-      <ol className="horizon-log" aria-hidden>
-        {log.map((l) => (
-          <li key={l.id}>
-            <span className="tabular">{String(l.step).padStart(5, "0")}</span>
-            <span className="lane">{l.lane}</span>
-            <span>{l.text}</span>
-          </li>
-        ))}
-      </ol>
-      <figcaption>Illustrative. The world changes whether or not the agent is looking.</figcaption>
-    </figure>
+    </div>
   );
 }
