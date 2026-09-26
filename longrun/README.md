@@ -21,7 +21,7 @@ npm run typecheck
 
 - `app/site.ts`: company name, domain, contact email, title and description (single source)
 - `app/page.tsx`: the single screen (wordmark, tags, headline, subline, two buttons)
-- `app/glow.tsx` + `app/globals.css`: full-bleed grainy blue glow background (pure CSS, stops for reduced motion)
+- `app/glow.tsx` + `app/glow-shader.ts`: full-bleed WebGL background (flowing blue light, grain, pointer glow; half resolution, pauses when hidden, still frame for reduced motion). CSS blobs in `globals.css` are the fallback without WebGL
 - `app/opengraph-image.tsx`, `robots.ts`, `sitemap.ts`: SEO and share image
 
 ## Before launch
