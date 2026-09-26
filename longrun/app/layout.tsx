@@ -1,27 +1,37 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import { site } from "./site";
 import "./globals.css";
 
-const sans = Inter({ variable: "--font-sans", subsets: ["latin"] });
-
-// TODO: replace with the production domain once it is registered.
-const SITE_URL = "https://longrun.ai";
+const sans = Inter({ variable: "--font-inter", subsets: ["latin"] });
+const mono = JetBrains_Mono({ variable: "--font-jbm", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(site.url),
   alternates: { canonical: "/" },
-  title: "Longrun — Frontier data research lab",
-  description:
-    "Longrun is a frontier data research lab building evaluations and dynamic environments that leading AI labs use to measure, train, and improve frontier models.",
+  title: site.title,
+  description: site.description,
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: site.name,
+    title: "Train agents for work that unfolds over time.",
+    description: site.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Train agents for work that unfolds over time.",
+    description: site.description,
+  },
 };
 
-export const viewport: Viewport = { themeColor: "#05070d" };
+export const viewport: Viewport = { themeColor: "#f6f5f1" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={sans.variable}>{children}</body>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

@@ -1,6 +1,6 @@
 # Longrun
 
-Single-screen landing page for Longrun, a frontier data research lab building evaluations and dynamic environments that leading AI labs use to measure, train, and improve frontier models. Standalone Next.js app: its own package, lockfile and Vercel config. It shares nothing with the SPV Ventures root app or `kulon-space/`, so it can be moved into its own repository by copying this folder.
+Launch site for Longrun (placeholder name), an early-stage research lab building dynamic, long-horizon environments for training and evaluating AI agents. Standalone Next.js app, independent of the repo-root SPV Ventures app and `kulon-space/`.
 
 ## Development
 
@@ -19,15 +19,16 @@ npm run typecheck
 
 ## Files
 
-- `app/page.tsx`: page content and sections
-- `app/glow.tsx`: full-bleed background (dark field, grainy blue light rising from the bottom; pure CSS, stops animating for reduced motion)
-- `app/globals.css`: design tokens, typography and layout
-- `app/layout.tsx`: metadata, domain, fonts
-- `public/favicon.svg`: brand mark
+- `app/site.ts`: company name, domain, contact email, title and description (single source)
+- `app/page.tsx`: section order
+- `app/components/hero.tsx`, `sections.tsx`: page copy
+- `app/components/episode.tsx`: static benchmark vs. illustrative long-horizon episode diagram
+- `app/components/reveal.tsx`: one-time staggered reveal for diagrams (off for reduced motion; content visible without JS)
+- `app/opengraph-image.tsx`, `robots.ts`, `sitemap.ts`: SEO and share image
+- `app/globals.css`: Tailwind theme tokens
 
 ## Before launch
 
-- Domain: `longrun.ai` in `app/layout.tsx` is a placeholder.
-- Contact/careers emails in `app/page.tsx` are placeholders; Browse has no catalog yet and falls back to email.
-- Copy is draft positioning, not verified product claims.
-- Hosting: create a Vercel project with Root Directory `longrun` (or a separate repo). Not deployed yet.
+- Name, domain and email in `app/site.ts` are placeholders; `hello@longrun.ai` does not exist yet.
+- Not deployed. Create a Vercel project with Root Directory `longrun`.
+- Copy rules: no customers, metrics, partners, papers or logos. The environment model is a research direction, not a product.
