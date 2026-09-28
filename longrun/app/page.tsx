@@ -21,9 +21,7 @@ export default function Page() {
             <a href={mailto("Research conversation")} className="btn btn-primary">
               Work with us <span className="arrow" aria-hidden>→</span>
             </a>
-            <a href={mailto("Research engineering")} className="btn">
-              Careers
-            </a>
+            {/* Careers hidden for now; restore: <a href={mailto("Research engineering")} className="btn">Careers</a> */}
           </nav>
           <p className="credit">Built by AI researchers from Meta</p>
         </section>

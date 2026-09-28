@@ -121,9 +121,9 @@ h1 {
 
 .actions {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: clamp(0.5rem, 2.5vw, 1rem);
-  max-width: 400px;
+  max-width: 220px;
   margin: clamp(1.5rem, 4vh, 2.25rem) auto 0;
 }
 .btn {
