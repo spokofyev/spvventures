@@ -142,9 +142,7 @@ h1 {
 .btn:hover .arrow { transform: translateX(3px); }
 .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .credit { margin: clamp(1.25rem, 3vh, 1.75rem) 0 0; font-size: 0.875rem; letter-spacing: 0.01em; color: var(--faint); display: flex; align-items: center; justify-content: center; gap: 0.45em; flex-wrap: wrap; }
-/* Placeholder until the official logo file is supplied. */
-.credit-logo { color: var(--text); font-weight: 600; font-size: 1.05rem; letter-spacing: -0.02em; }
-.mark { flex: none; }
+.credit-logo { display: block; height: 1.1rem; width: auto; }
 
 @media (max-width: 640px) {
   .g { filter: blur(36px); }

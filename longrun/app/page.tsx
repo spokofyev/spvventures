@@ -1,16 +1,11 @@
 import Glow from "./glow";
-import { mailto, site } from "./site";
+import { mailto } from "./site";
 
 export default function Page() {
   return (
     <>
       <Glow />
       <main className="screen">
-        <header className="brand">
-          <svg className="mark" viewBox="0 0 28 20" width="34" height="24" aria-hidden><path d="M1 15h26" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M6 15a8 8 0 0 1 16 0" fill="none" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round"/><circle cx="14" cy="7" r="1.6" fill="var(--accent)"/></svg>
-          {site.name}
-        </header>
-
         <section className="intro" aria-label="Introduction">
           <p className="tags">
             Dynamic environments<span aria-hidden>·</span>Long-horizon RL<span aria-hidden>·</span>Agent evaluation
@@ -27,7 +22,8 @@ export default function Page() {
             {/* Careers hidden for now; restore: <a href={mailto("Research engineering")} className="btn">Careers</a> */}
           </nav>
           <p className="credit">
-            Founded by researchers and builders from <span className="credit-logo">Meta</span>
+            Founded by researchers and builders from{" "}
+            <img className="credit-logo" src="/meta-white.png" alt="Meta" width={544} height={113} />
           </p>
         </section>
       </main>
