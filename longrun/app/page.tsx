@@ -14,8 +14,8 @@ export default function Page() {
           </p>
           <h1>Train agents for work that unfolds over time.</h1>
           <p className="sub">
-            We generate non-stationary environments that keep changing while the agent works, realistic enough that agents
-            can&rsquo;t tell they&rsquo;re simulated, and deep enough to demand days or weeks of professional work.
+            We generate non-stationary, long-horizon environments that keep changing while the agent works, emulate days or
+            weeks of time, and are realistic enough that agents can&rsquo;t tell they&rsquo;re simulated.
           </p>
           <nav className="actions" aria-label="Primary">
             <a href={mailto("Research conversation")} className="btn btn-primary">
