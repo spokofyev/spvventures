@@ -143,6 +143,9 @@ h1 {
 .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .credit { margin: clamp(1.25rem, 3vh, 1.75rem) 0 0; font-size: 0.875rem; letter-spacing: 0.01em; color: var(--faint); display: flex; flex-direction: column; align-items: center; gap: 0.6em; }
 .credit-logo { display: block; height: 1.1rem; width: auto; }
+.social { display: inline-flex; margin-top: clamp(1rem, 2.5vh, 1.5rem); color: var(--faint); transition: color 0.2s; }
+.social:hover { color: var(--text); }
+.social:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
 @media (max-width: 640px) {
   .g { filter: blur(36px); }
