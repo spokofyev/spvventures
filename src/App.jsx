@@ -1,209 +1,94 @@
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
-}
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-}
-
-function Reveal({ children, className, delay = 0 }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
-      variants={fadeUp}
-      transition={{ delay }}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-function RevealGroup({ children, className }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
-      variants={stagger}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-const steps = [
+const services = [
   {
-    num: '01',
-    title: 'Identify the Gap',
-    body: 'We map where your business is exposed to technological disruption — and locate the teams already building the answer.',
+    label: 'M&A Advisory',
+    body: 'Full-process advisory for corporates acquiring in deep tech. We originate proprietary targets, run the process, and close.',
   },
   {
-    num: '02',
-    title: 'Acquire & Build',
-    body: 'We structure the acquisition of R&D teams or labs, then work hands-on to integrate them and accelerate their output inside your organisation.',
+    label: 'Integration',
+    body: 'Post-close execution support. We stay in as hands-on partners to help your team absorb the acquisition and extract the value you paid for.',
   },
   {
-    num: '03',
-    title: 'Capital & Exit',
-    body: 'We bridge building and ownership — through M&A advisory or SPV capital structures that align incentives for the long term.',
+    label: 'SPV Capital',
+    body: 'Where the opportunity calls for co-investment rather than acquisition, we structure and bring capital via SPV alongside your team.',
   },
 ]
 
-const sectors = ['Healthcare', 'Finance', 'Space', 'Industrial Production']
+const deals = [
+  {
+    name: '████████',
+    sector: 'Space',
+    stage: 'Series A · Late Stage',
+    rationale: 'Revenue traction and defensible orbit position made this a compelling strategic fit for a US corporate buyer.',
+  },
+  {
+    name: '████████',
+    sector: 'Fintech',
+    stage: 'Seed',
+    rationale: 'Exceptional founding team, proprietary IP, and a roadmap that would have taken the acquirer 3+ years to build in-house.',
+  },
+  {
+    name: '████████',
+    sector: 'Space',
+    stage: 'Series A',
+    rationale: 'Early-stage propulsion IP with no public footprint. Sourced through network before the founders were ready to raise.',
+  },
+]
 
 export default function App() {
   return (
-    <div style={{ background: '#06100a' }}>
+    <div className="page">
+      <nav className="nav">
+        <span className="wordmark">SPV Ventures</span>
+        <div className="nav-links">
+          <a href="https://linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        </div>
+      </nav>
 
-      {/* ── Nav ── */}
-      <header className="nav">
-        <a href="#" className="wordmark">SPV Ventures</a>
-        <nav className="nav-links">
-          <a href="#about">About</a>
-          <a href="#model">Model</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+      <main className="main">
+        <h1 className="headline">
+          We connect corporates to deep tech they can't build alone.
+        </h1>
 
-      {/* ── Hero ── */}
-      <section className="hero">
-        <div className="hero-inner">
-          <motion.p
-            className="hero-label"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Corporate Innovation Partners
-          </motion.p>
-          <motion.h1
-            className="hero-title"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          >
-            We help corporates<br />
-            build the <em>technology</em><br />
-            they can't afford to miss
-          </motion.h1>
-          <motion.div
-            className="hero-bottom"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <p className="hero-sub">
-              Partnering with established companies to acquire R&D talent, build internal capabilities, and turn technology gaps into competitive advantages.
-            </p>
-            <div className="hero-right">
-              <a href="#contact" className="hero-cta">Get in Touch →</a>
-              <div className="scroll-indicator">
-                <span className="scroll-line" />
-                Scroll
-              </div>
+        <p className="tagline">
+          Founders ourselves, on a mission to build a firm that's AI-native at its core — so we can stay focused on what actually matters: judgment, relationships, and delivering real value on every deal.
+        </p>
+
+        <div className="services">
+          {services.map((s) => (
+            <div key={s.label} className="service-row">
+              <span className="service-label">{s.label}</span>
+              <p className="service-body">{s.body}</p>
             </div>
-          </motion.div>
+          ))}
         </div>
-      </section>
 
-      {/* ── About ── */}
-      <section className="section" id="about">
-        <div className="section-inner">
-          <Reveal>
-            <p className="section-label">About</p>
-          </Reveal>
-          <RevealGroup className="about-grid">
-            <motion.h2 className="about-heading" variants={fadeUp}>
-              Founders and<br /> operators,<br /> not consultants
-            </motion.h2>
-            <motion.div className="about-body" variants={stagger}>
-              <motion.p className="body-text" variants={fadeUp}>
-                We are a team of founders and operators with deep networks across engineering labs, research teams, and frontier builders — in healthcare, finance, space, and industrial production.
-              </motion.p>
-              <motion.p className="body-text" variants={fadeUp}>
-                We partner with established corporations to identify technology gaps, acquire the right R&D teams, and build the capabilities that close them. Then we help move those assets forward — through M&A or structured SPV capital.
-              </motion.p>
-              <motion.p className="pull-quote" variants={fadeUp}>
-                We don't advise from the sidelines. We get in, build alongside you, and stay until it works.
-              </motion.p>
-            </motion.div>
-          </RevealGroup>
-        </div>
-      </section>
-
-      {/* ── Model ── */}
-      <section className="model-section" id="model">
-        <div className="section-inner">
-          <Reveal>
-            <p className="section-label">How We Work</p>
-          </Reveal>
-          <RevealGroup className="model-steps">
-            {steps.map((s) => (
-              <motion.div className="model-step" key={s.num} variants={fadeUp}>
-                <span className="step-num">{s.num}</span>
-                <h3 className="step-title">{s.title}</h3>
-                <p className="step-body">{s.body}</p>
-              </motion.div>
+        {false && <div className="deals">
+          <p className="section-label">Recent Deals</p>
+          <div className="deals-table">
+            <div className="deals-header">
+              <span>Company</span>
+              <span>Sector</span>
+              <span>Stage</span>
+              <span>Strategic rationale</span>
+            </div>
+            {deals.map((d, i) => (
+              <div key={i} className="deals-row">
+                <span className="deal-name">{d.name}</span>
+                <span className="deal-meta">{d.sector}</span>
+                <span className="deal-meta">{d.stage}</span>
+                <p className="deal-rationale">{d.rationale}</p>
+              </div>
             ))}
-          </RevealGroup>
+          </div>
+        </div>}
 
-          <Reveal>
-            <div className="sectors-row">
-              <span className="sectors-label">Focus</span>
-              {sectors.map((s, i) => (
-                <span key={s} style={{ display: 'contents' }}>
-                  <span className="sector-item">{s}</span>
-                  {i < sectors.length - 1 && <span className="sector-sep" />}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      </main>
 
-      {/* ── Contact ── */}
-      <section className="section" id="contact">
-        <div className="section-inner">
-          <Reveal>
-            <p className="section-label">Let's Talk</p>
-          </Reveal>
-          <Reveal>
-            <div className="contact-wrap">
-              <h2 className="contact-heading">
-                Working with<br /> corporates who<br /> want to move faster
-              </h2>
-              <div className="contact-right">
-                <p className="body-text">
-                  If you're a corporate looking to acquire technology capability, or a founder interested in strategic backing — we'd like to hear from you.
-                </p>
-                <a href="mailto:hello@spvventures.com" className="contact-cta">
-                  Get in Touch →
-                </a>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── Footer ── */}
       <footer className="footer">
-        <span className="footer-text">© 2025 SPV Ventures. All rights reserved.</span>
-        <span className="footer-text">Lisbon, Portugal</span>
+        <span className="footer-geo">Robotics · Physical AI · Applied AI &nbsp;·&nbsp; UK · US · Europe</span>
+        <span className="footer-copy">© {new Date().getFullYear()} SPV Ventures</span>
       </footer>
-
     </div>
   )
 }
