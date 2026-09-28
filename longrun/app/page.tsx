@@ -1,11 +1,13 @@
 import Glow from "./glow";
-import { mailto } from "./site";
+import { mailto, site } from "./site";
 
 export default function Page() {
   return (
     <>
       <Glow />
       <main className="screen">
+        <header className="brand">{site.name}</header>
+
         <section className="intro" aria-label="Introduction">
           <p className="tags">
             Dynamic environments<span aria-hidden>·</span>Long-horizon RL<span aria-hidden>·</span>Agent evaluation
