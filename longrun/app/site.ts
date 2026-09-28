@@ -6,7 +6,7 @@ export const site = {
   email: "hello@longrun.ai",
   title: "Longrun — Environments for work that unfolds over time",
   description:
-    "We build dynamic, long-horizon environments for training and evaluating AI agents in realistic professional workflows.",
+    "We generate non-stationary environments that keep changing while the agent works, realistic enough that agents can’t tell they’re simulated, and deep enough to demand days or weeks of professional work.",
 };
 
 export const mailto = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
