@@ -16,10 +16,12 @@ const services = [
 const portfolio = [
   {
     name: 'Longrun AI',
+    tags: ['AI', 'Co-founded'],
     body: 'Dynamic environments for long-horizon reinforcement learning.',
   },
   {
     name: 'Kulon Space',
+    tags: ['SpaceTech', 'Co-founded'],
     body: 'Orbital infrastructure lab.',
     href: 'https://kulonspace.com',
   },
@@ -27,13 +29,13 @@ const portfolio = [
 
 const cases = [
   {
-    sector: 'Satellite manufacturing',
-    type: 'Special situation investment',
+    name: 'Satellite manufacturing',
+    tags: ['SpaceTech', 'Special situation'],
     body: 'Due diligence and post-investment operations for a private investor.',
   },
   {
-    sector: 'Robotics',
-    type: 'M&A · sell side',
+    name: 'Robotics',
+    tags: ['Robotics', 'M&A · sell side'],
     body: 'Represented the seller in an acquisition by a tier 1 public technology company.',
   },
 ]
@@ -58,10 +60,53 @@ function Logo({ inverted = false }) {
 }
 
 // Image placeholder: swap for <img> once real images exist.
-function ImagePlaceholder({ label, ratio = '16 / 9' }) {
+function ImagePlaceholder({ label, ratio = '16 / 9', className = '' }) {
   return (
-    <div className="placeholder" style={{ aspectRatio: ratio }} role="img" aria-label={`${label} (placeholder)`}>
+    <div
+      className={`placeholder ${className}`}
+      style={{ aspectRatio: ratio }}
+      role="img"
+      aria-label={`${label} (placeholder)`}
+    >
       <span>{label}</span>
+    </div>
+  )
+}
+
+function SectionHead({ label, children }) {
+  return (
+    <div className="section-head">
+      <p className="label">{label}</p>
+      {children && <p className="section-intro">{children}</p>}
+    </div>
+  )
+}
+
+function List({ items }) {
+  return (
+    <div className="list">
+      {items.map((item) => (
+        <article key={item.name} className="list-row">
+          <h3 className="list-name">{item.name}</h3>
+          <p className="list-tags">
+            {item.tags.map((t, i) => (
+              <span key={t}>
+                {i > 0 && <span className="dot">•</span>}
+                {t}
+              </span>
+            ))}
+          </p>
+          <div className="list-text">
+            <p>{item.body}</p>
+            {item.href && (
+              <a className="text-link" href={item.href} target="_blank" rel="noopener noreferrer">
+                website <Arrow />
+              </a>
+            )}
+          </div>
+          <ImagePlaceholder label={`${item.name} image`} ratio="4 / 3" className="list-img" />
+        </article>
+      ))}
     </div>
   )
 }
@@ -69,92 +114,79 @@ function ImagePlaceholder({ label, ratio = '16 / 9' }) {
 export default function App() {
   return (
     <>
-      <header className="container nav">
-        <a className="brand" href="/" aria-label="SPV Ventures home">
+      <header className="container hero">
+        <div className="hero-top">
+          <p className="hero-kicker">M&amp;A and strategic investment in frontier tech</p>
+          <nav className="nav">
+            <a href="#what-we-do">What we do</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+
+        <h1 className="wordmark">
           <Logo />
-          <span className="wordmark">SPV Ventures</span>
-        </a>
-        <a className="nav-link" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
-          LinkedIn <Arrow />
-        </a>
+          <span>SPV Ventures</span>
+        </h1>
+
+        <div className="hero-bottom">
+          <p className="label">AI · Infrastructure · Space</p>
+          <p className="statement">
+            We partner with founders, engineers and investors on M&amp;A and strategic investments in
+            frontier tech.
+          </p>
+        </div>
       </header>
 
       <main>
-        <section className="container hero">
-          <h1 className="headline">M&amp;A and strategic investment in frontier tech.</h1>
-          <p className="tagline">
-            We partner with founders, engineers and investors in AI, infrastructure and space.
-          </p>
-          <ImagePlaceholder label="Hero image" ratio="21 / 9" />
-        </section>
+        <div className="container">
+          <ImagePlaceholder label="Hero image" ratio="21 / 9" className="banner" />
+        </div>
 
-        <section className="container section">
-          <p className="section-label">What we do</p>
-          <div className="rows">
-            {services.map((s) => (
-              <div key={s.label} className="row">
-                <h2 className="row-title">{s.label}</h2>
-                <p className="row-body">{s.body}</p>
-              </div>
+        <section id="what-we-do" className="container section">
+          <SectionHead label="What we do" />
+          <ol className="services">
+            {services.map((s, i) => (
+              <li key={s.label} className="service">
+                <span className="service-num">{String(i + 1).padStart(2, '0')}</span>
+                <h2 className="service-title">{s.label}</h2>
+                <p className="service-body">{s.body}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </section>
 
-        <section className="band dark">
+        <section id="portfolio" className="band dark">
           <div className="container section">
-            <p className="section-label">Co-founded</p>
-            <div className="cards">
-              {portfolio.map((p) => (
-                <article key={p.name} className="card">
-                  <ImagePlaceholder label={`${p.name} image`} ratio="4 / 3" />
-                  <h2 className="card-title">
-                    {p.href ? (
-                      <a href={p.href} target="_blank" rel="noopener noreferrer">
-                        {p.name} <Arrow />
-                      </a>
-                    ) : (
-                      p.name
-                    )}
-                  </h2>
-                  <p className="card-body">{p.body}</p>
-                </article>
-              ))}
-            </div>
+            <SectionHead label="Portfolio">Companies we co-founded.</SectionHead>
+            <List items={portfolio} />
           </div>
         </section>
 
-        <section className="container section">
-          <p className="section-label">Selected work</p>
-          <div className="cards">
-            {cases.map((c) => (
-              <article key={c.sector} className="card">
-                <ImagePlaceholder label={`${c.sector} image`} ratio="3 / 2" />
-                <p className="card-meta">{c.type}</p>
-                <h2 className="card-title">{c.sector}</h2>
-                <p className="card-body">{c.body}</p>
-              </article>
-            ))}
-          </div>
+        <section id="work" className="container section">
+          <SectionHead label="Selected work">Client names withheld.</SectionHead>
+          <List items={cases} />
         </section>
+      </main>
 
-        <section className="band dark">
-          <div className="container cta">
-            <h2 className="cta-title">Building or buying in frontier tech?</h2>
+      <footer id="contact" className="band dark">
+        <div className="container footer">
+          <div className="footer-cta">
+            <h2 className="footer-title">Building or buying in frontier tech?</h2>
             <a className="button" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
               Talk to us <Arrow />
             </a>
           </div>
-        </section>
-      </main>
-
-      <footer className="band dark">
-        <div className="container">
-          <div className="footer">
+          <div className="footer-bottom">
             <span className="footer-brand">
               <Logo inverted />
               <span>© {new Date().getFullYear()} SPV Ventures</span>
             </span>
-            <span>AI · Infrastructure · Space &nbsp;·&nbsp; UK · US · Europe</span>
+            <span>UK · US · Europe</span>
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+              LinkedIn <Arrow />
+            </a>
           </div>
         </div>
       </footer>
