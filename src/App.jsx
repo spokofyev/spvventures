@@ -25,20 +25,6 @@ const portfolio = [
     name: 'Kulon Space',
     tags: ['SpaceTech', 'Co-founded'],
     body: 'Orbital infrastructure lab.',
-    href: 'https://kulonspace.com',
-  },
-]
-
-const cases = [
-  {
-    name: 'Satellite manufacturing',
-    tags: ['SpaceTech', 'Special situation'],
-    body: 'Due diligence and post-investment operations for a private investor.',
-  },
-  {
-    name: 'Robotics',
-    tags: ['Robotics', 'M&A · sell side'],
-    body: 'Represented the seller in an acquisition by a tier 1 public technology company.',
   },
 ]
 
@@ -47,7 +33,6 @@ const LINKEDIN = 'https://linkedin.com/in/sprokofyev'
 const sections = [
   { href: '#what-we-do', label: 'What we do' },
   { href: '#portfolio', label: 'Portfolio' },
-  { href: '#work', label: 'Work' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -65,20 +50,6 @@ function Logo({ inverted = false }) {
       <circle cx="50" cy="50" r="50" fill={inverted ? '#fff' : '#0a0a0a'} />
       <rect x="24" y="24" width="52" height="52" fill={inverted ? '#0a0a0a' : '#fff'} />
     </svg>
-  )
-}
-
-// Image placeholder: swap for <img> once real images exist.
-function ImagePlaceholder({ label, ratio = '16 / 9', className = '' }) {
-  return (
-    <div
-      className={`placeholder ${className}`}
-      style={{ aspectRatio: ratio }}
-      role="img"
-      aria-label={`${label} (placeholder)`}
-    >
-      <span>{label}</span>
-    </div>
   )
 }
 
@@ -163,15 +134,7 @@ function List({ items }) {
               </span>
             ))}
           </p>
-          <div className="list-text">
-            <p>{item.body}</p>
-            {item.href && (
-              <a className="text-link" href={item.href} target="_blank" rel="noopener noreferrer">
-                website <Arrow />
-              </a>
-            )}
-          </div>
-          <ImagePlaceholder label={`${item.name} image`} ratio="4 / 3" className="list-img" />
+          <p className="list-text">{item.body}</p>
         </article>
       ))}
     </div>
@@ -193,7 +156,6 @@ export default function App() {
         <h1 className="headline">M&amp;A and strategic investment in frontier tech.</h1>
 
         <div className="hero-bottom">
-          <p className="label">AI · Infrastructure · Space</p>
           <p className="statement">
             We partner with founders, engineers and investors to build, buy and back frontier
             technology companies.
@@ -203,7 +165,16 @@ export default function App() {
 
       <main>
         <div className="container">
-          <ImagePlaceholder label="Hero image" ratio="21 / 9" className="banner" />
+          <img
+            className="banner"
+            src="/images/hero-2400.jpg"
+            srcSet="/images/hero-1200.jpg 1200w, /images/hero-2400.jpg 2400w"
+            sizes="(max-width: 1280px) 100vw, 1200px"
+            width="2400"
+            height="1348"
+            alt="Earth's horizon from orbit, sunlight reflecting off the ocean through clouds"
+            fetchPriority="high"
+          />
         </div>
 
         <section id="what-we-do" className="container section">
@@ -226,10 +197,6 @@ export default function App() {
           </div>
         </section>
 
-        <section id="work" className="container section">
-          <SectionHead label="Selected work">Client names withheld.</SectionHead>
-          <List items={cases} />
-        </section>
       </main>
 
       <footer id="contact" className="band dark">
@@ -245,10 +212,6 @@ export default function App() {
               <Logo inverted />
               <span>© {new Date().getFullYear()} SPV Ventures</span>
             </span>
-            <span>UK · US · Europe</span>
-            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
-              LinkedIn <Arrow />
-            </a>
           </div>
         </div>
       </footer>
