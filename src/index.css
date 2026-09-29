@@ -62,150 +62,110 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 48px;
-  padding: 72px 0 56px;
+  gap: 88px;
+  padding: 96px 0 96px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .headline {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(40px, 5vw, 64px);
+  font-size: clamp(40px, 5.5vw, 72px);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.06;
   letter-spacing: -0.02em;
   color: #0a0a0a;
-  max-width: 900px;
+  max-width: 880px;
   text-wrap: balance;
 }
 
 .tagline {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 400;
-  color: #888;
-  line-height: 1.65;
-  max-width: 600px;
-  margin-top: -16px;
+  color: #666;
+  line-height: 1.6;
+  max-width: 560px;
+  text-wrap: pretty;
 }
 
-/* ── Services ─────────────────────────────── */
-
-.services {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.service-row {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 28px 32px;
-  border: 1px solid #ebebeb;
-  border-radius: 12px;
-  background: #fafafa;
-  transition: border-color 0.15s, background 0.15s;
-}
-
-.service-row:hover {
-  border-color: #d0d0d0;
-  background: #fff;
-}
-
-.service-label {
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #bbb;
-}
-
-.service-body {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: #444;
-}
-
-@media (max-width: 600px) {
-  .page {
-    padding: 0 20px;
-  }
-
-  .service-row {
-    padding: 22px 20px;
-  }
-
-  .service-body {
-    font-size: 15px;
-  }
-
-  .main {
-    gap: 36px;
-    padding: 48px 0 40px;
-  }
-}
-
-/* ── Deals ────────────────────────────────── */
-
-.deals {
-  max-width: 760px;
-}
+/* ── Sections ─────────────────────────────── */
 
 .section-label {
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #bbb;
-  margin-bottom: 16px;
+  color: #999;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #0a0a0a;
 }
 
-.deals-table {
-  border-top: 1px solid #ebebeb;
-}
-
-.deals-header {
+.row {
   display: grid;
-  grid-template-columns: 120px 90px 160px 1fr;
-  gap: 24px;
-  padding: 10px 0;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 32px;
+  padding: 24px 0;
   border-bottom: 1px solid #ebebeb;
-}
-
-.deals-header span {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #ccc;
-  white-space: nowrap;
-}
-
-.deals-row {
-  display: grid;
-  grid-template-columns: 120px 90px 160px 1fr;
-  gap: 24px;
-  padding: 14px 0;
-  border-bottom: 1px solid #f5f5f5;
   align-items: baseline;
 }
 
-.deal-name {
-  font-size: 13px;
+.row-title {
+  font-size: 17px;
   font-weight: 600;
-  color: #222;
-  font-family: monospace;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #0a0a0a;
 }
 
-.deal-meta {
-  font-size: 12.5px;
+.row-title a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid #d0d0d0;
+  transition: border-color 0.15s;
+}
+
+.row-title a:hover { border-color: #0a0a0a; }
+
+.row-meta {
+  font-size: 13px;
   color: #999;
+  margin-top: 4px;
 }
 
-.deal-rationale {
-  font-size: 12.5px;
-  color: #aaa;
-  line-height: 1.55;
+.row-body {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #444;
+  text-wrap: pretty;
+}
+
+.arrow {
+  display: inline-block;
+  vertical-align: 0.05em;
+  margin-left: 2px;
+}
+
+@media (max-width: 700px) {
+  .page { padding: 0 20px; }
+
+  .main {
+    gap: 64px;
+    padding: 56px 0 64px;
+  }
+
+  .tagline { font-size: 16px; }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 20px 0;
+  }
+
+  .row-body { font-size: 15px; }
 }
 
 /* ── Footer ───────────────────────────────── */
@@ -224,10 +184,18 @@ body {
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.02em;
-  color: #ccc;
+  color: #999;
 }
 
 .footer-copy {
   font-size: 12px;
-  color: #ccc;
+  color: #999;
+}
+
+@media (max-width: 700px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
 }
