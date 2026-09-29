@@ -113,7 +113,7 @@ function Menu() {
       <div id="menu" className={`menu band dark${open ? ' is-open' : ''}`} hidden={!open}>
         <div className="container menu-inner">
           <div className="menu-top">
-            <span className="menu-brand">
+            <span className="brand">
               <Logo inverted />
               SPV Ventures
             </span>
@@ -183,20 +183,20 @@ export default function App() {
     <>
       <header className="container hero">
         <div className="hero-top">
-          <p className="hero-kicker">M&amp;A and strategic investment in frontier tech</p>
+          <a className="brand" href="/" aria-label="SPV Ventures home">
+            <Logo />
+            SPV Ventures
+          </a>
           <Menu />
         </div>
 
-        <h1 className="wordmark">
-          <Logo />
-          <span>SPV Ventures</span>
-        </h1>
+        <h1 className="headline">M&amp;A and strategic investment in frontier tech.</h1>
 
         <div className="hero-bottom">
           <p className="label">AI · Infrastructure · Space</p>
           <p className="statement">
-            We partner with founders, engineers and investors on M&amp;A and strategic investments in
-            frontier tech.
+            We partner with founders, engineers and investors to build, buy and back frontier
+            technology companies.
           </p>
         </div>
       </header>
