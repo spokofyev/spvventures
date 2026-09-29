@@ -1,6 +1,10 @@
 import Image from "next/image";
-import Arrow from "./arrow";
 import { SectionHead, SiteFooter, SiteHeader, WorkWithUs } from "./site";
+
+const leaders = [
+  { name: "Dmitry Sternharz", role: "Founder", photo: "/team/dmitry-sternharz.webp", width: 410, height: 513, linkedin: "https://de.linkedin.com/in/dmitriy-sternharz-b6605836" },
+  { name: "Sergey Prokofyev", role: "Founding team / Leadership", photo: "/team/sergey-prokofyev.webp", width: 640, height: 800, linkedin: "https://www.linkedin.com/in/sprokofyev" },
+];
 
 export default function Home() {
   return <main id="top">
@@ -20,10 +24,17 @@ export default function Home() {
     </section>
 
     <section className="section" id="team">
-      <SectionHead label="02 / Team">Built by people who have taken space systems and technology companies from zero to scale.</SectionHead>
-      <div className="section-body founder-grid">
-        <article><div><span>Founder</span><h3>Dmitry Sternharz</h3></div><p>Founder of Exolaunch, which he led from a university spin-off to a global leader in launch mission management, satellite integration and deployment: 844 satellites across 49 missions. He now focuses on the next layer of orbital infrastructure, the systems that let the space economy scale beyond launch.</p><a className="button" href="https://de.linkedin.com/in/dmitriy-sternharz-b6605836" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <Arrow /></a></article>
-        <article><div><span>Founding team / Leadership</span><h3>Sergey Prokofyev</h3></div><p>Serial entrepreneur and strategist building companies at the intersection of deep technology, healthcare and AI. Takes frontier technologies from concept to product, market entry and institutional investment.</p><a className="button" href="https://www.linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <Arrow /></a></article>
+      <SectionHead label="02 / Team">Our founder.</SectionHead>
+      <div className="section-body">
+        <div className="founder">
+          <Image className="founder-photo" src="/team/dmitry-sternharz-founder.webp" alt="Dmitry Sternharz" width={513} height={513} sizes="(max-width: 760px) 92vw, 520px" />
+          <p className="founder-bio">Dmitry Sternharz, Kulon&apos;s founder, built Exolaunch from a university spin-off into a global leader in launch mission management, satellite integration and deployment: 844 satellites across 49 missions. Having helped make access to orbit routine, he founded Kulon to build the next layer of orbital infrastructure, the systems that let the space economy scale beyond launch.</p>
+        </div>
+        <h2 className="subhead">Our leadership.</h2>
+        <div className="leaders">{leaders.map(person => <a className="leader" key={person.name} href={person.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${person.name}, ${person.role}, on LinkedIn`}>
+          <Image src={person.photo} alt="" width={person.width} height={person.height} sizes="(max-width: 760px) 92vw, 360px" />
+          <span className="leader-text"><strong>{person.name}</strong><span>{person.role}</span></span>
+        </a>)}</div>
       </div>
     </section>
 
