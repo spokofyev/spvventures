@@ -5,7 +5,6 @@ import Arrow from "./arrow";
 
 const links = [
   ["Thesis", "/#thesis"],
-  ["Projects", "/#projects"],
   ["Company", "/company"],
   ["Work with us", "#contact"],
 ];

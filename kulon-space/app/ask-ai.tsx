@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Arrow from "./arrow";
 
-const prompt = "Read https://kulonspace.com and use the information on the website to explain why Kulon Space's tracks of space technology (orbital data centres, next-generation propulsion and orbital robotics) are important, what the opportunity behind them is, and why this team is capable of building it.";
+const prompt = "Read https://kulonspace.com and use the information on the website to explain why infrastructure in orbit matters for the next phase of the space economy, what the opportunity behind it is, and why this team is capable of building it.";
 const q = encodeURIComponent(prompt);
 
 export default function AskAi() {
