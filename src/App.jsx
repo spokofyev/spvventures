@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 const services = [
   {
     label: 'Co-founding & co-investing',
@@ -42,6 +44,13 @@ const cases = [
 
 const LINKEDIN = 'https://linkedin.com/in/sprokofyev'
 
+const sections = [
+  { href: '#what-we-do', label: 'What we do' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#work', label: 'Work' },
+  { href: '#contact', label: 'Contact' },
+]
+
 function Arrow() {
   return (
     <svg className="arrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -70,6 +79,64 @@ function ImagePlaceholder({ label, ratio = '16 / 9', className = '' }) {
     >
       <span>{label}</span>
     </div>
+  )
+}
+
+function Menu() {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
+  return (
+    <>
+      <button
+        type="button"
+        className="burger"
+        aria-label="Open menu"
+        aria-expanded={open}
+        aria-controls="menu"
+        onClick={() => setOpen(true)}
+      >
+        <span />
+        <span />
+      </button>
+
+      <div id="menu" className={`menu band dark${open ? ' is-open' : ''}`} hidden={!open}>
+        <div className="container menu-inner">
+          <div className="menu-top">
+            <span className="menu-brand">
+              <Logo inverted />
+              SPV Ventures
+            </span>
+            <button type="button" className="menu-close" onClick={() => setOpen(false)}>
+              Close
+            </button>
+          </div>
+          <nav className="menu-nav" aria-label="Sections">
+            {sections.map((s) => (
+              <a key={s.href} href={s.href} onClick={() => setOpen(false)}>
+                {s.label}
+              </a>
+            ))}
+          </nav>
+          <div className="menu-bottom">
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+              LinkedIn <Arrow />
+            </a>
+            <span>UK · US · Europe</span>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
@@ -117,12 +184,7 @@ export default function App() {
       <header className="container hero">
         <div className="hero-top">
           <p className="hero-kicker">M&amp;A and strategic investment in frontier tech</p>
-          <nav className="nav">
-            <a href="#what-we-do">What we do</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#work">Work</a>
-            <a href="#contact">Contact</a>
-          </nav>
+          <Menu />
         </div>
 
         <h1 className="wordmark">
