@@ -28,6 +28,6 @@ export function SiteFooter() {
   return <footer>
     <span>© 2026 Kulon Space</span>
     <div className="footer-ai"><span>Ask AI about Kulon</span><AskAi /></div>
-    <span className="footer-links"><a href="/company">Company</a><span>Berlin / London</span></span>
+    <span>Berlin / London</span>
   </footer>;
 }

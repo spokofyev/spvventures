@@ -5,8 +5,8 @@ import Arrow from "./arrow";
 
 const links = [
   ["Thesis", "/#thesis"],
-  ["Company", "/company"],
-  ["Work with us", "#contact"],
+  ["Team", "/#team"],
+  ["Work with us", "/#contact"],
 ];
 
 export default function Navigation() {

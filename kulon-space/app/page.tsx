@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Arrow from "./arrow";
 import { SectionHead, SiteFooter, SiteHeader, WorkWithUs } from "./site";
 
 export default function Home() {
@@ -18,7 +19,15 @@ export default function Home() {
       </div>
     </section>
 
-    <WorkWithUs label="02 / Work with us" />
+    <section className="section" id="team">
+      <SectionHead label="02 / Team">Built by people who have taken space systems and technology companies from zero to scale.</SectionHead>
+      <div className="section-body founder-grid">
+        <article><div><span>Founder</span><h3>Dmitry Sternharz</h3></div><p>Founder of Exolaunch, which he led from a university spin-off to a global leader in launch mission management, satellite integration and deployment: 844 satellites across 49 missions. He now focuses on the next layer of orbital infrastructure, the systems that let the space economy scale beyond launch.</p><a className="button" href="https://de.linkedin.com/in/dmitriy-sternharz-b6605836" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <Arrow /></a></article>
+        <article><div><span>Founding team / Leadership</span><h3>Sergey Prokofyev</h3></div><p>Serial entrepreneur and strategist building companies at the intersection of deep technology, healthcare and AI. Takes frontier technologies from concept to product, market entry and institutional investment.</p><a className="button" href="https://www.linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <Arrow /></a></article>
+      </div>
+    </section>
+
+    <WorkWithUs label="03 / Work with us" />
     <SiteFooter />
   </main>;
 }
