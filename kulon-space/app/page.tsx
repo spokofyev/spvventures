@@ -11,8 +11,8 @@ export default function Home() {
         <div className="stage-copy">
           <h1 id="hero-heading" className="stage-title"><span><span>Infrastructure</span></span> <span><span>beyond</span></span> <span><span>Earth.</span></span></h1>
           <div className="stage-cycle" aria-hidden="true">
-            <svg className="stage-ring" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" /><circle className="stage-ring-fill" cx="16" cy="16" r="14" /></svg>
             <div className="stage-words"><span>Compute</span><span>Move</span><span>Build</span></div>
+            <svg className="stage-ring" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" /><circle className="stage-ring-fill" cx="16" cy="16" r="14" /></svg>
           </div>
         </div>
       </div>
@@ -22,21 +22,21 @@ export default function Home() {
     <section className="intro"><p className="intro-text">Kulon is a frontier space technology lab building the systems required to compute, move and build in orbit. <span>Built in London and Berlin.</span></p></section>
 
     <section className="section" id="thesis">
-      <SectionHead label="01 / Thesis">Reaching orbit is becoming routine. What we build there comes next.</SectionHead>
+      <SectionHead title="Thesis">Reaching orbit is becoming routine. What we build there comes next.</SectionHead>
       <div className="section-body">
         <p className="lead">Satellite constellations have become industrial-scale systems, and AI is creating unprecedented demand for energy and compute. The next phase of the space economy depends on what can be done once in orbit, and most of the infrastructure it needs does not exist yet. The companies that build it will define the economy beyond Earth.</p>
       </div>
     </section>
 
     <section className="section" id="team">
-      <SectionHead label="02 / Team">Built by people who have taken space systems and technology companies from zero to scale.</SectionHead>
+      <SectionHead title="Team">Built by people who have taken space systems and technology companies from zero to scale.</SectionHead>
       <div className="section-body founder-grid">
         <article><div><span>Founder</span><h3>Dmitry Sternharz</h3></div><p>Founder of Exolaunch, which he led from a university spin-off to a global leader in launch mission management, satellite integration and deployment: 844 satellites across 49 missions. He now focuses on the next layer of orbital infrastructure, the systems that let the space economy scale beyond launch.</p><a className="button" href="https://de.linkedin.com/in/dmitriy-sternharz-b6605836" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <Arrow /></a></article>
         <article><div><span>Founding team / Leadership</span><h3>Sergey Prokofyev</h3></div><p>Serial entrepreneur and strategist building companies at the intersection of deep technology, healthcare and AI. Takes frontier technologies from concept to product, market entry and institutional investment.</p><a className="button" href="https://www.linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <Arrow /></a></article>
       </div>
     </section>
 
-    <WorkWithUs label="03 / Work with us" />
+    <WorkWithUs />
     <SiteFooter />
   </main>
   </>;
