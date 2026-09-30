@@ -11,7 +11,7 @@ const services = [
   },
   {
     label: 'Investment foresight',
-    body: 'A go or no-go on R&D bets, and the reasoning behind it: what the technology can do, when, and at what cost.',
+    body: 'We research R&D bets together with your team: what the technology can do, when, and at what cost.',
   },
 ]
 
@@ -153,7 +153,8 @@ export default function App() {
           <p>
             We partner with founders, engineers and investors on M&amp;A and strategic investments
             in frontier tech: AI, infrastructure and space. We co-found companies, run deals from
-            target search to integration, and tell R&amp;D teams whether a bet is worth making.
+            target search to integration, and research R&amp;D bets alongside teams, working out
+            together whether they are worth making.
           </p>
         </section>
 
