@@ -11,7 +11,7 @@ export default function Home() {
         <div className="stage-copy">
           <h1 id="hero-heading" className="stage-title"><span><span>Infrastructure</span></span> <span><span>beyond</span></span> <span><span>Earth.</span></span></h1>
           <div className="stage-cycle" aria-hidden="true">
-            <div className="stage-track"><i /></div>
+            <svg className="stage-ring" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" /><circle className="stage-ring-fill" cx="16" cy="16" r="14" /></svg>
             <div className="stage-words"><span>Compute</span><span>Move</span><span>Build</span></div>
           </div>
         </div>
@@ -19,7 +19,7 @@ export default function Home() {
     </section>
 
   <main id="top">
-    <section className="hero-bottom intro"><p>Kulon is a frontier space technology lab building the systems required to compute, move and build in orbit.</p><p className="locations">Berlin <span aria-hidden="true">/</span> London</p></section>
+    <section className="intro"><p className="intro-text">Kulon is a frontier space technology lab building the systems required to compute, move and build in orbit. <span>Built in London and Berlin.</span></p></section>
 
     <section className="section" id="thesis">
       <SectionHead label="01 / Thesis">Reaching orbit is becoming routine. What we build there comes next.</SectionHead>
