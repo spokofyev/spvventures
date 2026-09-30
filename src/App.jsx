@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 const services = [
   {
-    label: 'Co-founding & co-investing',
+    label: 'Co\u2011founding & co\u2011investing',
     body: 'We start companies with founders and invest alongside them, from first thesis to first customers.',
   },
   {
@@ -77,8 +77,9 @@ function Menu() {
         aria-controls="menu"
         onClick={() => setOpen(true)}
       >
-        <span />
-        <span />
+        <svg width="28" height="14" viewBox="0 0 28 14" aria-hidden="true">
+          <path d="M0 1H28M0 13H28" stroke="#0a0a0a" strokeWidth="2" />
+        </svg>
       </button>
 
       <div id="menu" className={`menu band dark${open ? ' is-open' : ''}`} hidden={!open}>
@@ -111,33 +112,13 @@ function Menu() {
   )
 }
 
-function SectionHead({ label, children }) {
+function Card({ eyebrow, title, children }) {
   return (
-    <div className="section-head">
-      <p className="label">{label}</p>
-      {children && <p className="section-intro">{children}</p>}
-    </div>
-  )
-}
-
-function List({ items }) {
-  return (
-    <div className="list">
-      {items.map((item) => (
-        <article key={item.name} className="list-row">
-          <h3 className="list-name">{item.name}</h3>
-          <p className="list-tags">
-            {item.tags.map((t, i) => (
-              <span key={t}>
-                {i > 0 && <span className="dot">•</span>}
-                {t}
-              </span>
-            ))}
-          </p>
-          <p className="list-text">{item.body}</p>
-        </article>
-      ))}
-    </div>
+    <article className="card">
+      {eyebrow && <p className="card-eyebrow">{eyebrow}</p>}
+      <h3 className="card-title">{title}</h3>
+      <p className="card-body">{children}</p>
+    </article>
   )
 }
 
@@ -154,13 +135,6 @@ export default function App() {
         </div>
 
         <h1 className="headline">M&amp;A and strategic investment in frontier tech.</h1>
-
-        <div className="hero-bottom">
-          <p className="statement">
-            We partner with founders, engineers and investors to build, buy and back frontier
-            technology companies.
-          </p>
-        </div>
       </header>
 
       <main>
@@ -177,26 +151,35 @@ export default function App() {
           />
         </div>
 
-        <section id="what-we-do" className="container section">
-          <SectionHead label="What we do" />
-          <ol className="services">
-            {services.map((s, i) => (
-              <li key={s.label} className="service">
-                <span className="service-num">{String(i + 1).padStart(2, '0')}</span>
-                <h2 className="service-title">{s.label}</h2>
-                <p className="service-body">{s.body}</p>
-              </li>
-            ))}
-          </ol>
+        <section className="container narrative">
+          <p>
+            We partner with founders, engineers and investors on M&amp;A and strategic investments
+            in frontier tech: AI, infrastructure and space. We co-found companies, run deals from
+            target search to integration, and tell R&amp;D teams whether a bet is worth making.
+          </p>
         </section>
 
-        <section id="portfolio" className="band dark">
-          <div className="container section">
-            <SectionHead label="Portfolio">Companies we co-founded.</SectionHead>
-            <List items={portfolio} />
+        <section id="what-we-do" className="container section">
+          <h2 className="section-title">What we do</h2>
+          <div className="cards cards-3">
+            {services.map((s, i) => (
+              <Card key={s.label} eyebrow={String(i + 1).padStart(2, '0')} title={s.label}>
+                {s.body}
+              </Card>
+            ))}
           </div>
         </section>
 
+        <section id="portfolio" className="container section">
+          <h2 className="section-title">Portfolio</h2>
+          <div className="cards cards-2">
+            {portfolio.map((p) => (
+              <Card key={p.name} eyebrow={p.tags.join(' · ')} title={p.name}>
+                {p.body}
+              </Card>
+            ))}
+          </div>
+        </section>
       </main>
 
       <footer id="contact" className="band dark">
