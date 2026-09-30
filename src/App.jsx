@@ -18,13 +18,11 @@ const services = [
 const portfolio = [
   {
     name: 'Longrun AI',
-    tags: ['AI', 'Co-founded'],
-    body: 'Dynamic environments for long-horizon reinforcement learning.',
+    body: 'Dynamic environments for long-horizon reinforcement learning. Founded by ex-Meta AI researchers and builders.',
   },
   {
     name: 'Kulon Space',
-    tags: ['SpaceTech', 'Co-founded'],
-    body: 'Orbital infrastructure lab.',
+    body: 'Orbital infrastructure lab. Founded by Dmitry Sternharz, founder of Exolaunch, a leading space company.',
   },
 ]
 
@@ -174,7 +172,7 @@ export default function App() {
           <h2 className="section-title">Portfolio</h2>
           <div className="cards cards-2">
             {portfolio.map((p) => (
-              <Card key={p.name} eyebrow={p.tags.join(' · ')} title={p.name}>
+              <Card key={p.name} title={p.name}>
                 {p.body}
               </Card>
             ))}

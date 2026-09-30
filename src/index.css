@@ -243,6 +243,8 @@ ol { list-style: none; }
 .cards-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+.cards-2 .card { min-height: 0; }
+
 .card {
   display: flex;
   flex-direction: column;
