@@ -3,14 +3,23 @@ import Arrow from "./arrow";
 import { SectionHead, SiteFooter, SiteHeader, WorkWithUs } from "./site";
 
 export default function Home() {
-  return <main id="top">
-    <SiteHeader />
-
-    <section className="hero" aria-labelledby="hero-heading">
-      <h1 id="hero-heading">Building the infrastructure for an economy beyond Earth.</h1>
-      <div className="hero-bottom"><p>Kulon is a frontier space technology lab building the systems required to compute, move and build in orbit.</p><p className="locations">Berlin <span aria-hidden="true">/</span> London</p></div>
-      <div className="hero-image"><Image src="/orbital-horizon.webp" alt="Sunrise over Earth's curved horizon and vast cloud-covered oceans" width={1536} height={1024} sizes="(max-width: 1600px) 92vw, 1472px" priority /></div>
+  return <>
+    <section className="stage" aria-labelledby="hero-heading">
+      <Image className="stage-img" src="/orbital-horizon.webp" alt="Sunrise over Earth's curved horizon and vast cloud-covered oceans" fill sizes="100vw" priority />
+      <div className="stage-inner">
+        <SiteHeader />
+        <div className="stage-copy">
+          <h1 id="hero-heading" className="stage-title"><span><span>Infrastructure</span></span> <span><span>beyond</span></span> <span><span>Earth.</span></span></h1>
+          <div className="stage-cycle" aria-hidden="true">
+            <div className="stage-track"><i /></div>
+            <div className="stage-words"><span>Compute</span><span>Move</span><span>Build</span></div>
+          </div>
+        </div>
+      </div>
     </section>
+
+  <main id="top">
+    <section className="hero-bottom intro"><p>Kulon is a frontier space technology lab building the systems required to compute, move and build in orbit.</p><p className="locations">Berlin <span aria-hidden="true">/</span> London</p></section>
 
     <section className="section" id="thesis">
       <SectionHead label="01 / Thesis">Reaching orbit is becoming routine. What we build there comes next.</SectionHead>
@@ -29,5 +38,6 @@ export default function Home() {
 
     <WorkWithUs label="03 / Work with us" />
     <SiteFooter />
-  </main>;
+  </main>
+  </>;
 }
