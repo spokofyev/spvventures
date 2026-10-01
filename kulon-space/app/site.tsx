@@ -2,9 +2,6 @@ import Arrow from "./arrow";
 import AskAi from "./ask-ai";
 import Navigation from "./navigation";
 
-export const SectionHead = ({ title, children }: { title: string; children: React.ReactNode }) =>
-  <div className="section-head"><h2>{title}</h2><p className="section-sub">{children}</p></div>;
-
 export function SiteHeader() {
   return <header className="nav">
     <a className="brand" href="/" aria-label="Kulon Space home">Kulon</a>
@@ -12,15 +9,11 @@ export function SiteHeader() {
   </header>;
 }
 
-const audiences = ["Industry partners", "Researchers & engineers", "Investors"];
-
 export function WorkWithUs() {
-  return <section className="section closing" id="contact">
-    <SectionHead title="Work with us">Build with us.</SectionHead>
-    <div className="section-body">
-      <p className="audiences">{audiences.map((item, index) => <span key={item}>{index > 0 && <i aria-hidden="true">/</i>}{item}</span>)}</p>
-      <a className="button audiences-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
-    </div>
+  return <section className="block block-last" id="contact">
+    <h2 className="block-title"><strong>Work with us</strong><span>Build the economy beyond Earth.</span></h2>
+    <p className="block-text">We work with industry partners, researchers and engineers, and investors who want to shape the next layer of space infrastructure.</p>
+    <div className="block-actions"><a className="button" href="mailto:founders@kulon.space">Get in touch <Arrow /></a><span className="mono">founders@kulon.space</span></div>
   </section>;
 }
 

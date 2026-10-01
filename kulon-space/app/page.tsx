@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Arrow from "./arrow";
-import { SectionHead, SiteFooter, SiteHeader, WorkWithUs } from "./site";
+import { SiteFooter, SiteHeader, WorkWithUs } from "./site";
 
 export default function Home() {
   return <>
@@ -19,21 +19,15 @@ export default function Home() {
     </section>
 
   <main id="top">
-    <section className="intro"><p className="intro-text">Kulon is a frontier space technology lab building the systems required to compute, move and build in orbit. <span>Built in London and Berlin.</span></p></section>
-
-    <section className="section" id="thesis">
-      <SectionHead title="Thesis">Reaching orbit is becoming routine. What we build there comes next.</SectionHead>
-      <div className="section-body">
-        <p className="lead">Satellite constellations have become industrial-scale systems, and AI is creating unprecedented demand for energy and compute. The next phase of the space economy depends on what can be done once in orbit, and most of the infrastructure it needs does not exist yet. The companies that build it will define the economy beyond Earth.</p>
-      </div>
+    <section className="block" id="thesis">
+      <h2 className="block-title"><strong>Our thesis</strong><span>What we build in orbit comes next.</span></h2>
+      <p className="block-text">Kulon is a frontier space technology lab built in London and Berlin. Satellite constellations have become industrial-scale systems, and AI is creating unprecedented demand for energy and compute. Reaching orbit is becoming routine; the next phase of the space economy depends on what can be done once there, and most of the infrastructure it needs does not exist yet. The companies that build it will define the economy beyond Earth.</p>
     </section>
 
-    <section className="section" id="team">
-      <SectionHead title="Team">Built by people who have taken space systems and technology companies from zero to scale.</SectionHead>
-      <div className="section-body founder-grid">
-        <article><div><span>Founder</span><h3>Dmitry Sternharz</h3></div><p>Founder of Exolaunch, which he led from a university spin-off to a global leader in launch mission management, satellite integration and deployment: 844 satellites across 49 missions. He now focuses on the next layer of orbital infrastructure, the systems that let the space economy scale beyond launch.</p><a className="button" href="https://de.linkedin.com/in/dmitriy-sternharz-b6605836" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <Arrow /></a></article>
-        <article><div><span>Founding team / Leadership</span><h3>Sergey Prokofyev</h3></div><p>Serial entrepreneur and strategist building companies at the intersection of deep technology, healthcare and AI. Takes frontier technologies from concept to product, market entry and institutional investment.</p><a className="button" href="https://www.linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <Arrow /></a></article>
-      </div>
+    <section className="block" id="team">
+      <h2 className="block-title"><strong>Our team</strong><span>Led by space pioneers.</span></h2>
+      <p className="block-text">Kulon was founded by <a href="https://de.linkedin.com/in/dmitriy-sternharz-b6605836" target="_blank" rel="noopener noreferrer">Dmitry Sternharz</a>, who built Exolaunch from a university spin-off into a global leader in launch mission management, satellite integration and deployment, with 844 satellites flown across 49 missions. He is joined by <a href="https://www.linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">Sergey Prokofyev</a>, a serial entrepreneur who takes frontier technologies from concept to product, market and investment.</p>
+      <div className="block-actions"><a className="button" href="mailto:founders@kulon.space?subject=Joining%20Kulon">Join the team <Arrow /></a><span className="mono">London / Berlin</span></div>
     </section>
 
     <WorkWithUs />
