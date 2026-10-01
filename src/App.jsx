@@ -18,24 +18,24 @@ const services = [
 // Outcomes: what we did and for whom. Client names withheld.
 const outcomes = [
   {
-    who: 'Co-founder · Longrun AI',
-    title: 'Co-founded Longrun AI with ex\u2011Meta AI researchers and builders',
-    body: 'A lab building dynamic environments for long-horizon reinforcement learning.',
+    who: 'Kulon Space',
+    title: 'Turned an orbital infrastructure thesis into a company',
+    body: 'Built the venture with Dmitry Sternharz, founder of Exolaunch: structure, strategy and positioning for industry partners and investors.',
   },
   {
-    who: 'Co-founder · Kulon Space',
-    title: 'Co-founded Kulon Space with Dmitry Sternharz, founder of Exolaunch',
-    body: 'An orbital infrastructure lab.',
+    who: 'Longrun AI',
+    title: 'Turned frontier AI research into a company',
+    body: 'Built the venture around ex\u2011Meta AI researchers and builders: structure, strategy and positioning for AI labs as partners.',
   },
   {
     who: 'Private investor · Satellite manufacturing',
-    title: 'Ran due diligence and post\u2011investment operations',
-    body: 'A special situation investment in a satellite manufacturer, on behalf of a private investor.',
+    title: 'Took a private investor from diligence to a done deal, then ran operations',
+    body: 'Due diligence and post\u2011investment operations on a special situation investment in a satellite manufacturer.',
   },
   {
     who: 'Seller · Robotics',
-    title: 'Represented the seller in an acquisition by a tier 1 public technology company',
-    body: 'Sell-side M&A for a robotics company.',
+    title: 'Sold a robotics company to a tier 1 public technology company',
+    body: 'Sell\u2011side representation through the acquisition.',
   },
 ]
 
