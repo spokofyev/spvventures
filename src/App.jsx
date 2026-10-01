@@ -15,14 +15,27 @@ const services = [
   },
 ]
 
-const portfolio = [
+// Outcomes: what we did and for whom. Client names withheld.
+const outcomes = [
   {
-    name: 'Longrun AI',
-    body: 'Dynamic environments for long-horizon reinforcement learning. Founded by ex-Meta AI researchers and builders.',
+    who: 'Co-founder · Longrun AI',
+    title: 'Co-founded Longrun AI with ex\u2011Meta AI researchers and builders',
+    body: 'A lab building dynamic environments for long-horizon reinforcement learning.',
   },
   {
-    name: 'Kulon Space',
-    body: 'Orbital infrastructure lab. Founded by Dmitry Sternharz, founder of Exolaunch, a leading space company.',
+    who: 'Co-founder · Kulon Space',
+    title: 'Co-founded Kulon Space with Dmitry Sternharz, founder of Exolaunch',
+    body: 'An orbital infrastructure lab.',
+  },
+  {
+    who: 'Private investor · Satellite manufacturing',
+    title: 'Ran due diligence and post\u2011investment operations',
+    body: 'A special situation investment in a satellite manufacturer, on behalf of a private investor.',
+  },
+  {
+    who: 'Seller · Robotics',
+    title: 'Represented the seller in an acquisition by a tier 1 public technology company',
+    body: 'Sell-side M&A for a robotics company.',
   },
 ]
 
@@ -30,7 +43,7 @@ const LINKEDIN = 'https://linkedin.com/in/sprokofyev'
 
 const sections = [
   { href: '#what-we-do', label: 'What we do' },
-  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#outcomes', label: 'Outcomes' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -169,12 +182,13 @@ export default function App() {
           </div>
         </section>
 
-        <section id="portfolio" className="container section">
-          <h2 className="section-title">Portfolio</h2>
+        <section id="outcomes" className="container section">
+          <h2 className="section-title">Outcomes</h2>
+          <p className="section-lead">What we have built and delivered with partners and clients.</p>
           <div className="cards cards-2">
-            {portfolio.map((p) => (
-              <Card key={p.name} title={p.name}>
-                {p.body}
+            {outcomes.map((o) => (
+              <Card key={o.title} eyebrow={o.who} title={o.title}>
+                {o.body}
               </Card>
             ))}
           </div>
