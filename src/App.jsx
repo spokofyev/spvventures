@@ -11,7 +11,7 @@ const services = [
   },
   {
     label: 'R&D strategy',
-    body: 'We research R&D bets together with your team: what the technology can do, when, and at what cost. Most recently, IoT and other product bets for a space technology company.',
+    body: 'We help you take reasonable risk when investing in frontier tech, researching each R&D bet together with your team: what the technology can do, when, and at what cost.',
   },
 ]
 
