@@ -12,14 +12,18 @@ export default function Page() {
           <p className="tags">
             Dynamic environments<span aria-hidden>·</span>Long-horizon RL<span aria-hidden>·</span>Agent evaluation
           </p>
-          <h1>Train agents for work that unfolds over time.</h1>
+          <h1>We build the environments that push the frontier.</h1>
           <p className="sub">
-            We generate non-stationary, long-horizon environments that keep changing while the agent works, emulate days or
-            weeks of time, and are realistic enough that agents can&rsquo;t tell they&rsquo;re simulated.
+            We help frontier labs and AI teams train and evaluate agents in long-horizon environments that keep changing while
+            the agent works, emulate days or weeks of professional time, and are realistic enough that agents can&rsquo;t tell
+            they&rsquo;re simulated.
           </p>
           <nav className="actions" aria-label="Primary">
             <a href={mailto("Research conversation")} className="btn btn-primary">
               Work with us <span className="arrow" aria-hidden>→</span>
+            </a>
+            <a href={mailto("Sample dataset request")} className="btn">
+              Request sample dataset
             </a>
             {/* Careers hidden for now; restore: <a href={mailto("Research engineering")} className="btn">Careers</a> */}
           </nav>
