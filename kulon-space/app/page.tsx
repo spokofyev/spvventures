@@ -21,6 +21,7 @@ export default function Home() {
           </div>}
           <a className="button button-white stage-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
         </div>
+        <p className="stage-foot">Built in London and Berlin.</p>
       </div>
     </section>
 
