@@ -1,49 +1,42 @@
 import { useEffect, useState } from 'react'
+import { cases } from './cases.js'
+import CaseArt from './graphics.jsx'
 
 const services = [
   {
-    label: 'Co\u2011founding & co\u2011investing',
-    body: 'We start companies with founders and invest alongside them, from first thesis to first customers.',
+    label: 'Co‑founding',
+    body: 'We start companies together with founders and stay hands-on: fundraising, market discovery and go-to-market.',
   },
   {
-    label: 'M&A',
-    body: 'Target search, due diligence and post-merger integration, on the buy side and the sell side.',
+    label: 'M&A advisory',
+    body: 'Working with CVCs, PE funds and private investors on target search, due diligence and post-merger integration, on the buy side and the sell side.',
   },
   {
-    label: 'Investment foresight',
-    body: 'We research R&D bets together with your team: what the technology can do, when, and at what cost.',
+    label: 'R&D strategy',
+    body: 'We help you take reasonable risk when investing in frontier tech, researching each R&D bet together with your team: what the technology can do, when, and at what cost.',
   },
 ]
 
-// Outcomes: what we did and for whom. Client names withheld.
-const outcomes = [
+// Companies we are co-founding now.
+const building = [
   {
-    who: 'Kulon Space',
-    title: 'Turned an orbital infrastructure thesis into a company',
-    body: 'Built the venture with Dmitry Sternharz, founder of Exolaunch: structure, strategy and positioning for industry partners and investors.',
+    who: 'Kulon Space · Orbital infrastructure',
+    title: 'Building infrastructure for an economy beyond Earth',
+    body: 'Our role: co\u2011founders. The company structure is in place, and the fundraise is next.',
   },
   {
-    who: 'Longrun AI',
-    title: 'Turned frontier AI research into a company',
-    body: 'Built the venture around ex\u2011Meta AI researchers and builders: structure, strategy and positioning for AI labs as partners.',
-  },
-  {
-    who: 'Private investor · Satellite manufacturing',
-    title: 'Took a private investor from diligence to a done deal, then ran operations',
-    body: 'Due diligence and post\u2011investment operations on a special situation investment in a satellite manufacturer.',
-  },
-  {
-    who: 'Seller · Robotics',
-    title: 'Sold a robotics company to a tier 1 public technology company',
-    body: 'Sell\u2011side representation through the acquisition.',
+    who: 'Longrun AI · AI research',
+    title: 'Taking an AI lab of ex\u2011Meta researchers to market',
+    body: 'Our role: business co\u2011founders, leading market discovery and go-to-market, with the fundraise to follow.',
   },
 ]
 
 const LINKEDIN = 'https://linkedin.com/in/sprokofyev'
 
 const sections = [
-  { href: '#what-we-do', label: 'What we do' },
-  { href: '#outcomes', label: 'Outcomes' },
+  { href: '/#what-we-do', label: 'What we do' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/cases', label: 'Case studies' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -123,29 +116,67 @@ function Menu() {
   )
 }
 
-function Card({ eyebrow, title, children }) {
+function TopBar() {
+  return (
+    <div className="hero-top">
+      <a className="brand" href="/" aria-label="SPV Ventures home">
+        <Logo />
+        SPV Ventures
+      </a>
+      <Menu />
+    </div>
+  )
+}
+
+function Card({ eyebrow, title, href, children }) {
   return (
     <article className="card">
       {eyebrow && <p className="card-eyebrow">{eyebrow}</p>}
       <h3 className="card-title">{title}</h3>
       <p className="card-body">{children}</p>
+      {href && (
+        <a className="card-link" href={href}>
+          Learn more <span aria-hidden="true">→</span>
+        </a>
+      )}
     </article>
   )
 }
 
-export default function App() {
+function Footer() {
+  return (
+    <footer id="contact" className="band dark">
+      <div className="container footer">
+        <div className="footer-cta">
+          <h2 className="footer-title">Tell us what you&rsquo;re working on.</h2>
+          <a className="button" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+            Talk to us <Arrow />
+          </a>
+        </div>
+        <div className="footer-bottom">
+          <span className="footer-brand">
+            <Logo inverted />
+            <span>© {new Date().getFullYear()} SPV Ventures</span>
+          </span>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+function Home() {
   return (
     <>
       <header className="container hero">
-        <div className="hero-top">
-          <a className="brand" href="/" aria-label="SPV Ventures home">
-            <Logo />
-            SPV Ventures
+        <TopBar />
+        <div className="hero-body">
+          <h1 className="headline">
+            <span>Strategic investment</span> <span>and M&amp;A in frontier tech.</span>
+          </h1>
+          <a className="button button-dark hero-cta" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+            Talk to us <Arrow />
           </a>
-          <Menu />
         </div>
-
-        <h1 className="headline">M&amp;A and strategic investment in frontier tech.</h1>
       </header>
 
       <main>
@@ -164,10 +195,10 @@ export default function App() {
 
         <section className="container narrative">
           <p>
-            We partner with founders, engineers and investors on M&amp;A and strategic investments
-            in frontier tech: AI, infrastructure and space. We co-found companies, run deals from
-            target search to integration, and research R&amp;D bets alongside teams, working out
-            together whether they are worth making.
+            We build together with founders, engineers and investors in frontier tech: AI,
+            infrastructure and space. We co&#8209;found companies and stay hands-on through
+            fundraising, market discovery and go-to-market, advise on M&amp;A from target search to
+            integration, and research R&amp;D bets alongside teams.
           </p>
         </section>
 
@@ -182,35 +213,173 @@ export default function App() {
           </div>
         </section>
 
-        <section id="outcomes" className="container section">
-          <h2 className="section-title">Outcomes</h2>
-          <p className="section-lead">What we have built and delivered with partners and clients.</p>
+        <section id="experience" className="container section">
+          <h2 className="section-title">Experience</h2>
+          <p className="section-lead">Deals we have led and companies we are building.</p>
+          <div className="cards cards-3">
+            {cases.map((c, i) => (
+              <CaseCard key={c.id} c={c} index={i} />
+            ))}
+          </div>
+
+          <h3 className="subsection-title">Companies we&rsquo;re building</h3>
+          <p className="subsection-lead">
+            Where we are co&#8209;founders, not advisers: we take an operating role from structure to
+            go-to-market and fundraising.
+          </p>
           <div className="cards cards-2">
-            {outcomes.map((o) => (
-              <Card key={o.title} eyebrow={o.who} title={o.title}>
-                {o.body}
+            {building.map((b) => (
+              <Card key={b.title} eyebrow={b.who} title={b.title}>
+                {b.body}
               </Card>
             ))}
           </div>
         </section>
       </main>
+    </>
+  )
+}
 
-      <footer id="contact" className="band dark">
-        <div className="container footer">
-          <div className="footer-cta">
-            <h2 className="footer-title">Building or buying in frontier tech?</h2>
-            <a className="button" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
-              Talk to us <Arrow />
-            </a>
-          </div>
-          <div className="footer-bottom">
-            <span className="footer-brand">
-              <Logo inverted />
-              <span>© {new Date().getFullYear()} SPV Ventures</span>
-            </span>
-          </div>
+function CaseCard({ c, index }) {
+  return (
+    <a className="case-card" href={`/cases/${c.id}`}>
+      <div className="case-card-art">
+        <CaseArt id={c.id} />
+      </div>
+      <div className="case-card-body">
+        <p className="card-eyebrow">
+          Case {index + 1} · {c.client}
+        </p>
+        <h2 className="card-title">{c.title}</h2>
+        <p className="card-body">{c.summary}</p>
+        <span className="card-link">
+          Read the case <span aria-hidden="true">→</span>
+        </span>
+      </div>
+    </a>
+  )
+}
+
+function CasesIndex() {
+  return (
+    <>
+      <header className="container hero">
+        <TopBar />
+        <div className="page-head">
+          <a className="back-link" href="/#experience">
+            <span aria-hidden="true">←</span> Home
+          </a>
+          <h1 className="page-title">Case studies</h1>
+          <p className="page-lead">
+            We research, advise on and lead M&amp;A transactions for private equity firms, family
+            offices and venture funds, and act as operating partner after the deal: sourcing and
+            structuring the opportunity, transforming the business and building value toward exit.
+          </p>
         </div>
-      </footer>
+      </header>
+
+      <main className="container case-grid">
+        {cases.map((c, i) => (
+          <CaseCard key={c.id} c={c} index={i} />
+        ))}
+      </main>
+    </>
+  )
+}
+
+function CaseDetail({ c }) {
+  const index = cases.indexOf(c)
+  const next = cases[(index + 1) % cases.length]
+  return (
+    <>
+      <header className="container hero">
+        <TopBar />
+        <div className="page-head">
+          <a className="back-link" href="/cases">
+            <span aria-hidden="true">←</span> All case studies
+          </a>
+          <p className="case-eyebrow">
+            Case {index + 1} · {c.client}
+          </p>
+          <h1 className="case-page-title">{c.title}</h1>
+        </div>
+      </header>
+
+      <main className="container case-page">
+        <div className="case-hero">
+          <CaseArt id={c.id} />
+        </div>
+
+        <dl className="case-facts">
+          {c.facts.map((f) => (
+            <div key={f.label} className="case-fact">
+              <dt>{f.label}</dt>
+              <dd>{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="case-sections">
+          {c.sections.map((s) => (
+            <div key={s.heading} className="case-section">
+              <h2>{s.heading}</h2>
+              <p>{s.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <a className="case-next" href={`/cases/${next.id}`}>
+          <span className="case-next-label">Next case</span>
+          <span className="case-next-title">
+            {next.title} <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      </main>
+    </>
+  )
+}
+
+function route() {
+  const path = window.location.pathname.replace(/\/+$/, '')
+  if (path === '/cases') {
+    // Old /cases#id links go to the case's own page.
+    const id = window.location.hash.slice(1)
+    if (cases.some((c) => c.id === id)) {
+      window.location.replace(`/cases/${id}`)
+      return { page: 'redirect' }
+    }
+    return { page: 'cases' }
+  }
+  const match = path.match(/^\/cases\/([\w-]+)$/)
+  const c = match && cases.find((x) => x.id === match[1])
+  if (c) return { page: 'case', c }
+  if (match) return { page: 'cases' }
+  return { page: 'home' }
+}
+
+export default function App() {
+  const r = route()
+
+  useEffect(() => {
+    if (r.page === 'case') document.title = `${r.c.title} · SPV Ventures`
+    else if (r.page === 'cases') document.title = 'Case studies · SPV Ventures'
+    else document.title = 'SPV Ventures'
+  }, [r.page, r.c])
+
+  // Content renders after load, so the browser can't jump to #id by itself.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1))
+    if (id) document.getElementById(id)?.scrollIntoView()
+  }, [])
+
+  if (r.page === 'redirect') return null
+
+  return (
+    <>
+      {r.page === 'case' && <CaseDetail c={r.c} />}
+      {r.page === 'cases' && <CasesIndex />}
+      {r.page === 'home' && <Home />}
+      <Footer />
     </>
   )
 }

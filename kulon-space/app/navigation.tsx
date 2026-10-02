@@ -29,7 +29,7 @@ export default function Navigation() {
         <nav aria-label="Primary navigation">
           {links.map(([label, href]) => <a href={href} key={href} onClick={close}>{label}</a>)}
         </nav>
-        <div className="menu-foot"><a className="button" href="mailto:founders@kulon.space" onClick={close}>Start a conversation <Arrow /></a></div>
+        <div className="menu-foot"><a className="button" href="mailto:sergey@kulonspace.com" onClick={close}>Start a conversation <Arrow /></a></div>
       </div>
     </dialog>
   </>;

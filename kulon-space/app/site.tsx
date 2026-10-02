@@ -13,7 +13,7 @@ export function WorkWithUs() {
   return <section className="block block-last" id="contact">
     <h2 className="block-title"><strong>Work with us</strong><span>Build the economy beyond Earth.</span></h2>
     <p className="block-text">We work with industry partners, researchers and engineers, and investors who want to shape the next layer of space infrastructure.</p>
-    <div className="block-actions"><a className="button" href="mailto:founders@kulon.space">Get in touch <Arrow /></a><span className="mono">founders@kulon.space</span></div>
+    <div className="block-actions"><a className="button" href="mailto:sergey@kulonspace.com">Get in touch <Arrow /></a><span className="mono">sergey@kulonspace.com</span></div>
   </section>;
 }
 
