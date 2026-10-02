@@ -2,30 +2,30 @@ import { useEffect, useState } from 'react'
 
 const services = [
   {
-    label: 'Co\u2011founding & co\u2011investing',
-    body: 'We start companies with founders and invest alongside them, from first thesis to first customers.',
+    label: 'Co\u2011founding',
+    body: 'We start companies together with founders and stay hands-on: fundraising, market discovery and go-to-market.',
   },
   {
-    label: 'M&A',
-    body: 'Target search, due diligence and post-merger integration, on the buy side and the sell side.',
+    label: 'M&A advisory',
+    body: 'Working with CVCs, PE funds and private investors on target search, due diligence and post-merger integration, on the buy side and the sell side.',
   },
   {
-    label: 'Investment foresight',
-    body: 'We research R&D bets together with your team: what the technology can do, when, and at what cost.',
+    label: 'R&D strategy',
+    body: 'We research R&D bets together with your team: what the technology can do, when, and at what cost. Most recently, IoT and other product bets for a space technology company.',
   },
 ]
 
-// Outcomes: what we did and for whom. Client names withheld.
-const outcomes = [
+// Experience: what we did and for whom. Client names withheld.
+const experience = [
   {
-    who: 'Kulon Space',
-    title: 'Turned an orbital infrastructure thesis into a company',
-    body: 'Built the venture with Dmitry Sternharz, founder of Exolaunch: structure, strategy and positioning for industry partners and investors.',
+    who: 'Kulon Space · Co\u2011founders',
+    title: 'Structured an orbital infrastructure company with the founder of Exolaunch',
+    body: 'Company structure set up with Dmitry Sternharz. The fundraise is next.',
   },
   {
-    who: 'Longrun AI',
-    title: 'Turned frontier AI research into a company',
-    body: 'Built the venture around ex\u2011Meta AI researchers and builders: structure, strategy and positioning for AI labs as partners.',
+    who: 'Longrun AI · Business co\u2011founders',
+    title: 'Building the business of an AI lab founded by ex\u2011Meta researchers',
+    body: 'Leading market discovery and go-to-market now, with the fundraise to follow.',
   },
   {
     who: 'Private investor · Satellite manufacturing',
@@ -43,7 +43,7 @@ const LINKEDIN = 'https://linkedin.com/in/sprokofyev'
 
 const sections = [
   { href: '#what-we-do', label: 'What we do' },
-  { href: '#outcomes', label: 'Outcomes' },
+  { href: '#experience', label: 'Experience' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -145,7 +145,13 @@ export default function App() {
           <Menu />
         </div>
 
-        <h1 className="headline">M&amp;A and strategic investment in frontier tech.</h1>
+        <div className="hero-body">
+          <h1 className="headline">M&amp;A and strategic investment in frontier tech.</h1>
+          <p className="hero-lead">
+            Co&#8209;founding, M&amp;A advisory and R&amp;D strategy for AI, infrastructure and
+            space.
+          </p>
+        </div>
       </header>
 
       <main>
@@ -164,10 +170,10 @@ export default function App() {
 
         <section className="container narrative">
           <p>
-            We partner with founders, engineers and investors on M&amp;A and strategic investments
-            in frontier tech: AI, infrastructure and space. We co-found companies, run deals from
-            target search to integration, and research R&amp;D bets alongside teams, working out
-            together whether they are worth making.
+            We build together with founders, engineers and investors in frontier tech: AI,
+            infrastructure and space. We co&#8209;found companies and stay hands-on through
+            fundraising, market discovery and go-to-market, advise on M&amp;A from target search to
+            integration, and research R&amp;D bets alongside teams.
           </p>
         </section>
 
@@ -182,11 +188,11 @@ export default function App() {
           </div>
         </section>
 
-        <section id="outcomes" className="container section">
-          <h2 className="section-title">Outcomes</h2>
-          <p className="section-lead">What we have built and delivered with partners and clients.</p>
+        <section id="experience" className="container section">
+          <h2 className="section-title">Experience</h2>
+          <p className="section-lead">Companies we are building and deals we have worked on.</p>
           <div className="cards cards-2">
-            {outcomes.map((o) => (
+            {experience.map((o) => (
               <Card key={o.title} eyebrow={o.who} title={o.title}>
                 {o.body}
               </Card>
@@ -198,7 +204,7 @@ export default function App() {
       <footer id="contact" className="band dark">
         <div className="container footer">
           <div className="footer-cta">
-            <h2 className="footer-title">Building or buying in frontier tech?</h2>
+            <h2 className="footer-title">A company to build, a deal to do or an R&amp;D bet to test?</h2>
             <a className="button" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
               Talk to us <Arrow />
             </a>
