@@ -146,11 +146,10 @@ export default function App() {
         </div>
 
         <div className="hero-body">
-          <h1 className="headline">M&amp;A and strategic investment in frontier tech.</h1>
-          <p className="hero-lead">
-            Co&#8209;founding, M&amp;A advisory and R&amp;D strategy for AI, infrastructure and
-            space.
-          </p>
+          <h1 className="headline">Strategic investment and M&amp;A in frontier tech.</h1>
+          <a className="button button-dark hero-cta" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+            Talk to us <Arrow />
+          </a>
         </div>
       </header>
 

@@ -199,12 +199,9 @@ ol { list-style: none; }
   text-wrap: balance;
 }
 
-.hero-lead {
-  font-size: 18px;
-  line-height: 1.5;
-  color: var(--body);
-  padding-bottom: 6px;
-  text-wrap: pretty;
+.hero-cta {
+  justify-self: end;
+  margin-bottom: 8px;
 }
 
 /* ── Banner ───────────────────────────────── */
@@ -347,6 +344,11 @@ ol { list-style: none; }
 
 .button:hover { opacity: 0.85; }
 
+.button-dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
 .footer-bottom {
   display: flex;
   align-items: center;
@@ -381,6 +383,8 @@ ol { list-style: none; }
 @media (max-width: 900px) {
   .hero-body { grid-template-columns: 1fr; gap: 24px; }
 
+  .hero-cta { justify-self: start; margin-bottom: 0; }
+
   .cards-3,
   .cards-2 { grid-template-columns: 1fr; }
 
@@ -401,7 +405,7 @@ ol { list-style: none; }
     margin-top: 56px;
   }
 
-  .hero-lead { font-size: 17px; padding-bottom: 0; }
+
 
   .banner { aspect-ratio: 4 / 3; }
 
