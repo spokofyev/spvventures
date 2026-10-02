@@ -4,6 +4,8 @@ import { SiteFooter, WorkWithUs } from "./site";
 
 // Temporarily hidden: set to true to bring back Thesis, Team, Work with us and the footer.
 const SHOW_SECTIONS = false;
+// Temporarily hidden: the cycling Compute / Move / Build label and ring under the headline.
+const SHOW_CYCLE = false;
 
 export default function Home() {
   return <>
@@ -13,11 +15,11 @@ export default function Home() {
         <header className="nav nav-center"><span className="brand brand-caps" aria-label="Kulon">KULON</span></header>
         <div className="stage-copy">
           <h1 id="hero-heading" className="stage-title"><span><span>Infrastructure</span></span> <span><span>beyond</span></span> <span><span>Earth.</span></span></h1>
-          <div className="stage-cycle" aria-hidden="true">
+          {SHOW_CYCLE && <div className="stage-cycle" aria-hidden="true">
             <div className="stage-words"><span>Compute</span><span>Move</span><span>Build</span></div>
             <svg className="stage-ring" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" /><circle className="stage-ring-fill" cx="16" cy="16" r="14" /></svg>
-          </div>
-          <a className="button button-outline stage-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
+          </div>}
+          <a className="button button-white stage-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
         </div>
       </div>
     </section>
