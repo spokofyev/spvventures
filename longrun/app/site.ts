@@ -1,8 +1,8 @@
 // Single source for the company name, domain and contact address.
-// TODO: all three are placeholders until the name and domain are final.
+// TODO: name and email are placeholders.
 export const site = {
   name: "Longrun",
-  url: "https://longrun.ai",
+  url: "https://longrun.spvventures.co",
   email: "hello@longrun.ai",
   title: "Longrun — Environments for work that unfolds over time",
   description:
