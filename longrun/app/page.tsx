@@ -19,11 +19,8 @@ export default function Page() {
             they&rsquo;re simulated.
           </p>
           <nav className="actions" aria-label="Primary">
-            <a href={mailto("Research conversation")} className="btn btn-primary">
-              Work with us <span className="arrow" aria-hidden>→</span>
-            </a>
-            <a href={mailto("Sample dataset request")} className="btn">
-              Request sample dataset
+            <a href={mailto("Sample dataset request")} className="btn btn-primary">
+              Request sample dataset <span className="arrow" aria-hidden>→</span>
             </a>
             {/* Careers hidden for now; restore: <a href={mailto("Research engineering")} className="btn">Careers</a> */}
           </nav>
