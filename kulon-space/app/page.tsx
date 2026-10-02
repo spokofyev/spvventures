@@ -35,7 +35,7 @@ export default function Home() {
     <section className="block" id="team">
       <h2 className="block-title"><strong>Our team</strong><span>Led by space pioneers.</span></h2>
       <p className="block-text">Kulon was founded by <a href="https://de.linkedin.com/in/dmitriy-sternharz-b6605836" target="_blank" rel="noopener noreferrer">Dmitry Sternharz</a>, who built Exolaunch from a university spin-off into a global leader in launch mission management, satellite integration and deployment, with 844 satellites flown across 49 missions. He is joined by <a href="https://www.linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">Sergey Prokofyev</a>, a serial entrepreneur who takes frontier technologies from concept to product, market and investment.</p>
-      <div className="block-actions"><a className="button" href="mailto:founders@kulon.space?subject=Joining%20Kulon">Join the team <Arrow /></a><span className="mono">London / Berlin</span></div>
+      <div className="block-actions"><a className="button" href="mailto:sergey@kulonspace.com?subject=Joining%20Kulon">Join the team <Arrow /></a><span className="mono">London / Berlin</span></div>
     </section>
 
     <WorkWithUs />
