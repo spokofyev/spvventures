@@ -13,6 +13,7 @@ export default function Home() {
         <header className="nav nav-center"><span className="brand">Kulon</span></header>
         <div className="stage-copy">
           <h1 id="hero-heading" className="stage-title"><span><span>Infrastructure</span></span> <span><span>beyond</span></span> <span><span>Earth.</span></span></h1>
+          <a className="button button-glass stage-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
           <div className="stage-cycle" aria-hidden="true">
             <div className="stage-words"><span>Compute</span><span>Move</span><span>Build</span></div>
             <svg className="stage-ring" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" /><circle className="stage-ring-fill" cx="16" cy="16" r="14" /></svg>
