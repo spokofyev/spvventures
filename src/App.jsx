@@ -204,7 +204,7 @@ export default function App() {
       <footer id="contact" className="band dark">
         <div className="container footer">
           <div className="footer-cta">
-            <h2 className="footer-title">A company to build, a deal to do or an R&amp;D bet to test?</h2>
+            <h2 className="footer-title">Tell us what you&rsquo;re working on.</h2>
             <a className="button" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
               Talk to us <Arrow />
             </a>
