@@ -1,209 +1,216 @@
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
-}
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-}
-
-function Reveal({ children, className, delay = 0 }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
-      variants={fadeUp}
-      transition={{ delay }}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-function RevealGroup({ children, className }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
-      variants={stagger}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-const steps = [
+const services = [
   {
-    num: '01',
-    title: 'Identify the Gap',
-    body: 'We map where your business is exposed to technological disruption — and locate the teams already building the answer.',
+    label: 'Co\u2011founding & co\u2011investing',
+    body: 'We start companies with founders and invest alongside them, from first thesis to first customers.',
   },
   {
-    num: '02',
-    title: 'Acquire & Build',
-    body: 'We structure the acquisition of R&D teams or labs, then work hands-on to integrate them and accelerate their output inside your organisation.',
+    label: 'M&A',
+    body: 'Target search, due diligence and post-merger integration, on the buy side and the sell side.',
   },
   {
-    num: '03',
-    title: 'Capital & Exit',
-    body: 'We bridge building and ownership — through M&A advisory or SPV capital structures that align incentives for the long term.',
+    label: 'Investment foresight',
+    body: 'We research R&D bets together with your team: what the technology can do, when, and at what cost.',
   },
 ]
 
-const sectors = ['Healthcare', 'Finance', 'Space', 'Industrial Production']
+// Outcomes: what we did and for whom. Client names withheld.
+const outcomes = [
+  {
+    who: 'Kulon Space',
+    title: 'Turned an orbital infrastructure thesis into a company',
+    body: 'Built the venture with Dmitry Sternharz, founder of Exolaunch: structure, strategy and positioning for industry partners and investors.',
+  },
+  {
+    who: 'Longrun AI',
+    title: 'Turned frontier AI research into a company',
+    body: 'Built the venture around ex\u2011Meta AI researchers and builders: structure, strategy and positioning for AI labs as partners.',
+  },
+  {
+    who: 'Private investor · Satellite manufacturing',
+    title: 'Took a private investor from diligence to a done deal, then ran operations',
+    body: 'Due diligence and post\u2011investment operations on a special situation investment in a satellite manufacturer.',
+  },
+  {
+    who: 'Seller · Robotics',
+    title: 'Sold a robotics company to a tier 1 public technology company',
+    body: 'Sell\u2011side representation through the acquisition.',
+  },
+]
+
+const LINKEDIN = 'https://linkedin.com/in/sprokofyev'
+
+const sections = [
+  { href: '#what-we-do', label: 'What we do' },
+  { href: '#outcomes', label: 'Outcomes' },
+  { href: '#contact', label: 'Contact' },
+]
+
+function Arrow() {
+  return (
+    <svg className="arrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+      <path d="M2 8L8 2M3.5 2H8V6.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
+    </svg>
+  )
+}
+
+function Logo({ inverted = false }) {
+  return (
+    <svg className="logo" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="50" fill={inverted ? '#fff' : '#0a0a0a'} />
+      <rect x="24" y="24" width="52" height="52" fill={inverted ? '#0a0a0a' : '#fff'} />
+    </svg>
+  )
+}
+
+function Menu() {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
+  return (
+    <>
+      <button
+        type="button"
+        className="burger"
+        aria-label="Open menu"
+        aria-expanded={open}
+        aria-controls="menu"
+        onClick={() => setOpen(true)}
+      >
+        <svg width="28" height="14" viewBox="0 0 28 14" aria-hidden="true">
+          <path d="M0 1H28M0 13H28" stroke="#0a0a0a" strokeWidth="2" />
+        </svg>
+      </button>
+
+      <div id="menu" className={`menu band dark${open ? ' is-open' : ''}`} hidden={!open}>
+        <div className="container menu-inner">
+          <div className="menu-top">
+            <span className="brand">
+              <Logo inverted />
+              SPV Ventures
+            </span>
+            <button type="button" className="menu-close" onClick={() => setOpen(false)}>
+              Close
+            </button>
+          </div>
+          <nav className="menu-nav" aria-label="Sections">
+            {sections.map((s) => (
+              <a key={s.href} href={s.href} onClick={() => setOpen(false)}>
+                {s.label}
+              </a>
+            ))}
+          </nav>
+          <div className="menu-bottom">
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+              LinkedIn <Arrow />
+            </a>
+            <span>UK · US · Europe</span>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function Card({ eyebrow, title, children }) {
+  return (
+    <article className="card">
+      {eyebrow && <p className="card-eyebrow">{eyebrow}</p>}
+      <h3 className="card-title">{title}</h3>
+      <p className="card-body">{children}</p>
+    </article>
+  )
+}
 
 export default function App() {
   return (
-    <div style={{ background: '#06100a' }}>
+    <>
+      <header className="container hero">
+        <div className="hero-top">
+          <a className="brand" href="/" aria-label="SPV Ventures home">
+            <Logo />
+            SPV Ventures
+          </a>
+          <Menu />
+        </div>
 
-      {/* ── Nav ── */}
-      <header className="nav">
-        <a href="#" className="wordmark">SPV Ventures</a>
-        <nav className="nav-links">
-          <a href="#about">About</a>
-          <a href="#model">Model</a>
-          <a href="#contact">Contact</a>
-        </nav>
+        <h1 className="headline">M&amp;A and strategic investment in frontier tech.</h1>
       </header>
 
-      {/* ── Hero ── */}
-      <section className="hero">
-        <div className="hero-inner">
-          <motion.p
-            className="hero-label"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Corporate Innovation Partners
-          </motion.p>
-          <motion.h1
-            className="hero-title"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          >
-            We help corporates<br />
-            build the <em>technology</em><br />
-            they can't afford to miss
-          </motion.h1>
-          <motion.div
-            className="hero-bottom"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <p className="hero-sub">
-              Partnering with established companies to acquire R&D talent, build internal capabilities, and turn technology gaps into competitive advantages.
-            </p>
-            <div className="hero-right">
-              <a href="#contact" className="hero-cta">Get in Touch →</a>
-              <div className="scroll-indicator">
-                <span className="scroll-line" />
-                Scroll
-              </div>
-            </div>
-          </motion.div>
+      <main>
+        <div className="container">
+          <img
+            className="banner"
+            src="/images/hero-2400.jpg"
+            srcSet="/images/hero-1200.jpg 1200w, /images/hero-2400.jpg 2400w"
+            sizes="(max-width: 1280px) 100vw, 1200px"
+            width="2400"
+            height="1348"
+            alt="Earth's horizon from orbit, sunlight reflecting off the ocean through clouds"
+            fetchPriority="high"
+          />
         </div>
-      </section>
 
-      {/* ── About ── */}
-      <section className="section" id="about">
-        <div className="section-inner">
-          <Reveal>
-            <p className="section-label">About</p>
-          </Reveal>
-          <RevealGroup className="about-grid">
-            <motion.h2 className="about-heading" variants={fadeUp}>
-              Founders and<br /> operators,<br /> not consultants
-            </motion.h2>
-            <motion.div className="about-body" variants={stagger}>
-              <motion.p className="body-text" variants={fadeUp}>
-                We are a team of founders and operators with deep networks across engineering labs, research teams, and frontier builders — in healthcare, finance, space, and industrial production.
-              </motion.p>
-              <motion.p className="body-text" variants={fadeUp}>
-                We partner with established corporations to identify technology gaps, acquire the right R&D teams, and build the capabilities that close them. Then we help move those assets forward — through M&A or structured SPV capital.
-              </motion.p>
-              <motion.p className="pull-quote" variants={fadeUp}>
-                We don't advise from the sidelines. We get in, build alongside you, and stay until it works.
-              </motion.p>
-            </motion.div>
-          </RevealGroup>
-        </div>
-      </section>
+        <section className="container narrative">
+          <p>
+            We partner with founders, engineers and investors on M&amp;A and strategic investments
+            in frontier tech: AI, infrastructure and space. We co-found companies, run deals from
+            target search to integration, and research R&amp;D bets alongside teams, working out
+            together whether they are worth making.
+          </p>
+        </section>
 
-      {/* ── Model ── */}
-      <section className="model-section" id="model">
-        <div className="section-inner">
-          <Reveal>
-            <p className="section-label">How We Work</p>
-          </Reveal>
-          <RevealGroup className="model-steps">
-            {steps.map((s) => (
-              <motion.div className="model-step" key={s.num} variants={fadeUp}>
-                <span className="step-num">{s.num}</span>
-                <h3 className="step-title">{s.title}</h3>
-                <p className="step-body">{s.body}</p>
-              </motion.div>
+        <section id="what-we-do" className="container section">
+          <h2 className="section-title">What we do</h2>
+          <div className="cards cards-3">
+            {services.map((s, i) => (
+              <Card key={s.label} eyebrow={String(i + 1).padStart(2, '0')} title={s.label}>
+                {s.body}
+              </Card>
             ))}
-          </RevealGroup>
+          </div>
+        </section>
 
-          <Reveal>
-            <div className="sectors-row">
-              <span className="sectors-label">Focus</span>
-              {sectors.map((s, i) => (
-                <span key={s} style={{ display: 'contents' }}>
-                  <span className="sector-item">{s}</span>
-                  {i < sectors.length - 1 && <span className="sector-sep" />}
-                </span>
-              ))}
-            </div>
-          </Reveal>
+        <section id="outcomes" className="container section">
+          <h2 className="section-title">Outcomes</h2>
+          <p className="section-lead">What we have built and delivered with partners and clients.</p>
+          <div className="cards cards-2">
+            {outcomes.map((o) => (
+              <Card key={o.title} eyebrow={o.who} title={o.title}>
+                {o.body}
+              </Card>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <footer id="contact" className="band dark">
+        <div className="container footer">
+          <div className="footer-cta">
+            <h2 className="footer-title">Building or buying in frontier tech?</h2>
+            <a className="button" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+              Talk to us <Arrow />
+            </a>
+          </div>
+          <div className="footer-bottom">
+            <span className="footer-brand">
+              <Logo inverted />
+              <span>© {new Date().getFullYear()} SPV Ventures</span>
+            </span>
+          </div>
         </div>
-      </section>
-
-      {/* ── Contact ── */}
-      <section className="section" id="contact">
-        <div className="section-inner">
-          <Reveal>
-            <p className="section-label">Let's Talk</p>
-          </Reveal>
-          <Reveal>
-            <div className="contact-wrap">
-              <h2 className="contact-heading">
-                Working with<br /> corporates who<br /> want to move faster
-              </h2>
-              <div className="contact-right">
-                <p className="body-text">
-                  If you're a corporate looking to acquire technology capability, or a founder interested in strategic backing — we'd like to hear from you.
-                </p>
-                <a href="mailto:hello@spvventures.com" className="contact-cta">
-                  Get in Touch →
-                </a>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── Footer ── */}
-      <footer className="footer">
-        <span className="footer-text">© 2025 SPV Ventures. All rights reserved.</span>
-        <span className="footer-text">Lisbon, Portugal</span>
       </footer>
-
-    </div>
+    </>
   )
 }
