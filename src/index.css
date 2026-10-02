@@ -184,7 +184,7 @@ ol { list-style: none; }
 
 .hero-body {
   display: grid;
-  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 32px;
   align-items: end;
   margin-top: 120px;
@@ -195,7 +195,7 @@ ol { list-style: none; }
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.04em;
-  max-width: 12em;
+  max-width: 16em;
   text-wrap: balance;
 }
 
