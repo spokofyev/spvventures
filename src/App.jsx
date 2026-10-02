@@ -217,10 +217,8 @@ function Home() {
           <h2 className="section-title">Experience</h2>
           <p className="section-lead">Deals we have led and companies we are building.</p>
           <div className="cards cards-3">
-            {cases.map((c) => (
-              <Card key={c.id} eyebrow={c.client} title={c.title} href={`/cases/${c.id}`}>
-                {c.summary}
-              </Card>
+            {cases.map((c, i) => (
+              <CaseCard key={c.id} c={c} index={i} />
             ))}
           </div>
 
