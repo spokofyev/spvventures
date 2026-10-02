@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { cases } from './cases.js'
+import CaseArt from './graphics.jsx'
 
 const services = [
   {
@@ -217,7 +218,7 @@ function Home() {
           <p className="section-lead">Deals we have led and companies we are building.</p>
           <div className="cards cards-3">
             {cases.map((c) => (
-              <Card key={c.id} eyebrow={c.client} title={c.title} href={`/cases#${c.id}`}>
+              <Card key={c.id} eyebrow={c.client} title={c.title} href={`/cases/${c.id}`}>
                 {c.summary}
               </Card>
             ))}
@@ -237,7 +238,27 @@ function Home() {
   )
 }
 
-function CasesPage() {
+function CaseCard({ c, index }) {
+  return (
+    <a className="case-card" href={`/cases/${c.id}`}>
+      <div className="case-card-art">
+        <CaseArt id={c.id} />
+      </div>
+      <div className="case-card-body">
+        <p className="card-eyebrow">
+          Case {index + 1} · {c.client}
+        </p>
+        <h2 className="card-title">{c.title}</h2>
+        <p className="card-body">{c.summary}</p>
+        <span className="card-link">
+          Read the case <span aria-hidden="true">→</span>
+        </span>
+      </div>
+    </a>
+  )
+}
+
+function CasesIndex() {
   return (
     <>
       <header className="container hero">
@@ -255,42 +276,93 @@ function CasesPage() {
         </div>
       </header>
 
-      <main className="container case-list">
+      <main className="container case-grid">
         {cases.map((c, i) => (
-          <article key={c.id} id={c.id} className="case">
-            <p className="case-eyebrow">
-              Case {i + 1} · {c.client}
-            </p>
-            <h2 className="case-title">{c.title}</h2>
-            <dl className="case-facts">
-              {c.facts.map((f) => (
-                <div key={f.label} className="case-fact">
-                  <dt>{f.label}</dt>
-                  <dd>{f.value}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className="case-sections">
-              {c.sections.map((s) => (
-                <div key={s.heading} className="case-section">
-                  <h3>{s.heading}</h3>
-                  <p>{s.text}</p>
-                </div>
-              ))}
-            </div>
-          </article>
+          <CaseCard key={c.id} c={c} index={i} />
         ))}
       </main>
     </>
   )
 }
 
+function CaseDetail({ c }) {
+  const index = cases.indexOf(c)
+  const next = cases[(index + 1) % cases.length]
+  return (
+    <>
+      <header className="container hero">
+        <TopBar />
+        <div className="page-head">
+          <a className="back-link" href="/cases">
+            <span aria-hidden="true">←</span> All case studies
+          </a>
+          <p className="case-eyebrow">
+            Case {index + 1} · {c.client}
+          </p>
+          <h1 className="case-page-title">{c.title}</h1>
+        </div>
+      </header>
+
+      <main className="container case-page">
+        <div className="case-hero">
+          <CaseArt id={c.id} />
+        </div>
+
+        <dl className="case-facts">
+          {c.facts.map((f) => (
+            <div key={f.label} className="case-fact">
+              <dt>{f.label}</dt>
+              <dd>{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="case-sections">
+          {c.sections.map((s) => (
+            <div key={s.heading} className="case-section">
+              <h2>{s.heading}</h2>
+              <p>{s.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <a className="case-next" href={`/cases/${next.id}`}>
+          <span className="case-next-label">Next case</span>
+          <span className="case-next-title">
+            {next.title} <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      </main>
+    </>
+  )
+}
+
+function route() {
+  const path = window.location.pathname.replace(/\/+$/, '')
+  if (path === '/cases') {
+    // Old /cases#id links go to the case's own page.
+    const id = window.location.hash.slice(1)
+    if (cases.some((c) => c.id === id)) {
+      window.location.replace(`/cases/${id}`)
+      return { page: 'redirect' }
+    }
+    return { page: 'cases' }
+  }
+  const match = path.match(/^\/cases\/([\w-]+)$/)
+  const c = match && cases.find((x) => x.id === match[1])
+  if (c) return { page: 'case', c }
+  if (match) return { page: 'cases' }
+  return { page: 'home' }
+}
+
 export default function App() {
-  const isCases = window.location.pathname.replace(/\/+$/, '') === '/cases'
+  const r = route()
 
   useEffect(() => {
-    document.title = isCases ? 'Case studies · SPV Ventures' : 'SPV Ventures'
-  }, [isCases])
+    if (r.page === 'case') document.title = `${r.c.title} · SPV Ventures`
+    else if (r.page === 'cases') document.title = 'Case studies · SPV Ventures'
+    else document.title = 'SPV Ventures'
+  }, [r.page, r.c])
 
   // Content renders after load, so the browser can't jump to #id by itself.
   useEffect(() => {
@@ -298,9 +370,13 @@ export default function App() {
     if (id) document.getElementById(id)?.scrollIntoView()
   }, [])
 
+  if (r.page === 'redirect') return null
+
   return (
     <>
-      {isCases ? <CasesPage /> : <Home />}
+      {r.page === 'case' && <CaseDetail c={r.c} />}
+      {r.page === 'cases' && <CasesIndex />}
+      {r.page === 'home' && <Home />}
       <Footer />
     </>
   )
