@@ -20,14 +20,14 @@ const services = [
 // Companies we are co-founding now.
 const building = [
   {
-    who: 'Kulon Space · Co‑founders',
-    title: 'Structured an orbital infrastructure company with the founder of Exolaunch',
-    body: 'Company structure set up with Dmitry Sternharz. The fundraise is next.',
+    who: 'Kulon Space · Orbital infrastructure',
+    title: 'Building infrastructure for an economy beyond Earth',
+    body: 'Our role: co\u2011founders. The company structure is in place, and the fundraise is next.',
   },
   {
-    who: 'Longrun AI · Business co‑founders',
-    title: 'Building the business of an AI lab founded by ex‑Meta researchers',
-    body: 'Leading market discovery and go-to-market now, with the fundraise to follow.',
+    who: 'Longrun AI · AI research',
+    title: 'Taking an AI lab of ex\u2011Meta researchers to market',
+    body: 'Our role: business co\u2011founders, leading market discovery and go-to-market, with the fundraise to follow.',
   },
 ]
 
@@ -222,7 +222,11 @@ function Home() {
             ))}
           </div>
 
-          <h3 className="subsection-title">Building now</h3>
+          <h3 className="subsection-title">Companies we&rsquo;re building</h3>
+          <p className="subsection-lead">
+            Where we are co&#8209;founders, not advisers: we take an operating role from structure to
+            go-to-market and fundraising.
+          </p>
           <div className="cards cards-2">
             {building.map((b) => (
               <Card key={b.title} eyebrow={b.who} title={b.title}>
