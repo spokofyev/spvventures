@@ -1,5 +1,5 @@
 import Glow from "./glow";
-import { mailto, site } from "./site";
+import { asset, mailto, site } from "./site";
 
 export default function Page() {
   return (
@@ -25,7 +25,7 @@ export default function Page() {
           </nav>
           <p className="credit">
             Founded by researchers and builders from{" "}
-            <img className="credit-logo" src="/meta-white.png" alt="Meta" width={544} height={113} />
+            <img className="credit-logo" src={asset("/meta-white.png")} alt="Meta" width={544} height={113} />
           </p>
           <a
             className="social"

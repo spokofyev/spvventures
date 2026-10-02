@@ -2,7 +2,7 @@
 // TODO: name and email are placeholders.
 export const site = {
   name: "Longrun",
-  url: "https://longrun.spvventures.co",
+  url: "https://spvventures.co/longrun",
   email: "hello@longrun.ai",
   title: "Longrun — Environments for work that unfolds over time",
   description:
@@ -10,3 +10,6 @@ export const site = {
 };
 
 export const mailto = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
+
+// Prefix for files in public/, so they resolve under a base path such as /longrun.
+export const asset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;

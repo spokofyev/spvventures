@@ -9,7 +9,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "export:spv": "rm -rf out && LONGRUN_BASE_PATH=/longrun next build && rm -rf ../public/longrun && cp -r out ../public/longrun"
   },
   "dependencies": {
     "next": "16.2.6",
