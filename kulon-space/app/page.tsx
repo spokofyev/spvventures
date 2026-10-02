@@ -1,13 +1,16 @@
 import Image from "next/image";
 import Arrow from "./arrow";
-import { SiteFooter, SiteHeader, WorkWithUs } from "./site";
+import { SiteFooter, WorkWithUs } from "./site";
+
+// Temporarily hidden: set to true to bring back Thesis, Team, Work with us and the footer.
+const SHOW_SECTIONS = false;
 
 export default function Home() {
   return <>
     <section className="stage" aria-labelledby="hero-heading">
       <Image className="stage-img" src="/orbital-horizon.webp" alt="Sunrise over Earth's curved horizon and vast cloud-covered oceans" fill sizes="100vw" priority />
       <div className="stage-inner">
-        <SiteHeader />
+        <header className="nav nav-center"><span className="brand">Kulon</span></header>
         <div className="stage-copy">
           <h1 id="hero-heading" className="stage-title"><span><span>Infrastructure</span></span> <span><span>beyond</span></span> <span><span>Earth.</span></span></h1>
           <div className="stage-cycle" aria-hidden="true">
@@ -18,6 +21,7 @@ export default function Home() {
       </div>
     </section>
 
+  {SHOW_SECTIONS && <>
   <main id="top">
     <section className="block" id="thesis">
       <h2 className="block-title"><strong>Our thesis</strong><span>What we build in orbit comes next.</span></h2>
@@ -33,5 +37,6 @@ export default function Home() {
     <WorkWithUs />
     <SiteFooter />
   </main>
+  </>}
   </>;
 }
