@@ -195,8 +195,11 @@ ol { list-style: none; }
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.04em;
-  max-width: 16em;
-  text-wrap: balance;
+}
+
+.headline span {
+  display: block;
+  white-space: nowrap;
 }
 
 .hero-cta {
@@ -394,6 +397,8 @@ ol { list-style: none; }
 /* ── Mobile ───────────────────────────────── */
 
 @media (max-width: 640px) {
+  .headline span { display: inline; white-space: normal; }
+
   .container {
     padding-left: 20px;
     padding-right: 20px;
