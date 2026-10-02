@@ -19,7 +19,7 @@ export default function Home() {
             <div className="stage-words"><span>Compute</span><span>Move</span><span>Build</span></div>
             <svg className="stage-ring" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" /><circle className="stage-ring-fill" cx="16" cy="16" r="14" /></svg>
           </div>}
-          <a className="button button-white stage-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
+          <a className="button button-white stage-cta" href="https://www.linkedin.com/in/sprokofyev" target="_blank" rel="noopener noreferrer">Get in touch</a>
         </div>
         <p className="stage-foot">Built in London and Berlin.</p>
       </div>
