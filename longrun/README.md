@@ -2,6 +2,10 @@
 
 Launch site for Longrun (placeholder name), an early-stage research lab building dynamic, long-horizon environments for training and evaluating AI agents. Standalone Next.js app, independent of the repo-root SPV Ventures app and `kulon-space/`.
 
+## Publishing
+
+Live at https://spvventures.co/longrun, served as static files by the SPV Ventures project. After any change here run `npm run export:spv` (writes `../public/longrun/`), then commit both and push to `main`.
+
 ## Development
 
 ```sh
