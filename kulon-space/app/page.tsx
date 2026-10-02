@@ -10,14 +10,14 @@ export default function Home() {
     <section className="stage" aria-labelledby="hero-heading">
       <Image className="stage-img" src="/orbital-horizon.webp" alt="Sunrise over Earth's curved horizon and vast cloud-covered oceans" fill sizes="100vw" priority />
       <div className="stage-inner">
-        <header className="nav nav-center"><span className="brand">Kulon</span></header>
+        <header className="nav nav-center"><span className="brand brand-caps" aria-label="Kulon">KULON</span></header>
         <div className="stage-copy">
           <h1 id="hero-heading" className="stage-title"><span><span>Infrastructure</span></span> <span><span>beyond</span></span> <span><span>Earth.</span></span></h1>
-          <a className="button button-glass stage-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
           <div className="stage-cycle" aria-hidden="true">
             <div className="stage-words"><span>Compute</span><span>Move</span><span>Build</span></div>
             <svg className="stage-ring" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" /><circle className="stage-ring-fill" cx="16" cy="16" r="14" /></svg>
           </div>
+          <a className="button button-outline stage-cta" href="mailto:founders@kulon.space">Get in touch <Arrow /></a>
         </div>
       </div>
     </section>
